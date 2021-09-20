@@ -1,0 +1,63 @@
+.pokemon-font {
+  font-family: 'Joti One', cursive;
+  color: #FFCB04;
+  text-shadow: 3px 3px 0 #39569E,
+    -1px -1px 0 #39569E,
+    1px -1px 0 #39569E,
+    -1px 4px 0 #39569E,
+    1px 1px 0 #39569E;
+}
+
+header {
+    background-color: #FF5A6E;
+}
+
+body {
+    background-color: #F6F6F6;
+}
+
+main {
+    border: 1px solid blue;
+}
+
+.nav h1 {
+    font-size: 1.75rem;
+}
+.nav h2 {
+    margin: 0.25rem 0;
+    padding: 1rem 0;
+}
+
+
+.nav a{
+    padding: 0.3rem 0;
+    color: #FFCB04;
+    text-decoration: none;
+}
+
+.nav {
+    justify-content: space-between
+}
+
+main button {
+    border: none;
+    background-color: #7DE0FF;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    width: 75%;
+    margin: 0.5rem 0;
+}
+
+button {
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
+    border-radius: 5rem;
+    box-shadow: 1px 1px 4px -1px rgba(107, 79, 79, 0.65);
+    -webkit-box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.65);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
