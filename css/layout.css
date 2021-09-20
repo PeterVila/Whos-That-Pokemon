@@ -18,16 +18,24 @@
   width: 100%;
 }
 
-.justify-space {
-  justify-content: space-between;
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .justify-center {
     justify-content: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .row img {
   width: 75%;
+}
+
+.row button {
+  margin-bottom: 2rem;
 }
 
 /* For desktop screens */
@@ -52,4 +60,9 @@
   .row img {
       width: 50%;
   }
+
+  .row button {
+    margin-bottom: 0.5rem;
+  }
+
 }

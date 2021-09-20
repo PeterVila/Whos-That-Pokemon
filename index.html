@@ -13,29 +13,41 @@
 
 </head>
 <body>
+  <!-- modal -->
+  <div class="modal-background">
+    <div class="modal">
+      <div class="modal-text row justify-center">
+        <h1>What is your name?</h1>
+        <input type="text" name="name" id="name" required>
+      </div>
+      <div class="row justify-evenly">
+        <button id="cancel">Cancel</button>
+        <button id="submit">Submit</button>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="nav row container">
       <h1 class="pokemon-font">Pokemon Quiz Game</h1>
       <h2 class="pokemon-font"><a href="#">Home</a></h2>
     </div>
   </header>
-
-  <div class="container">
     <main>
-      <div class="logo row justify-center">
-        <img src="images/pokeball.png" alt="">
-      </div>
-      <div class="row justify-center">
-        <button>Start Quiz</button>
-      </div>
-      <div class="row justify-center">
-        <button>Play History</button>
-      </div>
-      <div class="row justify-center">
-        <button>Pokedex</button>
+      <div class="container">
+        <div class="logo row justify-center">
+          <img src="images/pokeball.png" alt="">
+        </div>
+        <div id="start" class="row justify-center">
+          <button>Start Quiz</button>
+        </div>
+        <div class="row justify-center">
+          <button>Play History</button>
+        </div>
+        <div class="row justify-center">
+          <button>Pokedex</button>
+        </div>
       </div>
     </main>
-  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
