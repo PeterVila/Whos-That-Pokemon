@@ -1,4 +1,6 @@
 var $navH1 = document.querySelector('.navh1');
+var $navH2 = document.querySelector('.navh2')
+$navH2.addEventListener('click', resetQuiz)
 var $body = document.querySelector('body');
 
 var $startQuiz = document.querySelector('#start');
@@ -24,4 +26,13 @@ function startQuiz(){
     $quizPage.className = "container"
     $body.className = "blueBackground"
     $navH1.textContent = "Question " + dataModel.question
+    $navH2.className = "navH2 pokemon-font"
+}
+
+function resetQuiz(){
+    $homePage.className = "container";
+    $quizPage.className = "container hidden"
+    $body.className = "";
+    $navH1.textContent = "Pokemon Quiz Game";
+    $navH2.className = "navH2 pokemon-font hidden"
 }
