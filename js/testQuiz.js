@@ -1,12 +1,12 @@
 var data = {
-  currentNumber: 1,
-  currentPokemon: null,
-  trainerName: null,
-  currentFour: [],
+    currentNumber: 1,
+    currentPokemon: null,
+    trainerName: null,
+    currentFour: [],
 }
 
 function generateFour() {
-  data.currentFour = [];
+    data.currentFour = [];
 
   for (var i = 0;; i++) {
     var random = Math.floor(Math.random() * (151 - 1 + 1) + 1);
@@ -44,7 +44,6 @@ function getPokemonName_1() {
     xhr.send();
   })
 }
-
 function getPokemonName_2() {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
@@ -61,7 +60,6 @@ function getPokemonName_2() {
     xhr.send();
   })
 }
-
 function getPokemonName_3() {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
@@ -78,7 +76,6 @@ function getPokemonName_3() {
     xhr.send();
   })
 }
-
 function getPokemonName_4() {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
@@ -91,21 +88,19 @@ function getPokemonName_4() {
         }
       }
     };
-    xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + data.currentFour[3]);
+    xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + data.currentFour[3]); 
     xhr.send();
   })
 }
 
 
-function createQuizQuestion(){
-
+function createQuizQuestion() {
   Promise.all([getPokemonName_1(), getPokemonName_2(), getPokemonName_3(), getPokemonName_4()]).then(function (values) {
     var randomInteger = Math.floor(Math.random() * 4)
     console.log(shuffledFour[randomInteger])
     //Appending random Image to body
     var $quizDiv = document.querySelector('#quiz');
     var $quizContainer = document.createElement('div');
-    $quizContainer.className = "row justify-center"
     $quizDiv.appendChild($quizContainer);
     var $img = document.createElement('img');
     $img.setAttribute('src', JSON.parse(values[randomInteger]).sprites.other['official-artwork'].front_default)
@@ -114,39 +109,37 @@ function createQuizQuestion(){
     //Bar load
     var $barRow = document.createElement('div');
     $barRow.className = "bar";
-    $quizContainer.prepend($barRow);
+    $quizContainer.appendChild($barRow);
     $inRow = document.createElement('div');
     $inRow.className = "in";
     $barRow.appendChild($inRow);
-    //Create 4 Buttons 
+ //Create 4 Buttons 
 
-    for (var i = 0; i < 4; i++) {
-      var $button = document.createElement('button')
-      $button.className = "white-button justify-center";
-      $button.textContent = JSON.parse(values[i]).name;
-      $quizContainer.appendChild($button)
-      $button.addEventListener('click', function () {
-        console.log("event.target:", event.target.textContent)
-        if (event.target.textContent === data.currentPokemon) {
-          if (data.currentNumber === 10) {
-            alert('nicely done')
-          } else {
-            console.log('NEXT QUESTION, remake DOM');
-            var $navH1 = document.querySelector('.navh1');
-            data.currentNumber++;
-            $navH1.textContent = "Question " + data.currentNumber
-            $quizContainer.remove();
-            generateFour();
-            createQuizQuestion();
-            console.log(data);
-          }
-        }
-      })
+    for (var i = 0; i < 4; i++){
+        var $button = document.createElement('button')
+        $button.className = "white-button";
+        $button.textContent = JSON.parse(values[i]).name;
+        $quizContainer.appendChild($button)
+        $button.addEventListener('click', function(){
+            console.log("event.target:", event.target.textContent)
+            if (event.target.textContent === data.currentPokemon){
+                if (data.currentNumber === 10){
+                    alert('nicely done')
+                } else {
+                    console.log('NEXT QUESTION, remake DOM');
+                    $quizContainer.remove();
+                    generateFour();
+                    createQuizQuestion();
+                    data.currentNumber++;
+                    console.log(data);
+                }
+            }
+        })
     }
 
   }).catch(function (reason) {
     console.log(reason);
   })
-  }
+}
 
-
+createQuizQuestion();

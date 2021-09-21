@@ -27,8 +27,9 @@ function startQuiz(){
     $homePage.className = "container hidden"
     $quizPage.className = "container"
     $body.className = "blueBackground"
-    $navH1.textContent = "Question " + dataModel.questionNumber
+    $navH1.textContent = "Question " + data.currentNumber
     $navH2.className = "navH2 pokemon-font"
+    createQuizQuestion();
 }
 
 function resetQuiz(){

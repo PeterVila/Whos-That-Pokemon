@@ -40,7 +40,7 @@ button {
     border: none;
     background-color: #7DE0FF;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 0.5rem;
     width: 75%;
     margin: 0.5rem 0;
@@ -105,12 +105,12 @@ button:hover {
     padding: 0 2%;
     border: 2px solid rgba(0, 0, 0, 0.392);
     border-radius: 5rem;
-    height: 3rem;
+    height: 2rem;
     background-color: white;
     padding-top: 0.5rem;
-    margin-top: 5%;
+    margin-top: 2%;
     color: #7DE0FF;
-    font-size: 1.5rem;
+    font-size: 1rem;
     /* text and border shadow */
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
     border-radius: 5rem;
@@ -126,9 +126,9 @@ button:hover {
 
 /* Loading Bar  */
 .bar {
-    margin-top: 1rem;
-    border: 2px solid black;
-    height: 1.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid black;
+    height: 0.75rem;
     width: 100%;
     border-radius: 1rem;
     background-color: white;
@@ -163,4 +163,13 @@ button:hover {
     background-color: white;
     color: #FF5A6E;
     text-shadow: none;
+    margin: 0;
+}
+
+.row .white-button {
+    margin-bottom: 0.5rem;
+}
+
+.quizImage img {
+    width: 65%;
 }
