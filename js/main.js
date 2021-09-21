@@ -12,6 +12,8 @@ function startQuizModal(){
 
 var $cancelButton = document.querySelector('#cancel');
 var $submitButton = document.querySelector('#submit');
+
+
 $cancelButton.addEventListener('click', hideQuizModal);
 function hideQuizModal(){
     $startModal.className = "modal-background hidden"
@@ -25,7 +27,7 @@ function startQuiz(){
     $homePage.className = "container hidden"
     $quizPage.className = "container"
     $body.className = "blueBackground"
-    $navH1.textContent = "Question " + dataModel.question
+    $navH1.textContent = "Question " + dataModel.questionNumber
     $navH2.className = "navH2 pokemon-font"
 }
 
