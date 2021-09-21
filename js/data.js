@@ -98,19 +98,19 @@ function getPokemonName_4() {
 
 
 function createQuizQuestion(){
-
   Promise.all([getPokemonName_1(), getPokemonName_2(), getPokemonName_3(), getPokemonName_4()]).then(function (values) {
     var randomInteger = Math.floor(Math.random() * 4)
     console.log(shuffledFour[randomInteger])
     //Appending random Image to body
     var $quizDiv = document.querySelector('#quiz');
     var $quizContainer = document.createElement('div');
-    $quizContainer.className = "row justify-center"
+    $quizContainer.className = "quizContainer row justify-center"
     $quizDiv.appendChild($quizContainer);
     var $img = document.createElement('img');
     $img.setAttribute('src', JSON.parse(values[randomInteger]).sprites.other['official-artwork'].front_default)
     $quizContainer.appendChild($img);
-    data.currentPokemon = JSON.parse(values[randomInteger]).name
+    $img.addEventListener('load', function(){
+      //BAR LOAD 
     //Bar load
     var $barRow = document.createElement('div');
     $barRow.className = "bar";
@@ -118,19 +118,54 @@ function createQuizQuestion(){
     $inRow = document.createElement('div');
     $inRow.className = "in";
     $barRow.appendChild($inRow);
-    //Create 4 Buttons 
-
+      //QUERYING FOR DOTS
+      var $dots = document.querySelectorAll('.col-tenth')
+      console.log($dots);
+      //SET TIMEOUT, 
+      var timeBar = setTimeout(myTimer, 10000)
+      function myTimer() {
+        $quizContainer.remove();
+        console.log('NEXT QUESTION, remake DOM');
+        var $navH1 = document.querySelector('.navh1');
+        data.currentNumber++;
+        $navH1.textContent = "Question " + data.currentNumber
+        generateFour();
+        createQuizQuestion();
+        console.log(data);
+      }
     for (var i = 0; i < 4; i++) {
       var $button = document.createElement('button')
       $button.className = "white-button justify-center";
       $button.textContent = JSON.parse(values[i]).name;
       $quizContainer.appendChild($button)
       $button.addEventListener('click', function () {
+        clearTimeout(timeBar);
         console.log("event.target:", event.target.textContent)
         if (event.target.textContent === data.currentPokemon) {
-          if (data.currentNumber === 10) {
-            alert('nicely done')
-          } else {
+            console.log('NEXT QUESTION, remake DOM');
+            var $navH1 = document.querySelector('.navh1');
+            $dots[data.currentNumber - 1].textContent = ":D"
+            data.currentNumber++;
+            $navH1.textContent = "Question " + data.currentNumber
+            $quizContainer.remove();
+            generateFour();
+            createQuizQuestion();
+            console.log(data);
+        } else if (data.currentNumber === 10) {
+            var $body = document.querySelector('body')
+            var $modalBackground = document.createElement('div');
+            $modalBackground.className = "modal-background";
+            $body.appendChild($modalBackground);
+            var $modal = document.createElement('div');
+            $modalBackground.appendChild($modal);
+            var $modalText = document.createElement('div');
+            $modalText.className = "modal-text row justify-center"
+            $modal.appendChild($modalText);
+            var $h1 = document.createElement('h1');
+            $h1.textContent = "Score is blah";
+            $modal.appendChild($h1)
+        } else {
+          //make this wrong
             console.log('NEXT QUESTION, remake DOM');
             var $navH1 = document.querySelector('.navh1');
             data.currentNumber++;
@@ -139,11 +174,11 @@ function createQuizQuestion(){
             generateFour();
             createQuizQuestion();
             console.log(data);
-          }
         }
       })
     }
-
+    })
+    data.currentPokemon = JSON.parse(values[randomInteger]).name
   }).catch(function (reason) {
     console.log(reason);
   })
