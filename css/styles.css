@@ -91,6 +91,10 @@ button:hover {
     color: rgb(58, 58, 58);
 }
 
+.modal-text input {
+    outline-width: 0;
+}
+
 .modal button {
     width: 30%;
     margin-top: 2rem;
@@ -105,7 +109,7 @@ button:hover {
     background-color: white;
     padding-top: 0.5rem;
     margin-top: 5%;
-    color: #C4C4C4;
+    color: #7DE0FF;
     font-size: 1.5rem;
     /* text and border shadow */
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
