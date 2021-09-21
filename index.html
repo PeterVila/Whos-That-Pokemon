@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
-
+  <link rel="stylesheet" crossorigin="anonymous"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -14,7 +16,7 @@
 </head>
 <body>
   <!-- modal -->
-  <div class="modal-background">
+  <div class="modal-background hidden">
     <div class="modal">
       <div class="modal-text row justify-center">
         <h1>What is your name?</h1>
@@ -22,18 +24,19 @@
       </div>
       <div class="row justify-evenly">
         <button id="cancel">Cancel</button>
-        <button id="submit">Submit</button>
+        <button type="submit" id="submit">Submit</button>
       </div>
     </div>
   </div>
   <header>
     <div class="nav row container">
-      <h1 class="pokemon-font">Pokemon Quiz Game</h1>
-      <h2 class="pokemon-font"><a href="#">Home</a></h2>
+      <h1 class="navh1 pokemon-font">Pokemon Quiz Game</h1>
+      <h2 class="navh2 pokemon-font"><a href="#">Home</a></h2>
     </div>
   </header>
     <main>
-      <div class="container">
+      <!-- dataview for home -->
+      <div class="container hidden" data-view="home">
         <div class="logo row justify-center">
           <img src="images/pokeball.png" alt="">
         </div>
@@ -45,6 +48,29 @@
         </div>
         <div class="row justify-center">
           <button>Pokedex</button>
+        </div>
+      </div>
+
+      <!-- dataview for quiz -->
+      <div class="container" data-view="quiz">
+        <div class="row justify-center">
+          <div class="progress-circles row justify-evenly">
+            <div class="col-tenth text-center text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          </div>
+        </div> <!--end of progress-circles row-->
+        <div class="row">
+          <div class="bar">
+            <div class="in"></div>
+          </div>
         </div>
       </div>
     </main>

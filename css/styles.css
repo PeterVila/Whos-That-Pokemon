@@ -16,9 +16,6 @@ body {
     background-color: #F6F6F6;
 }
 
-main {
-    border: 1px solid blue;
-}
 
 .nav h1 {
     font-size: 1.75rem;
@@ -97,4 +94,59 @@ button:hover {
 .modal button {
     width: 30%;
     margin-top: 2rem;
+}
+
+.progress-circles {
+    width: 100%;
+    padding: 0 2%;
+    border: 2px solid rgba(0, 0, 0, 0.392);
+    border-radius: 5rem;
+    height: 3rem;
+    background-color: white;
+    padding-top: 0.5rem;
+    margin-top: 5%;
+    color: #C4C4C4;
+    font-size: 1.5rem;
+    /* text and border shadow */
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
+    border-radius: 5rem;
+    box-shadow: 1px 1px 4px -1px rgba(107, 79, 79, 0.65);
+    -webkit-box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.65);
+}
+
+
+.blueBackground {
+    background-color: #7DE0FF;
+}
+
+/* Loading Bar  */
+.bar {
+    margin-top: 1rem;
+    border: 2px solid black;
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 1rem;
+    background-color: white;
+}
+
+.in {
+  /* animation name, duration, timing-function, iteration, sets final state */
+    animation: fill 10s linear 1 forwards;
+    height: 100%;
+    background-color: #00FF57;
+    border-radius: 1rem;
+}
+
+@keyframes fill {
+    0% {
+        width: 100%;
+    }
+    50% {
+        background-color: yellow;
+    }
+    100% {
+        width: 0%;
+        background-color: red;
+    }
 }

@@ -38,6 +38,13 @@
   margin-bottom: 2rem;
 }
 
+.col-tenth {
+  width: 10%;
+}
+
+.text-center {
+  text-align: center;
+}
 /* For desktop screens */
 @media screen and (min-width: 768px) {
   .container {
