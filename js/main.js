@@ -46,7 +46,7 @@ function resetQuiz(){
 
 function generateFour() {
   data.currentFour = [];
-  for (var i = 0;; i++) {
+  while (data.currentFour.length < 4) {
     var random = Math.floor(Math.random() * (151 - 1 + 1) + 1);
     if (data.currentFour.includes(random)) {
       continue;
@@ -131,7 +131,7 @@ function getPokemonName_4() {
   })
 }
 
-function createQuizQuestion() {
+function createQuizQuestion(){
   Promise.all([getPokemonName_1(), getPokemonName_2(), getPokemonName_3(), getPokemonName_4()]).then(function (values) {
     //Appending random Image to body
     var randomInteger = Math.floor(Math.random() * 4)
@@ -143,7 +143,8 @@ function createQuizQuestion() {
     var $img = document.createElement('img');
     $img.setAttribute('src', JSON.parse(values[randomInteger]).sprites.other['official-artwork'].front_default)
     $quizContainer.appendChild($img);
-    $img.addEventListener('load', function () {
+    $img.addEventListener('load', quizContents)
+    function quizContents() {
       //BAR LOAD 
       var $barRow = document.createElement('div');
       $barRow.className = "bar";
@@ -155,9 +156,8 @@ function createQuizQuestion() {
       var $dots = document.querySelectorAll('.col-tenth')
       console.log($dots);
       //SET TIMEOUT, 
-      var timeBar = setTimeout(myTimer, 10000)
-
-      function myTimer() {
+      var timeBar = setTimeout(questionTimer, 10000)
+      function questionTimer() {
         $quizContainer.remove();
         console.log('NEXT QUESTION, remake DOM');
         var $navH1 = document.querySelector('.navh1');
@@ -174,7 +174,8 @@ function createQuizQuestion() {
         $button.className = "white-button justify-center";
         $button.textContent = JSON.parse(values[i]).name;
         $quizContainer.appendChild($button)
-        $button.addEventListener('click', function () {
+        $button.addEventListener('click', quizButtonFunctionality)
+        function quizButtonFunctionality() {
           clearTimeout(timeBar);
           console.log("event.target:", event.target.textContent)
           if (data.currentNumber === 10) {
@@ -211,11 +212,15 @@ function createQuizQuestion() {
             createQuizQuestion();
             console.log(data);
           }
-        })
+        }
       }
-    })
+    }
     data.currentPokemon = JSON.parse(values[randomInteger]).name
   }).catch(function (reason) {
     console.log(reason);
   })
-}
+  }
+
+  
+
+
