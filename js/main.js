@@ -1,6 +1,5 @@
 var $navH1 = document.querySelector('.navh1') //Top left header
 var $body = document.querySelector('body');
-
 var $startQuiz = document.querySelector('#start');
 $startQuiz.addEventListener('click', startQuizModal);
 var $startModal = document.querySelector('.modal-background')
@@ -45,7 +44,7 @@ function resetQuiz() {
   data.currentNumber = 1;
 }
 
-function generateFour() {
+function generateFourRandomPokemonNumbers() {
   data.currentFour = [];
   while (data.currentFour.length < 4) {
     var random = Math.floor(Math.random() * (allPokemonList.length - 1 + 1) + 1);
@@ -58,34 +57,35 @@ function generateFour() {
   console.log('List of four Pokemon:', data.currentFour)
   data.currentPokemon = allPokemonList[data.currentFour[0] - 1] //Subtract 1
 }
-generateFour() //Array of 4 numbers, we want to reset this later.
+generateFourRandomPokemonNumbers() //Array of 4 numbers, we want to reset this later.
 
-var tenSecondsBar = null;
+var xhr = null;
 function getPokemonPicture() {
-  var xhr = new XMLHttpRequest();
+  xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + data.currentFour[0]);
   xhr.responseType = 'json';
   xhr.addEventListener('load', appendPokemonPicture);
   xhr.send();
-  function appendPokemonPicture() {
-    console.log(xhr.status);
-    var sprite = xhr.response.sprites.other['official-artwork'].front_default
-    var $img = document.createElement('img')
-    $img.setAttribute('src', sprite)
-    $img.className = 'black'
-    var $quizContainer = document.querySelector('.quizContainer')
-    $quizContainer.appendChild($img);
-    $img.addEventListener('load', questionsAndTime)
-      //Start the quizTimers as the animation bar loads
-      tenSecondsBar = setTimeout(quizTimer, 10000)
-      var shuffledFour = _.shuffle(data.currentFour);
-      for (var i = 0; i < 4; i++) {
-        var $button = document.createElement('button');
-        $button.className = "white-button justify-center";
-        $button.textContent = allPokemonList[shuffledFour[i] - 1]
-        $quizContainer.appendChild($button);
-        $button.addEventListener('click', questionClick)
-      }
+}
+
+var tenSecondsBar = null;
+function appendPokemonPicture() {
+  var sprite = xhr.response.sprites.other['official-artwork'].front_default
+  var $img = document.createElement('img')
+  $img.setAttribute('src', sprite)
+  $img.className = 'black'
+  var $quizContainer = document.querySelector('.quizContainer')
+  $quizContainer.appendChild($img);
+  $img.addEventListener('load', questionsAndTime)
+  //Start the quizTimers as the animation bar loads
+  tenSecondsBar = setTimeout(quizTimer, 10000)
+  var shuffledFour = _.shuffle(data.currentFour);
+  for (var i = 0; i < 4; i++) {
+    var $button = document.createElement('button');
+    $button.className = "white-button justify-center";
+    $button.textContent = allPokemonList[shuffledFour[i] - 1]
+    $quizContainer.appendChild($button);
+    $button.addEventListener('click', questionClick)
   }
 }
 function createQuizContainer() {
@@ -104,7 +104,7 @@ function quizTimer() {
   var $quizContainer = document.querySelector('.quizContainer');
   $quizContainer.remove();
   createQuizContainer();
-  generateFour();
+  generateFourRandomPokemonNumbers();
   getPokemonPicture()
   console.log(data);
 }
@@ -140,7 +140,7 @@ function questionClick() {
     $navH1.textContent = "Question " + data.currentNumber
     $quizContainer.remove();
     createQuizContainer()
-    generateFour();
+    generateFourRandomPokemonNumbers();
     getPokemonPicture();
     console.log(data);
   } else {
@@ -152,7 +152,7 @@ function questionClick() {
     $navH1.textContent = "Question " + data.currentNumber
     $quizContainer.remove();
     createQuizContainer();
-    generateFour();
+    generateFourRandomPokemonNumbers();
     getPokemonPicture()
     console.log(data);
   }
