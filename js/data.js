@@ -3,6 +3,9 @@ var data = {
   currentPokemon: null,
   trainerName: null,
   currentFour: [],
+  correctPokemon: [],
+  wrongPokemon:[],
+  pastGames: [],
 }
 
 function generateFour() {
@@ -22,7 +25,6 @@ function generateFour() {
   console.log('List of four Pokemon:', data.currentFour)
 }
 generateFour() //Array of 4 numbers, we want to reset this later.
-
 var shuffledFour = _.shuffle(data.currentFour);
 console.log("shuffledFour:", shuffledFour);
 
@@ -115,7 +117,7 @@ function createQuizQuestion(){
     var $barRow = document.createElement('div');
     $barRow.className = "bar";
     $quizContainer.prepend($barRow);
-    $inRow = document.createElement('div');
+    var $inRow = document.createElement('div');
     $inRow.className = "in";
     $barRow.appendChild($inRow);
       //QUERYING FOR DOTS
@@ -127,12 +129,14 @@ function createQuizQuestion(){
         $quizContainer.remove();
         console.log('NEXT QUESTION, remake DOM');
         var $navH1 = document.querySelector('.navh1');
+        data.wrongPokemon.push(data.currentPokemon);
         data.currentNumber++;
         $navH1.textContent = "Question " + data.currentNumber
         generateFour();
         createQuizQuestion();
         console.log(data);
       }
+    
     for (var i = 0; i < 4; i++) {
       var $button = document.createElement('button')
       $button.className = "white-button justify-center";
@@ -142,9 +146,16 @@ function createQuizQuestion(){
         clearTimeout(timeBar);
         console.log("event.target:", event.target.textContent)
         if (event.target.textContent === data.currentPokemon) {
+          //CORRECT ANSWERS
             console.log('NEXT QUESTION, remake DOM');
             var $navH1 = document.querySelector('.navh1');
-            $dots[data.currentNumber - 1].textContent = ":D"
+            $dots[data.currentNumber - 1].textContent = ""
+            var $icon = document.createElement('img');
+            $icon.className = "icon"
+            $icon.setAttribute('src', 'images/pokeball.png')
+            $dots[data.currentNumber - 1].appendChild($icon)
+            //Push current pokemon
+            data.correctPokemon.push(data.currentPokemon);
             data.currentNumber++;
             $navH1.textContent = "Question " + data.currentNumber
             $quizContainer.remove();
@@ -152,22 +163,13 @@ function createQuizQuestion(){
             createQuizQuestion();
             console.log(data);
         } else if (data.currentNumber === 10) {
-            var $body = document.querySelector('body')
-            var $modalBackground = document.createElement('div');
-            $modalBackground.className = "modal-background";
-            $body.appendChild($modalBackground);
-            var $modal = document.createElement('div');
-            $modalBackground.appendChild($modal);
-            var $modalText = document.createElement('div');
-            $modalText.className = "modal-text row justify-center"
-            $modal.appendChild($modalText);
-            var $h1 = document.createElement('h1');
-            $h1.textContent = "Score is blah";
-            $modal.appendChild($h1)
+         //MODAL WINDOW APPEARS HERE
+            alert('good job ')
         } else {
-          //make this wrong
+          //WRONG ANSWERS
             console.log('NEXT QUESTION, remake DOM');
             var $navH1 = document.querySelector('.navh1');
+            data.wrongPokemon.push(data.currentPokemon)
             data.currentNumber++;
             $navH1.textContent = "Question " + data.currentNumber
             $quizContainer.remove();

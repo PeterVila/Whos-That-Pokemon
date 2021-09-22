@@ -1,6 +1,6 @@
-var $navH2 = document.querySelector('.navh2')
+// var $navH2 = document.querySelector('.navh2')
 var $navH1 = document.querySelector('.navh1')
-$navH2.addEventListener('click', resetQuiz)
+// $navH2.addEventListener('click', resetQuiz)
 var $body = document.querySelector('body');
 
 var $startQuiz = document.querySelector('#start');
@@ -19,20 +19,25 @@ function hideQuizModal(){
     $startModal.className = "modal-background hidden"
 }
 $submitButton.addEventListener('click', startQuiz);
-
 var $homePage = document.querySelector('div[data-view="home"]')
 var $quizPage = document.querySelector('div[data-view="quiz"]')
+var $input = document.querySelector('input');
 function startQuiz(){
+    data.trainerName = $input.value;
+    $input.value = ""; //Reset input;
     $startModal.className = "modal-background hidden"
     $homePage.className = "container hidden"
     $quizPage.className = "container"
     $body.className = "blueBackground"
-    $navH2.className = "navH2 pokemon-font"
+    // $navH2.className = "navH2 pokemon-font"
     $navH1.textContent = "Question " + data.currentNumber;
     createQuizQuestion();
+    console.log('Data model at start:', data)
 }
 
+//Reset Quiz?
 function resetQuiz(){
+    console.log('works');
     var $quizContainer = document.querySelector('.quizContainer');
     $quizContainer.remove();
     $homePage.className = "container";

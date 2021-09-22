@@ -173,3 +173,8 @@ button:hover {
 .quizImage img {
     width: 65%;
 }
+
+.icon {
+    height: 18px;
+    max-width: 18px;
+}
