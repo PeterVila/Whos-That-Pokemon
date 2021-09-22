@@ -1,7 +1,6 @@
 var $navH1 = document.querySelector('.navh1') //Top left header
 var $body = document.querySelector('body');
 
-
 var $startQuiz = document.querySelector('#start');
 $startQuiz.addEventListener('click', startQuizModal);
 var $startModal = document.querySelector('.modal-background')
@@ -55,15 +54,13 @@ function generateFour() {
     } else {
       data.currentFour.push(random);
     }
-    if (data.currentFour.length === 4) {
-      break;
-    }
   }
   console.log('List of four Pokemon:', data.currentFour)
   data.currentPokemon = allPokemonList[data.currentFour[0] - 1] //Subtract 1
 }
 generateFour() //Array of 4 numbers, we want to reset this later.
 
+var tenSecondsBar = null;
 function getPokemonPicture() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + data.currentFour[0]);
@@ -79,80 +76,18 @@ function getPokemonPicture() {
     var $quizContainer = document.querySelector('.quizContainer')
     $quizContainer.appendChild($img);
     $img.addEventListener('load', questionsAndTime)
-    function questionsAndTime() {
-      //Creating an animated loading bar
-      var $barRow = document.createElement('div');
-      $barRow.className = "bar";
-      $quizContainer.prepend($barRow);
-      var $inRow = document.createElement('div');
-      $inRow.className = "in";
-      $barRow.appendChild($inRow);
-      //Add timeout to animated loading bar
-      var timeBar = setTimeout(quizTimer, 10000)
-      function quizTimer() {
-        console.log('NEXT QUESTION, remake DOM');
-        var $navH1 = document.querySelector('.navh1');
-        data.wrongPokemon.push(data.currentPokemon)
-        data.currentNumber++;
-        $navH1.textContent = "Question " + data.currentNumber
-        $quizContainer.remove();
-        createQuizContainer();
-        generateFour();
-        getPokemonPicture()
-        console.log(data);
-      }
-      //Shuffle current array
+      //Start the quizTimers as the animation bar loads
+      tenSecondsBar = setTimeout(quizTimer, 10000)
       var shuffledFour = _.shuffle(data.currentFour);
-      //Creating 4 buttons
       for (var i = 0; i < 4; i++) {
         var $button = document.createElement('button');
         $button.className = "white-button justify-center";
         $button.textContent = allPokemonList[shuffledFour[i] - 1]
         $quizContainer.appendChild($button);
         $button.addEventListener('click', questionClick)
-        function questionClick() {
-          //Clear timeout
-          clearTimeout(timeBar)
-          console.log(event.target.textContent);
-          if (data.currentNumber === 10) {
-            alert('goodjob')
-          } else if (event.target.textContent === data.currentPokemon) {
-            console.log('NEXT QUESTION, remake DOM');
-            var $navH1 = document.querySelector('.navh1');
-            var $dots = document.querySelectorAll('.col-tenth')
-            $dots[data.currentNumber - 1].textContent = ""
-            var $icon = document.createElement('img');
-            $icon.className = "icon"
-            $icon.setAttribute('src', 'images/pokeball.png')
-            $dots[data.currentNumber - 1].appendChild($icon)
-            //Push current pokemon
-            data.correctPokemon.push(data.currentPokemon);
-            data.currentNumber++;
-            $navH1.textContent = "Question " + data.currentNumber
-            $quizContainer.remove();
-            createQuizContainer()
-            generateFour();
-            getPokemonPicture();
-            console.log(data);
-          } else {
-            //WRONG ANSWERS
-            console.log('NEXT QUESTION, remake DOM');
-            var $navH1 = document.querySelector('.navh1');
-            data.wrongPokemon.push(data.currentPokemon)
-            data.currentNumber++;
-            $navH1.textContent = "Question " + data.currentNumber
-            $quizContainer.remove();
-            createQuizContainer();
-            generateFour();
-            getPokemonPicture()
-            console.log(data);
-          }
-        }
       }
-    }
   }
 }
-
 function createQuizContainer() {
   var $quizDiv = document.querySelector('#quiz');
   var $quizContainer = document.createElement('div');
@@ -160,6 +95,65 @@ function createQuizContainer() {
   $quizDiv.appendChild($quizContainer);
 }
 
+function quizTimer() {
+  console.log('NEXT QUESTION, remake DOM');
+  var $navH1 = document.querySelector('.navh1');
+  data.wrongPokemon.push(data.currentPokemon)
+  data.currentNumber++;
+  $navH1.textContent = "Question " + data.currentNumber
+  var $quizContainer = document.querySelector('.quizContainer');
+  $quizContainer.remove();
+  createQuizContainer();
+  generateFour();
+  getPokemonPicture()
+  console.log(data);
+}
 
+function questionsAndTime() {
+  var $barRow = document.createElement('div');
+  $barRow.className = "bar";
+  var $quizContainer = document.querySelector('.quizContainer');
+  $quizContainer.prepend($barRow);
+  var $inRow = document.createElement('div');
+  $inRow.className = "in";
+  $barRow.appendChild($inRow);
+}
 
-
+function questionClick() {
+  clearTimeout(tenSecondsBar);
+  var $quizContainer = document.querySelector('.quizContainer');
+  console.log(event.target.textContent);
+  if (data.currentNumber === 10) {
+    alert('goodjob')
+  } else if (event.target.textContent === data.currentPokemon) {
+    console.log('NEXT QUESTION, remake DOM');
+    var $navH1 = document.querySelector('.navh1');
+    var $dots = document.querySelectorAll('.col-tenth')
+    $dots[data.currentNumber - 1].textContent = ""
+    var $icon = document.createElement('img');
+    $icon.className = "icon"
+    $icon.setAttribute('src', 'images/pokeball.png')
+    $dots[data.currentNumber - 1].appendChild($icon)
+    //Push current pokemon
+    data.correctPokemon.push(data.currentPokemon);
+    data.currentNumber++;
+    $navH1.textContent = "Question " + data.currentNumber
+    $quizContainer.remove();
+    createQuizContainer()
+    generateFour();
+    getPokemonPicture();
+    console.log(data);
+  } else {
+    //WRONG ANSWERS
+    console.log('NEXT QUESTION, remake DOM');
+    var $navH1 = document.querySelector('.navh1');
+    data.wrongPokemon.push(data.currentPokemon)
+    data.currentNumber++;
+    $navH1.textContent = "Question " + data.currentNumber
+    $quizContainer.remove();
+    createQuizContainer();
+    generateFour();
+    getPokemonPicture()
+    console.log(data);
+  }
+}
