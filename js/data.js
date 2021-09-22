@@ -28,8 +28,6 @@ generateFour() //Array of 4 numbers, we want to reset this later.
 var shuffledFour = _.shuffle(data.currentFour);
 console.log("shuffledFour:", shuffledFour);
 
-
-
 function getPokemonName_1() {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
@@ -98,7 +96,6 @@ function getPokemonName_4() {
   })
 }
 
-
 function createQuizQuestion(){
   Promise.all([getPokemonName_1(), getPokemonName_2(), getPokemonName_3(), getPokemonName_4()]).then(function (values) {
     var randomInteger = Math.floor(Math.random() * 4)
@@ -113,13 +110,12 @@ function createQuizQuestion(){
     $quizContainer.appendChild($img);
     $img.addEventListener('load', function(){
       //BAR LOAD 
-    //Bar load
-    var $barRow = document.createElement('div');
-    $barRow.className = "bar";
-    $quizContainer.prepend($barRow);
-    var $inRow = document.createElement('div');
-    $inRow.className = "in";
-    $barRow.appendChild($inRow);
+      var $barRow = document.createElement('div');
+      $barRow.className = "bar";
+      $quizContainer.prepend($barRow);
+      var $inRow = document.createElement('div');
+      $inRow.className = "in";
+      $barRow.appendChild($inRow);
       //QUERYING FOR DOTS
       var $dots = document.querySelectorAll('.col-tenth')
       console.log($dots);
@@ -145,7 +141,9 @@ function createQuizQuestion(){
       $button.addEventListener('click', function () {
         clearTimeout(timeBar);
         console.log("event.target:", event.target.textContent)
-        if (event.target.textContent === data.currentPokemon) {
+        if (data.currentNumber === 10) {
+          alert('goodjob');
+        } else if (event.target.textContent === data.currentPokemon) {
           //CORRECT ANSWERS
             console.log('NEXT QUESTION, remake DOM');
             var $navH1 = document.querySelector('.navh1');
@@ -164,7 +162,7 @@ function createQuizQuestion(){
             console.log(data);
         } else if (data.currentNumber === 10) {
          //MODAL WINDOW APPEARS HERE
-            alert('good job ')
+            alert('stop it stepbro')
         } else {
           //WRONG ANSWERS
             console.log('NEXT QUESTION, remake DOM');
@@ -179,7 +177,7 @@ function createQuizQuestion(){
         }
       })
     }
-    })
+  })
     data.currentPokemon = JSON.parse(values[randomInteger]).name
   }).catch(function (reason) {
     console.log(reason);

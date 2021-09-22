@@ -170,8 +170,8 @@ button:hover {
     margin-bottom: 0.5rem;
 }
 
-.quizImage img {
-    width: 65%;
+.quizContainer img {
+    width: 55%;
 }
 
 .icon {
