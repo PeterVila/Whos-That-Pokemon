@@ -59,18 +59,22 @@ function generateFourRandomPokemonNumbers() {
 }
 generateFourRandomPokemonNumbers() //Array of 4 numbers, we want to reset this later.
 
-var xhr = null;
 function getPokemonPicture() {
-  xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + data.currentFour[0]);
   xhr.responseType = 'json';
-  xhr.addEventListener('load', appendPokemonPicture);
+  xhr.addEventListener('load', handleResponseData);
   xhr.send();
 }
 
+function handleResponseData(event) {
+  appendPokemonPicture(event.target.response.sprites.other['official-artwork'].front_default)
+}
+
 var tenSecondsBar = null;
-function appendPokemonPicture() {
-  var sprite = xhr.response.sprites.other['official-artwork'].front_default
+
+function appendPokemonPicture(passValue) {
+  var sprite = passValue;
   var $img = document.createElement('img')
   $img.setAttribute('src', sprite)
   $img.className = 'black'
