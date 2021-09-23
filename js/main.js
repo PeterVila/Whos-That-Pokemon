@@ -41,9 +41,9 @@ function generateFourRandomPokemonNumbers() {
       data.currentFour.push(random);
     }
   }
-  data.currentPokemon = allPokemonList[data.currentFour[0] - 1] //Subtract 1
+  data.currentPokemon = allPokemonList[data.currentFour[0] - 1]
 }
-generateFourRandomPokemonNumbers() //Array of 4 numbers, we want to reset this later.
+generateFourRandomPokemonNumbers() 
 
 function getPokemonPicture() {
   var xhr = new XMLHttpRequest();
@@ -55,6 +55,7 @@ function getPokemonPicture() {
 
 function handleResponseData(event) {
   appendPokemonPicture(event.target.response.sprites.other['official-artwork'].front_default)
+  data.currentPokemonUrl = event.target.response.sprites.front_default
 }
 
 var tenSecondsBar = null;
@@ -79,7 +80,10 @@ var $quizModal = document.querySelector('#quizModal')
 
 function quizTimer() {
   if (data.currentNumber === 10){
-    data.wrongPokemon.push(data.currentPokemon)
+    data.wrongPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+  })
     $quizModal.className = "modal-background";
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
@@ -92,7 +96,10 @@ function quizTimer() {
     })
   } else {
     var $navH1 = document.querySelector('.navh1');
-    data.wrongPokemon.push(data.currentPokemon)
+    data.wrongPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+  })
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
     var $quizContainer = document.querySelector('.quizContainer');
@@ -133,9 +140,15 @@ function questionClick() {
       $icon.className = "icon"
       $icon.setAttribute('src', 'images/pokeball.png')
       $dots[data.currentNumber - 1].appendChild($icon)
-      data.correctPokemon.push(data.currentPokemon);
+      data.correctPokemon.push({
+        'pokemon': data.currentPokemon,
+        'sprite': data.currentPokemonUrl
+      })
     } else {
-      data.wrongPokemon.push(data.currentPokemon)
+      data.wrongPokemon.push({
+        'pokemon': data.currentPokemon,
+        'sprite': data.currentPokemonUrl
+    })
     }
     var $quizModal = document.querySelector('#quizModal')
     $quizModal.className = "modal-background";
@@ -157,7 +170,10 @@ function questionClick() {
     $icon.setAttribute('src', 'images/pokeball.png')
     $dots[data.currentNumber - 1].appendChild($icon)
     //Push current pokemon
-    data.correctPokemon.push(data.currentPokemon);
+    data.correctPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+    })
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
     $quizContainer.remove();
@@ -167,7 +183,10 @@ function questionClick() {
   } else {
     //WRONG ANSWERS
     var $navH1 = document.querySelector('.navh1');
-    data.wrongPokemon.push(data.currentPokemon)
+    data.wrongPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+  })
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
     $quizContainer.remove();
@@ -180,7 +199,7 @@ function questionClick() {
 var $retry = document.querySelector('#retry')
 var $home = document.querySelector('#home');
 //Both buttons listen to click and reset the data object but first saves the result.
-//Or, the result gets saved as the game completes.
+
 $retry.addEventListener('click', resetQuiz)
 function resetQuiz(){
     //reset data to default
