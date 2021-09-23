@@ -28,7 +28,6 @@ function startQuiz() {
   $navH1.textContent = "Question " + data.currentNumber;
   getPokemonPicture()
   createQuizContainer();
-  console.log('Data model at start:', data)
 }
 
 //Reset Quiz? Haven't added button for this yet.
@@ -54,7 +53,7 @@ function generateFourRandomPokemonNumbers() {
       data.currentFour.push(random);
     }
   }
-  console.log('List of four Pokemon:', data.currentFour)
+  // console.log('List of four Pokemon:', data.currentFour)
   data.currentPokemon = allPokemonList[data.currentFour[0] - 1] //Subtract 1
 }
 generateFourRandomPokemonNumbers() //Array of 4 numbers, we want to reset this later.
@@ -72,8 +71,7 @@ function handleResponseData(event) {
 }
 
 var tenSecondsBar = null;
-function appendPokemonPicture(passValue) {
-  var sprite = passValue;
+function appendPokemonPicture(sprite) {
   var $img = document.createElement('img')
   $img.setAttribute('src', sprite)
   $img.className = 'black'
@@ -91,7 +89,6 @@ function createQuizContainer() {
 }
 
 function quizTimer() {
-  console.log('NEXT QUESTION, remake DOM');
   var $navH1 = document.querySelector('.navh1');
   data.wrongPokemon.push(data.currentPokemon)
   data.currentNumber++;
@@ -125,9 +122,11 @@ function questionsAndTime() {
 function questionClick() {
   clearTimeout(tenSecondsBar);
   var $quizContainer = document.querySelector('.quizContainer');
-  console.log(event.target.textContent);
   if (data.currentNumber === 10) {
-    alert('goodjob')
+    var $quizModal = document.querySelector('#quizModal')
+    $quizModal.className = "modal-background";
+    var $quizScore = document.querySelector('.quizScore');
+    $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     //Checks
     if (event.target.textContent === data.currentPokemon) {
       var $dots = document.querySelectorAll('.col-tenth')
@@ -141,7 +140,6 @@ function questionClick() {
       data.wrongPokemon.push(data.currentPokemon)
     }
   } else if (event.target.textContent === data.currentPokemon) {
-    console.log('NEXT QUESTION, remake DOM');
     var $navH1 = document.querySelector('.navh1');
     var $dots = document.querySelectorAll('.col-tenth')
     $dots[data.currentNumber - 1].textContent = ""
@@ -153,22 +151,16 @@ function questionClick() {
     data.correctPokemon.push(data.currentPokemon);
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
-    $quizContainer.remove();
-    createQuizContainer()
-    generateFourRandomPokemonNumbers();
-    getPokemonPicture();
-    console.log(data);
   } else {
     //WRONG ANSWERS
-    console.log('NEXT QUESTION, remake DOM');
     var $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push(data.currentPokemon)
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
-    $quizContainer.remove();
-    createQuizContainer();
-    generateFourRandomPokemonNumbers();
-    getPokemonPicture()
-    console.log(data);
   }
+  $quizContainer.remove();
+  createQuizContainer();
+  generateFourRandomPokemonNumbers();
+  getPokemonPicture()
+  // console.log(data);
 }
