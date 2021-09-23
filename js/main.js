@@ -212,3 +212,22 @@ function resetQuiz(){
     generateFourRandomPokemonNumbers();
     getPokemonPicture()
 }
+
+$home.addEventListener('click', clearQuiz);
+function clearQuiz(){
+    data.currentNumber = 1;
+    data.correctPokemon = [];
+    data.wrongPokemon = [];
+    data.trainerName = null;
+    var $dots = document.querySelectorAll('.col-tenth')
+    for (var i = 0; i < $dots.length; i++) {
+      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+    }
+    var $quizContainer = document.querySelector('.quizContainer')
+    $quizContainer.remove();
+    $homePage.className = "container"
+    $quizPage.className = "container hidden"
+    $quizModal.className = "modal-background hidden"
+    $body.className = ""
+    $navH1.textContent = "Pokemon Quiz Game";
+}
