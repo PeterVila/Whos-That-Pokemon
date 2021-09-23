@@ -83,7 +83,7 @@ function quizTimer() {
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
       'sprite': data.currentPokemonUrl
-  })
+    })
     $quizModal.className = "modal-background";
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
@@ -99,7 +99,7 @@ function quizTimer() {
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
       'sprite': data.currentPokemonUrl
-  })
+    })
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
     var $quizContainer = document.querySelector('.quizContainer');
@@ -148,7 +148,7 @@ function questionClick() {
       data.wrongPokemon.push({
         'pokemon': data.currentPokemon,
         'sprite': data.currentPokemonUrl
-    })
+      })
     }
     var $quizModal = document.querySelector('#quizModal')
     $quizModal.className = "modal-background";
