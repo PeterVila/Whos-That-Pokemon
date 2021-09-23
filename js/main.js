@@ -206,6 +206,8 @@ function resetQuiz(){
   data.currentNumber = 1;
   data.correctPokemon = [];
   data.wrongPokemon = [];
+  data.currentPokemon = null;
+  data.currentFour = [];
   var $dots = document.querySelectorAll('.col-tenth')
   for (var i = 0; i < $dots.length; i++){
     $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
@@ -225,6 +227,8 @@ function clearQuiz(){
   data.correctPokemon = [];
   data.wrongPokemon = [];
   data.trainerName = null;
+  data.currentPokemon = null;
+  data.currentFour = [];
   var $dots = document.querySelectorAll('.col-tenth')
   for (var i = 0; i < $dots.length; i++) {
     $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
