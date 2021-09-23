@@ -31,19 +31,6 @@ function startQuiz(e) {
   createQuizContainer();
 }
 
-
-//Reset Quiz? Haven't added button for this yet.
-// function resetQuiz() {
-//   var $quizContainer = document.querySelector('.quizContainer');
-//   $quizContainer.remove();
-//   $homePage.className = "container";
-//   $quizPage.className = "container hidden"
-//   $body.className = "";
-//   $navH1.textContent = "Pokemon Quiz Game";
-//   $navH2.className = "navH2 pokemon-font hidden"
-//   data.currentNumber = 1;
-// }
-
 function generateFourRandomPokemonNumbers() {
   data.currentFour = [];
   while (data.currentFour.length < 4) {
@@ -99,9 +86,9 @@ function quizTimer() {
     clearTimeout(tenSecondsBar);
     //Output data.name, correctPokemon and wrongPokemon
     data.pastGames.push({
-      trainerName: data.trainerName,
-      correctPokemon: data.currentPokemon,
-      wrongPokemon: data.wrongPokemon
+      'trainerName': data.trainerName,
+      'correctPokemon': data.currentPokemon,
+      'wrongPokemon': data.wrongPokemon
     })
   } else {
     var $navH1 = document.querySelector('.navh1');
