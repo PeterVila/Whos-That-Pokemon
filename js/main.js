@@ -203,44 +203,43 @@ var $home = document.querySelector('#home');
 
 $retry.addEventListener('click', resetQuiz)
 function resetQuiz(){
-    //reset data to default
-    data.currentNumber = 1;
-    data.correctPokemon = [];
-    data.wrongPokemon = [];
-    var $dots = document.querySelectorAll('.col-tenth')
-    for (var i = 0; i < $dots.length; i++){
-      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
-    }
-    var $quizContainer = document.querySelector('.quizContainer')
-    $quizContainer.remove();
-    $navH1.textContent = "Question " + data.currentNumber;
-    $quizModal.className = "modal-background hidden"
-    createQuizContainer();
-    generateFourRandomPokemonNumbers();
-    getPokemonPicture()
+  //reset data to default
+  data.currentNumber = 1;
+  data.correctPokemon = [];
+  data.wrongPokemon = [];
+  var $dots = document.querySelectorAll('.col-tenth')
+  for (var i = 0; i < $dots.length; i++){
+    $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+  }
+  var $quizContainer = document.querySelector('.quizContainer')
+  $quizContainer.remove();
+  $navH1.textContent = "Question " + data.currentNumber;
+  $quizModal.className = "modal-background hidden"
+  createQuizContainer();
+  generateFourRandomPokemonNumbers();
+  getPokemonPicture()
 }
 
 $home.addEventListener('click', clearQuiz);
 function clearQuiz(){
-    data.currentNumber = 1;
-    data.correctPokemon = [];
-    data.wrongPokemon = [];
-    data.trainerName = null;
-    var $dots = document.querySelectorAll('.col-tenth')
-    for (var i = 0; i < $dots.length; i++) {
-      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
-    }
-    var $quizContainer = document.querySelector('.quizContainer')
-    $quizContainer.remove();
-    $homePage.className = "container"
-    $quizPage.className = "container hidden"
-    $quizModal.className = "modal-background hidden"
-    $body.className = ""
-    $navH1.textContent = "Pokemon Quiz Game";
+  data.currentNumber = 1;
+  data.correctPokemon = [];
+  data.wrongPokemon = [];
+  data.trainerName = null;
+  var $dots = document.querySelectorAll('.col-tenth')
+  for (var i = 0; i < $dots.length; i++) {
+    $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+  }
+  var $quizContainer = document.querySelector('.quizContainer')
+  $quizContainer.remove();
+  $homePage.className = "container"
+  $quizPage.className = "container hidden"
+  $quizModal.className = "modal-background hidden"
+  $body.className = ""
+  $navH1.textContent = "Pokemon Quiz Game";
 }
 
 
-// PLAY HISTORYY
 var $playHistoryButton = document.querySelector('#playHistory');
 $playHistoryButton.addEventListener('click', switchToHistory)
 var $pastGamesView = document.querySelector('#pastGames');
@@ -284,11 +283,11 @@ function createTrainerEntry(){
     var $correctImages = document.createElement('div');
     $correctImages.className = "miniPokemon row";
     $trainerData.appendChild($correctImages);
-  for (var j = 0; j < data.pastGames[i].correctPokemon.length; j++) {
-    var $miniPokemon = document.createElement('img');
-    $miniPokemon.setAttribute('src', data.pastGames[i].correctPokemon[j].sprite)
-    $correctImages.appendChild($miniPokemon);
-  }
+    for (var j = 0; j < data.pastGames[i].correctPokemon.length; j++) {
+      var $miniPokemon = document.createElement('img');
+      $miniPokemon.setAttribute('src', data.pastGames[i].correctPokemon[j].sprite)
+      $correctImages.appendChild($miniPokemon);
+    }
     $incorrectPokemonRow = document.createElement('div');
     $incorrectPokemonRow.className = "row justify-center";
     $trainerData.appendChild($incorrectPokemonRow);
@@ -298,11 +297,11 @@ function createTrainerEntry(){
     var $incorrectImages = document.createElement('div');
     $incorrectImages.className = "miniPokemon row";
     $trainerData.appendChild($incorrectImages);
-  for (var k = 0; k < data.pastGames[i].wrongPokemon.length; k++) {
-    var $miniPokemon = document.createElement('img');
-    $miniPokemon.setAttribute('src', data.pastGames[i].wrongPokemon[k].sprite)
-    $incorrectImages.appendChild($miniPokemon);
-  }
+    for (var k = 0; k < data.pastGames[i].wrongPokemon.length; k++) {
+      var $miniPokemon = document.createElement('img');
+      $miniPokemon.setAttribute('src', data.pastGames[i].wrongPokemon[k].sprite)
+      $incorrectImages.appendChild($miniPokemon);
+    }
   }
 }
 
