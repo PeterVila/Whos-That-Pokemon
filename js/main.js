@@ -257,13 +257,17 @@ function homeScreen(){
   $pastGamesView.className = "container hidden";
   $navH2.className = "navh2 pokemon-font hidden"
   $body.className = ""
+  var $trainerData = document.querySelectorAll('.trainerData');
+  for (var i = 0; i < $trainerData.length; i++){
+    $trainerData[i].remove();
+  }
 }
 
 function createTrainerEntry(){
   for (var i = 0; i < data.pastGames.length; i++){
     var $trainerData = document.createElement('div');
     $trainerData.className = "column-full trainerData"
-    $pastGamesView.appendChild($trainerData);
+    $pastGamesView.prepend($trainerData);
     var $trainerNameRow = document.createElement('div');
     $trainerNameRow.className = "trainerName row justify-center";
     $trainerData.appendChild($trainerNameRow);
@@ -299,71 +303,6 @@ function createTrainerEntry(){
     $miniPokemon.setAttribute('src', data.pastGames[i].wrongPokemon[k].sprite)
     $incorrectImages.appendChild($miniPokemon);
   }
-
   }
 }
 
-/*
-          div class = "column-full trainerData" >
-          <
-          div class = "trainerName row justify-center" >
-          <
-          h1 class = "pokemon-font" > Ash < /h1> <
-          /div> <
-          div class = "row justify-center" >
-          <
-          h1 > Correct Pokemon < /h1> <
-          /div> <
-          div class = "miniPokemon row" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          /div> <
-          div class = "row justify-center" >
-          <
-          h1 > Incorrect Pokemon < /h1> <
-          /div> <
-          div class = "miniPokemon row" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        alt = ""
-        srcset = "" >
-          <
-          /div> <
-          /div> <
-          /div>
-*/
