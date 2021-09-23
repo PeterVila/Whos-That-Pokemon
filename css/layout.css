@@ -45,12 +45,16 @@
 .text-center {
   text-align: center;
 }
+
+.miniPokemon img {
+  width: 40%;
+  margin: 0 2.5%;
+}
 /* For desktop screens */
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
   }
-
   .column-full,
   .column-half {
     padding: 0 0.75rem;
@@ -71,5 +75,8 @@
   .row button {
     margin-bottom: 0.5rem;
   }
-
+  .miniPokemon img {
+    width: 15%;
+    margin: 0 2.5%;
+  }
 }

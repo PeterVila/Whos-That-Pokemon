@@ -1,4 +1,5 @@
 var $navH1 = document.querySelector('.navh1') //Top left header
+var $navH2 = document.querySelector('.navh2');
 var $body = document.querySelector('body');
 var $startQuiz = document.querySelector('#start');
 $startQuiz.addEventListener('click', startQuizModal);
@@ -88,7 +89,6 @@ function quizTimer() {
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
-    //Output data.name, correctPokemon and wrongPokemon
     data.pastGames.push({
       'trainerName': data.trainerName,
       'correctPokemon': data.currentPokemon,
@@ -202,38 +202,110 @@ var $home = document.querySelector('#home');
 
 $retry.addEventListener('click', resetQuiz)
 function resetQuiz(){
-    //reset data to default
-    data.currentNumber = 1;
-    data.correctPokemon = [];
-    data.wrongPokemon = [];
-    var $dots = document.querySelectorAll('.col-tenth')
-    for (var i = 0; i < $dots.length; i++){
-      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
-    }
-    var $quizContainer = document.querySelector('.quizContainer')
-    $quizContainer.remove();
-    $navH1.textContent = "Question " + data.currentNumber;
-    $quizModal.className = "modal-background hidden"
-    createQuizContainer();
-    generateFourRandomPokemonNumbers();
-    getPokemonPicture()
+  //reset data to default
+  data.currentNumber = 1;
+  data.correctPokemon = [];
+  data.wrongPokemon = [];
+  var $dots = document.querySelectorAll('.col-tenth')
+  for (var i = 0; i < $dots.length; i++){
+    $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+  }
+  var $quizContainer = document.querySelector('.quizContainer')
+  $quizContainer.remove();
+  $navH1.textContent = "Question " + data.currentNumber;
+  $quizModal.className = "modal-background hidden"
+  createQuizContainer();
+  generateFourRandomPokemonNumbers();
+  getPokemonPicture()
 }
 
 $home.addEventListener('click', clearQuiz);
 function clearQuiz(){
-    data.currentNumber = 1;
-    data.correctPokemon = [];
-    data.wrongPokemon = [];
-    data.trainerName = null;
-    var $dots = document.querySelectorAll('.col-tenth')
-    for (var i = 0; i < $dots.length; i++) {
-      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
-    }
-    var $quizContainer = document.querySelector('.quizContainer')
-    $quizContainer.remove();
-    $homePage.className = "container"
-    $quizPage.className = "container hidden"
-    $quizModal.className = "modal-background hidden"
-    $body.className = ""
-    $navH1.textContent = "Pokemon Quiz Game";
+  data.currentNumber = 1;
+  data.correctPokemon = [];
+  data.wrongPokemon = [];
+  data.trainerName = null;
+  var $dots = document.querySelectorAll('.col-tenth')
+  for (var i = 0; i < $dots.length; i++) {
+    $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+  }
+  var $quizContainer = document.querySelector('.quizContainer')
+  $quizContainer.remove();
+  $homePage.className = "container"
+  $quizPage.className = "container hidden"
+  $quizModal.className = "modal-background hidden"
+  $body.className = ""
+  $navH1.textContent = "Pokemon Quiz Game";
 }
+
+
+var $playHistoryButton = document.querySelector('#playHistory');
+$playHistoryButton.addEventListener('click', switchToHistory)
+var $pastGamesView = document.querySelector('#pastGames');
+function switchToHistory(){
+  $homePage.className = "container hidden"
+  $pastGamesView.className = "container"
+  $body.className = "blueBackground"
+  $navH2.className = "navh2 pokemon-font"
+  everyEntry();
+}
+$navH2.addEventListener('click', homeScreen)
+function homeScreen(){
+  $homePage.className = "container";
+  $pastGamesView.className = "container hidden";
+  $navH2.className = "navh2 pokemon-font hidden"
+  $body.className = ""
+  var $trainerData = document.querySelectorAll('.trainerData');
+  for (var i = 0; i < $trainerData.length; i++){
+    $trainerData[i].remove();
+  }
+}
+
+function everyEntry(){
+  for (var i = 0; i < data.pastGames.length; i++){
+    var renderHistory = createTrainerEntry(i);
+    $pastGamesView.prepend(renderHistory);
+  }
+}
+
+function createTrainerEntry(index){
+  var $trainerData = document.createElement('div');
+  $trainerData.className = "column-full trainerData"
+  var $trainerNameRow = document.createElement('div');
+  $trainerNameRow.className = "trainerName row justify-center";
+  $trainerData.appendChild($trainerNameRow);
+  var $h1Name = document.createElement('h1');
+  $h1Name.textContent = data.pastGames[index].trainerName
+  $h1Name.className = "pokemon-font"
+  $trainerNameRow.appendChild($h1Name);
+  $correctPokemonRow = document.createElement('div');
+  $correctPokemonRow.className = "row justify-center";
+  $trainerData.appendChild($correctPokemonRow);
+  var $h1Correct = document.createElement('h1');
+  $h1Correct.textContent = "Correct Pokemon";
+  $correctPokemonRow.appendChild($h1Correct);
+  var $correctImages = document.createElement('div');
+  $correctImages.className = "miniPokemon row";
+  $trainerData.appendChild($correctImages);
+  for (var j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
+    var $miniPokemon = document.createElement('img');
+    $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
+    $correctImages.appendChild($miniPokemon);
+  }
+  $incorrectPokemonRow = document.createElement('div');
+  $incorrectPokemonRow.className = "row justify-center";
+  $trainerData.appendChild($incorrectPokemonRow);
+  var $h1Wrong = document.createElement('h1');
+  $h1Wrong.textContent = "Incorrect Pokemon";
+  $incorrectPokemonRow.appendChild($h1Wrong);
+  var $incorrectImages = document.createElement('div');
+  $incorrectImages.className = "miniPokemon row";
+  $trainerData.appendChild($incorrectImages);
+  for (var k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
+    var $miniPokemon = document.createElement('img');
+    $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
+    $incorrectImages.appendChild($miniPokemon);
+  }
+  return $trainerData;
+}
+

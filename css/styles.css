@@ -178,3 +178,19 @@ button:hover {
     height: 18px;
     max-width: 18px;
 }
+
+.trainerData {
+    margin-top: 1rem;
+    border: 0.2rem solid black;
+    border-radius: 5rem;
+    background-color: white;
+}
+
+
+.justify-center-self {
+    justify-self: center;
+}
+
+#pastGames h1 {
+    margin: 5px;
+}
