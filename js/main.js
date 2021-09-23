@@ -33,16 +33,16 @@ function startQuiz(e) {
 
 
 //Reset Quiz? Haven't added button for this yet.
-function resetQuiz() {
-  var $quizContainer = document.querySelector('.quizContainer');
-  $quizContainer.remove();
-  $homePage.className = "container";
-  $quizPage.className = "container hidden"
-  $body.className = "";
-  $navH1.textContent = "Pokemon Quiz Game";
-  $navH2.className = "navH2 pokemon-font hidden"
-  data.currentNumber = 1;
-}
+// function resetQuiz() {
+//   var $quizContainer = document.querySelector('.quizContainer');
+//   $quizContainer.remove();
+//   $homePage.className = "container";
+//   $quizPage.className = "container hidden"
+//   $body.className = "";
+//   $navH1.textContent = "Pokemon Quiz Game";
+//   $navH2.className = "navH2 pokemon-font hidden"
+//   data.currentNumber = 1;
+// }
 
 function generateFourRandomPokemonNumbers() {
   data.currentFour = [];
@@ -88,14 +88,21 @@ function createQuizContainer() {
   $quizDiv.appendChild($quizContainer);
 }
 
+var $quizModal = document.querySelector('#quizModal')
+
 function quizTimer() {
   if (data.currentNumber === 10){
     data.wrongPokemon.push(data.currentPokemon)
-    var $quizModal = document.querySelector('#quizModal')
     $quizModal.className = "modal-background";
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
+    //Output data.name, correctPokemon and wrongPokemon
+    data.pastGames.push({
+      trainerName: data.trainerName,
+      correctPokemon: data.currentPokemon,
+      wrongPokemon: data.wrongPokemon
+    })
   } else {
     var $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push(data.currentPokemon)
@@ -148,6 +155,12 @@ function questionClick() {
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
+    //Output data.name, correctPokemon and wrongPokemon
+    data.pastGames.push({
+      'trainerName': data.trainerName,
+      'correctPokemon': data.correctPokemon,
+      'wrongPokemon': data.wrongPokemon,
+    }) 
   } else if (event.target.textContent === data.currentPokemon) {
     var $navH1 = document.querySelector('.navh1');
     var $dots = document.querySelectorAll('.col-tenth')
@@ -174,9 +187,28 @@ function questionClick() {
     createQuizContainer();
     generateFourRandomPokemonNumbers();
     getPokemonPicture()
-
   }
 }
 
 var $retry = document.querySelector('#retry')
 var $home = document.querySelector('#home');
+//Both buttons listen to click and reset the data object but first saves the result.
+//Or, the result gets saved as the game completes.
+$retry.addEventListener('click', resetQuiz)
+function resetQuiz(){
+    //reset data to default
+    data.currentNumber = 1;
+    data.correctPokemon = [];
+    data.wrongPokemon = [];
+    var $dots = document.querySelectorAll('.col-tenth')
+    for (var i = 0; i < $dots.length; i++){
+      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+    }
+    var $quizContainer = document.querySelector('.quizContainer')
+    $quizContainer.remove();
+    $navH1.textContent = "Question " + data.currentNumber;
+    $quizModal.className = "modal-background hidden"
+    createQuizContainer();
+    generateFourRandomPokemonNumbers();
+    getPokemonPicture()
+}
