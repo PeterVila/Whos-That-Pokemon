@@ -72,7 +72,6 @@ function handleResponseData(event) {
 }
 
 var tenSecondsBar = null;
-
 function appendPokemonPicture(passValue) {
   var sprite = passValue;
   var $img = document.createElement('img')
@@ -129,6 +128,18 @@ function questionClick() {
   console.log(event.target.textContent);
   if (data.currentNumber === 10) {
     alert('goodjob')
+    //Checks
+    if (event.target.textContent === data.currentPokemon) {
+      var $dots = document.querySelectorAll('.col-tenth')
+      $dots[data.currentNumber - 1].textContent = ""
+      var $icon = document.createElement('img');
+      $icon.className = "icon"
+      $icon.setAttribute('src', 'images/pokeball.png')
+      $dots[data.currentNumber - 1].appendChild($icon)
+      data.correctPokemon.push(data.currentPokemon);
+    } else {
+      data.wrongPokemon.push(data.currentPokemon)
+    }
   } else if (event.target.textContent === data.currentPokemon) {
     console.log('NEXT QUESTION, remake DOM');
     var $navH1 = document.querySelector('.navh1');
