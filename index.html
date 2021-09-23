@@ -18,25 +18,31 @@
   <!-- modal -->
   <div class="modal-background hidden">
     <div class="modal">
-      <div class="modal-text row justify-center">
-        <h1>What is your name?</h1>
-        <input type="text" name="name" id="name" minlength="2">
-      </div>
-      <div class="row justify-evenly">
-        <button id="cancel">Cancel</button>
-        <button type="submit" id="submit">Submit</button>
-      </div>
+      <form>
+        <div class="modal-text row justify-center">
+          <h1>What is your name?</h1>
+          <input type="text" name="name" id="name" minlength="2" required>
+        </div>
+        <div class="row justify-evenly">
+          <button id="cancel">Cancel</button>
+          <button type="submit" id="submit">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
   <div id="quizModal" class="modal-background hidden">
     <div class="modal">
       <div class="modal-text row justify-center">
-        <h1>Nicely done!</h1>
-        <h2 class="quizScore"></h2>
+        <div class="column-full justify-center row">
+          <h1>Nicely done!</h1>
+        </div>
+        <div class="column-full justify-center row">
+          <h2 class="quizScore"></h2>
+        </div>
       </div>
       <div class="row justify-evenly">
-        <button id="cancel">Retry</button>
-        <button type="submit" id="submit">HomePage</button>
+        <button id="retry">Retry</button>
+        <button id="home" type="click">Home Page</button>
       </div>
     </div>
   </div>
@@ -53,13 +59,13 @@
           <img src="images/pokeball.png" alt="">
         </div>
         <div id="start" class="row justify-center">
-          <button>Start Quiz</button>
+          <button class="menuButtons">Start Quiz</button>
         </div>
         <div class="row justify-center">
-          <button>Play History</button>
+          <button class="menuButtons">Play History</button>
         </div>
         <div class="row justify-center">
-          <button>Pokedex</button>
+          <button class="menuButtons">Pokedex</button>
         </div>
       </div>
 
@@ -80,7 +86,6 @@
           </div>
         </div> <!--end of progress-circles row-->
         <div class="row quizImage justify-center">
-
         </div>
       </div>
     </main>

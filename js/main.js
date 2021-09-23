@@ -13,12 +13,13 @@ function hideQuizModal() {
   $startModal.className = "modal-background hidden"
 }
 
-var $submitButton = document.querySelector('#submit');
-$submitButton.addEventListener('click', startQuiz);
+var $submitButton = document.querySelector('form');
+$submitButton.addEventListener('submit', startQuiz);
 var $homePage = document.querySelector('div[data-view="home"]')
 var $quizPage = document.querySelector('div[data-view="quiz"]')
 var $input = document.querySelector('input');
-function startQuiz() {
+function startQuiz(e) {
+  e.preventDefault()
   data.trainerName = $input.value;
   $input.value = "";
   $startModal.className = "modal-background hidden"
@@ -28,19 +29,6 @@ function startQuiz() {
   $navH1.textContent = "Question " + data.currentNumber;
   getPokemonPicture()
   createQuizContainer();
-}
-
-//Reset Quiz? Haven't added button for this yet.
-function resetQuiz() {
-  console.log('works');
-  var $quizContainer = document.querySelector('.quizContainer');
-  $quizContainer.remove();
-  $homePage.className = "container";
-  $quizPage.className = "container hidden"
-  $body.className = "";
-  $navH1.textContent = "Pokemon Quiz Game";
-  $navH2.className = "navH2 pokemon-font hidden"
-  data.currentNumber = 1;
 }
 
 function generateFourRandomPokemonNumbers() {
@@ -53,10 +41,9 @@ function generateFourRandomPokemonNumbers() {
       data.currentFour.push(random);
     }
   }
-  // console.log('List of four Pokemon:', data.currentFour)
-  data.currentPokemon = allPokemonList[data.currentFour[0] - 1] //Subtract 1
+  data.currentPokemon = allPokemonList[data.currentFour[0] - 1]
 }
-generateFourRandomPokemonNumbers() //Array of 4 numbers, we want to reset this later.
+generateFourRandomPokemonNumbers() 
 
 function getPokemonPicture() {
   var xhr = new XMLHttpRequest();
@@ -68,6 +55,7 @@ function getPokemonPicture() {
 
 function handleResponseData(event) {
   appendPokemonPicture(event.target.response.sprites.other['official-artwork'].front_default)
+  data.currentPokemonUrl = event.target.response.sprites.front_default
 }
 
 var tenSecondsBar = null;
@@ -88,17 +76,39 @@ function createQuizContainer() {
   $quizDiv.appendChild($quizContainer);
 }
 
+var $quizModal = document.querySelector('#quizModal')
+
 function quizTimer() {
-  var $navH1 = document.querySelector('.navh1');
-  data.wrongPokemon.push(data.currentPokemon)
-  data.currentNumber++;
-  $navH1.textContent = "Question " + data.currentNumber
-  var $quizContainer = document.querySelector('.quizContainer');
-  $quizContainer.remove();
-  createQuizContainer();
-  generateFourRandomPokemonNumbers();
-  getPokemonPicture()
-  console.log(data);
+  if (data.currentNumber === 10){
+    data.wrongPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+    })
+    $quizModal.className = "modal-background";
+    var $quizScore = document.querySelector('.quizScore');
+    $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
+    clearTimeout(tenSecondsBar);
+    //Output data.name, correctPokemon and wrongPokemon
+    data.pastGames.push({
+      'trainerName': data.trainerName,
+      'correctPokemon': data.currentPokemon,
+      'wrongPokemon': data.wrongPokemon
+    })
+  } else {
+    var $navH1 = document.querySelector('.navh1');
+    data.wrongPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+    })
+    data.currentNumber++;
+    $navH1.textContent = "Question " + data.currentNumber
+    var $quizContainer = document.querySelector('.quizContainer');
+    $quizContainer.remove();
+    createQuizContainer();
+    generateFourRandomPokemonNumbers();
+    getPokemonPicture()
+    console.log(data);
+  }
 }
 
 function questionsAndTime() {
@@ -123,13 +133,6 @@ function questionClick() {
   clearTimeout(tenSecondsBar);
   var $quizContainer = document.querySelector('.quizContainer');
   if (data.currentNumber === 10) {
-    var $quizModal = document.querySelector('#quizModal')
-    $quizModal.className = "modal-background";
-    var $quizScore = document.querySelector('.quizScore');
-    $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
-    clearTimeout(tenSecondsBar);
-
-    //Checks
     if (event.target.textContent === data.currentPokemon) {
       var $dots = document.querySelectorAll('.col-tenth')
       $dots[data.currentNumber - 1].textContent = ""
@@ -137,10 +140,27 @@ function questionClick() {
       $icon.className = "icon"
       $icon.setAttribute('src', 'images/pokeball.png')
       $dots[data.currentNumber - 1].appendChild($icon)
-      data.correctPokemon.push(data.currentPokemon);
+      data.correctPokemon.push({
+        'pokemon': data.currentPokemon,
+        'sprite': data.currentPokemonUrl
+      })
     } else {
-      data.wrongPokemon.push(data.currentPokemon)
+      data.wrongPokemon.push({
+        'pokemon': data.currentPokemon,
+        'sprite': data.currentPokemonUrl
+      })
     }
+    var $quizModal = document.querySelector('#quizModal')
+    $quizModal.className = "modal-background";
+    var $quizScore = document.querySelector('.quizScore');
+    $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
+    clearTimeout(tenSecondsBar);
+    //Output data.name, correctPokemon and wrongPokemon
+    data.pastGames.push({
+      'trainerName': data.trainerName,
+      'correctPokemon': data.correctPokemon,
+      'wrongPokemon': data.wrongPokemon,
+    }) 
   } else if (event.target.textContent === data.currentPokemon) {
     var $navH1 = document.querySelector('.navh1');
     var $dots = document.querySelectorAll('.col-tenth')
@@ -150,24 +170,70 @@ function questionClick() {
     $icon.setAttribute('src', 'images/pokeball.png')
     $dots[data.currentNumber - 1].appendChild($icon)
     //Push current pokemon
-    data.correctPokemon.push(data.currentPokemon);
+    data.correctPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+    })
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
     $quizContainer.remove();
     createQuizContainer()
     generateFourRandomPokemonNumbers();
     getPokemonPicture();
-    console.log(data);
   } else {
     //WRONG ANSWERS
     var $navH1 = document.querySelector('.navh1');
-    data.wrongPokemon.push(data.currentPokemon)
+    data.wrongPokemon.push({
+      'pokemon': data.currentPokemon,
+      'sprite': data.currentPokemonUrl
+  })
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
     $quizContainer.remove();
     createQuizContainer();
     generateFourRandomPokemonNumbers();
     getPokemonPicture()
-    console.log(data);
   }
+}
+
+var $retry = document.querySelector('#retry')
+var $home = document.querySelector('#home');
+//Both buttons listen to click and reset the data object but first saves the result.
+
+$retry.addEventListener('click', resetQuiz)
+function resetQuiz(){
+    //reset data to default
+    data.currentNumber = 1;
+    data.correctPokemon = [];
+    data.wrongPokemon = [];
+    var $dots = document.querySelectorAll('.col-tenth')
+    for (var i = 0; i < $dots.length; i++){
+      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+    }
+    var $quizContainer = document.querySelector('.quizContainer')
+    $quizContainer.remove();
+    $navH1.textContent = "Question " + data.currentNumber;
+    $quizModal.className = "modal-background hidden"
+    createQuizContainer();
+    generateFourRandomPokemonNumbers();
+    getPokemonPicture()
+}
+
+$home.addEventListener('click', clearQuiz);
+function clearQuiz(){
+    data.currentNumber = 1;
+    data.correctPokemon = [];
+    data.wrongPokemon = [];
+    data.trainerName = null;
+    var $dots = document.querySelectorAll('.col-tenth')
+    for (var i = 0; i < $dots.length; i++) {
+      $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
+    }
+    var $quizContainer = document.querySelector('.quizContainer')
+    $quizContainer.remove();
+    $homePage.className = "container"
+    $quizPage.className = "container hidden"
+    $quizModal.className = "modal-background hidden"
+    $body.className = ""
+    $navH1.textContent = "Pokemon Quiz Game";
 }
