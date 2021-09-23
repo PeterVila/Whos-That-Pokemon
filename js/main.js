@@ -127,6 +127,8 @@ function questionClick() {
     $quizModal.className = "modal-background";
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
+    clearTimeout(tenSecondsBar);
+
     //Checks
     if (event.target.textContent === data.currentPokemon) {
       var $dots = document.querySelectorAll('.col-tenth')
@@ -151,16 +153,21 @@ function questionClick() {
     data.correctPokemon.push(data.currentPokemon);
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
+    $quizContainer.remove();
+    createQuizContainer()
+    generateFourRandomPokemonNumbers();
+    getPokemonPicture();
+    console.log(data);
   } else {
     //WRONG ANSWERS
     var $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push(data.currentPokemon)
     data.currentNumber++;
     $navH1.textContent = "Question " + data.currentNumber
+    $quizContainer.remove();
+    createQuizContainer();
+    generateFourRandomPokemonNumbers();
+    getPokemonPicture()
+    console.log(data);
   }
-  $quizContainer.remove();
-  createQuizContainer();
-  generateFourRandomPokemonNumbers();
-  getPokemonPicture()
-  // console.log(data);
 }
