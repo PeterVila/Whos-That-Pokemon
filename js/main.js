@@ -83,14 +83,6 @@ function appendPokemonPicture(passValue) {
   $img.addEventListener('load', questionsAndTime)
   //Start the quizTimers as the animation bar loads
   tenSecondsBar = setTimeout(quizTimer, 10000)
-  var shuffledFour = _.shuffle(data.currentFour);
-  for (var i = 0; i < 4; i++) {
-    var $button = document.createElement('button');
-    $button.className = "white-button justify-center";
-    $button.textContent = allPokemonList[shuffledFour[i] - 1]
-    $quizContainer.appendChild($button);
-    $button.addEventListener('click', questionClick)
-  }
 }
 function createQuizContainer() {
   var $quizDiv = document.querySelector('#quiz');
@@ -121,6 +113,14 @@ function questionsAndTime() {
   var $inRow = document.createElement('div');
   $inRow.className = "in";
   $barRow.appendChild($inRow);
+  var shuffledFour = _.shuffle(data.currentFour);
+  for (var i = 0; i < 4; i++) {
+    var $button = document.createElement('button');
+    $button.className = "white-button justify-center";
+    $button.textContent = allPokemonList[shuffledFour[i] - 1]
+    $quizContainer.appendChild($button);
+    $button.addEventListener('click', questionClick)
+  }
 }
 
 function questionClick() {
