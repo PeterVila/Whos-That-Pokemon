@@ -178,3 +178,23 @@ button:hover {
     height: 18px;
     max-width: 18px;
 }
+
+.trainerData {
+    margin-top: 1rem;
+    border: 0.2rem solid black;
+    border-radius: 5rem;
+    background-color: white;
+}
+
+.miniPokemon img{
+    width: 15%;
+    margin: 0 2.5%;
+}
+
+.justify-center-self {
+    justify-self: center;
+}
+
+#pastGames h1 {
+    margin: 5px;
+}

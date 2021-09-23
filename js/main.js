@@ -1,4 +1,5 @@
 var $navH1 = document.querySelector('.navh1') //Top left header
+var $navH2 = document.querySelector('.navh2');
 var $body = document.querySelector('body');
 var $startQuiz = document.querySelector('#start');
 $startQuiz.addEventListener('click', startQuizModal);
@@ -237,3 +238,132 @@ function clearQuiz(){
     $body.className = ""
     $navH1.textContent = "Pokemon Quiz Game";
 }
+
+
+// PLAY HISTORYY
+var $playHistoryButton = document.querySelector('#playHistory');
+$playHistoryButton.addEventListener('click', switchToHistory)
+var $pastGamesView = document.querySelector('#pastGames');
+function switchToHistory(){
+  $homePage.className = "container hidden"
+  $pastGamesView.className = "container"
+  $body.className = "blueBackground"
+  $navH2.className = "navh2 pokemon-font"
+  createTrainerEntry();
+}
+$navH2.addEventListener('click', homeScreen)
+function homeScreen(){
+  $homePage.className = "container";
+  $pastGamesView.className = "container hidden";
+  $navH2.className = "navh2 pokemon-font hidden"
+  $body.className = ""
+}
+
+function createTrainerEntry(){
+  for (var i = 0; i < data.pastGames.length; i++){
+    var $trainerData = document.createElement('div');
+    $trainerData.className = "column-full trainerData"
+    $pastGamesView.appendChild($trainerData);
+    var $trainerNameRow = document.createElement('div');
+    $trainerNameRow.className = "trainerName row justify-center";
+    $trainerData.appendChild($trainerNameRow);
+    var $h1Name = document.createElement('h1');
+    $h1Name.textContent = data.pastGames[i].trainerName
+    $h1Name.className = "pokemon-font"
+    $trainerNameRow.appendChild($h1Name);
+    $correctPokemonRow = document.createElement('div');
+    $correctPokemonRow.className = "row justify-center";
+    $trainerData.appendChild($correctPokemonRow);
+    var $h1Correct = document.createElement('h1');
+    $h1Correct.textContent = "Correct Pokemon";
+    $correctPokemonRow.appendChild($h1Correct);
+    var $correctImages = document.createElement('div');
+    $correctImages.className = "miniPokemon row";
+    $trainerData.appendChild($correctImages);
+  for (var j = 0; j < data.pastGames[i].correctPokemon.length; j++) {
+    var $miniPokemon = document.createElement('img');
+    $miniPokemon.setAttribute('src', data.pastGames[i].correctPokemon[j].sprite)
+    $correctImages.appendChild($miniPokemon);
+  }
+    $incorrectPokemonRow = document.createElement('div');
+    $incorrectPokemonRow.className = "row justify-center";
+    $trainerData.appendChild($incorrectPokemonRow);
+    var $h1Wrong = document.createElement('h1');
+    $h1Wrong.textContent = "Incorrect Pokemon";
+    $incorrectPokemonRow.appendChild($h1Wrong);
+    var $incorrectImages = document.createElement('div');
+    $incorrectImages.className = "miniPokemon row";
+    $trainerData.appendChild($incorrectImages);
+  for (var k = 0; k < data.pastGames[i].wrongPokemon.length; k++) {
+    var $miniPokemon = document.createElement('img');
+    $miniPokemon.setAttribute('src', data.pastGames[i].wrongPokemon[k].sprite)
+    $incorrectImages.appendChild($miniPokemon);
+  }
+
+  }
+}
+
+/*
+          div class = "column-full trainerData" >
+          <
+          div class = "trainerName row justify-center" >
+          <
+          h1 class = "pokemon-font" > Ash < /h1> <
+          /div> <
+          div class = "row justify-center" >
+          <
+          h1 > Correct Pokemon < /h1> <
+          /div> <
+          div class = "miniPokemon row" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          /div> <
+          div class = "row justify-center" >
+          <
+          h1 > Incorrect Pokemon < /h1> <
+          /div> <
+          div class = "miniPokemon row" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+        alt = ""
+        srcset = "" >
+          <
+          /div> <
+          /div> <
+          /div>
+*/
