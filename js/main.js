@@ -89,7 +89,6 @@ function quizTimer() {
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
-    //Output data.name, correctPokemon and wrongPokemon
     data.pastGames.push({
       'trainerName': data.trainerName,
       'correctPokemon': data.currentPokemon,
@@ -248,7 +247,7 @@ function switchToHistory(){
   $pastGamesView.className = "container"
   $body.className = "blueBackground"
   $navH2.className = "navh2 pokemon-font"
-  createTrainerEntry();
+  everyEntry();
 }
 $navH2.addEventListener('click', homeScreen)
 function homeScreen(){
@@ -262,46 +261,51 @@ function homeScreen(){
   }
 }
 
-function createTrainerEntry(){
+function everyEntry(){
   for (var i = 0; i < data.pastGames.length; i++){
-    var $trainerData = document.createElement('div');
-    $trainerData.className = "column-full trainerData"
-    $pastGamesView.prepend($trainerData);
-    var $trainerNameRow = document.createElement('div');
-    $trainerNameRow.className = "trainerName row justify-center";
-    $trainerData.appendChild($trainerNameRow);
-    var $h1Name = document.createElement('h1');
-    $h1Name.textContent = data.pastGames[i].trainerName
-    $h1Name.className = "pokemon-font"
-    $trainerNameRow.appendChild($h1Name);
-    $correctPokemonRow = document.createElement('div');
-    $correctPokemonRow.className = "row justify-center";
-    $trainerData.appendChild($correctPokemonRow);
-    var $h1Correct = document.createElement('h1');
-    $h1Correct.textContent = "Correct Pokemon";
-    $correctPokemonRow.appendChild($h1Correct);
-    var $correctImages = document.createElement('div');
-    $correctImages.className = "miniPokemon row";
-    $trainerData.appendChild($correctImages);
-    for (var j = 0; j < data.pastGames[i].correctPokemon.length; j++) {
-      var $miniPokemon = document.createElement('img');
-      $miniPokemon.setAttribute('src', data.pastGames[i].correctPokemon[j].sprite)
-      $correctImages.appendChild($miniPokemon);
-    }
-    $incorrectPokemonRow = document.createElement('div');
-    $incorrectPokemonRow.className = "row justify-center";
-    $trainerData.appendChild($incorrectPokemonRow);
-    var $h1Wrong = document.createElement('h1');
-    $h1Wrong.textContent = "Incorrect Pokemon";
-    $incorrectPokemonRow.appendChild($h1Wrong);
-    var $incorrectImages = document.createElement('div');
-    $incorrectImages.className = "miniPokemon row";
-    $trainerData.appendChild($incorrectImages);
-    for (var k = 0; k < data.pastGames[i].wrongPokemon.length; k++) {
-      var $miniPokemon = document.createElement('img');
-      $miniPokemon.setAttribute('src', data.pastGames[i].wrongPokemon[k].sprite)
-      $incorrectImages.appendChild($miniPokemon);
-    }
+    var renderHistory = createTrainerEntry(i);
+    $pastGamesView.prepend(renderHistory);
   }
+}
+
+function createTrainerEntry(index){
+  var $trainerData = document.createElement('div');
+  $trainerData.className = "column-full trainerData"
+  var $trainerNameRow = document.createElement('div');
+  $trainerNameRow.className = "trainerName row justify-center";
+  $trainerData.appendChild($trainerNameRow);
+  var $h1Name = document.createElement('h1');
+  $h1Name.textContent = data.pastGames[index].trainerName
+  $h1Name.className = "pokemon-font"
+  $trainerNameRow.appendChild($h1Name);
+  $correctPokemonRow = document.createElement('div');
+  $correctPokemonRow.className = "row justify-center";
+  $trainerData.appendChild($correctPokemonRow);
+  var $h1Correct = document.createElement('h1');
+  $h1Correct.textContent = "Correct Pokemon";
+  $correctPokemonRow.appendChild($h1Correct);
+  var $correctImages = document.createElement('div');
+  $correctImages.className = "miniPokemon row";
+  $trainerData.appendChild($correctImages);
+  for (var j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
+    var $miniPokemon = document.createElement('img');
+    $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
+    $correctImages.appendChild($miniPokemon);
+  }
+  $incorrectPokemonRow = document.createElement('div');
+  $incorrectPokemonRow.className = "row justify-center";
+  $trainerData.appendChild($incorrectPokemonRow);
+  var $h1Wrong = document.createElement('h1');
+  $h1Wrong.textContent = "Incorrect Pokemon";
+  $incorrectPokemonRow.appendChild($h1Wrong);
+  var $incorrectImages = document.createElement('div');
+  $incorrectImages.className = "miniPokemon row";
+  $trainerData.appendChild($incorrectImages);
+  for (var k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
+    var $miniPokemon = document.createElement('img');
+    $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
+    $incorrectImages.appendChild($miniPokemon);
+  }
+  return $trainerData;
 }
 

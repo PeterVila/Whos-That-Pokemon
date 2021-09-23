@@ -186,10 +186,6 @@ button:hover {
     background-color: white;
 }
 
-.miniPokemon img{
-    width: 15%;
-    margin: 0 2.5%;
-}
 
 .justify-center-self {
     justify-self: center;
