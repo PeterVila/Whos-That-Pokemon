@@ -286,6 +286,9 @@ function createTrainerEntry(index){
   $h1Name.textContent = "Trainer: " + data.pastGames[index].trainerName
   $h1Name.className = "pokemon-font"
   $trainerNameRow.appendChild($h1Name);
+  // var $icon = document.createElement('i')
+  // $icon.className = "fas fa-trash-alt"
+  // $trainerNameRow.appendChild($icon);
   $correctPokemonRow = document.createElement('div');
   $correctPokemonRow.className = "row justify-center";
   $trainerData.appendChild($correctPokemonRow);

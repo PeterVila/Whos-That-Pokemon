@@ -88,4 +88,7 @@
     width: 15%;
     margin: 0 2.5%;
   }
+  .quizContainer img {
+    width: 50%;
+  }
 }
