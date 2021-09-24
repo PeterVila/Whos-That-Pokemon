@@ -64,7 +64,7 @@
         <div id="playHistory" class="row justify-center">
           <button class="menuButtons">Play History</button>
         </div>
-        <div class="row justify-center">
+        <div id="menuPokedex" class="row justify-center">
           <button class="menuButtons">Pokedex</button>
         </div>
       </div>
@@ -89,6 +89,29 @@
       </div>
       <!-- dataview for pastGames -->
       <div id="pastGames" class="container hidden" data-view="pastGames">
+      </div>
+      <!--dataview for pokedex-->
+      <div id="pokedex" class="container hidden" data-view="pokedex">
+        <div class="justify-center row screenBorder">
+          <div class="justify-center row screen"></div>
+        </div>
+        <div class="row">
+          <div class="search">
+            <input class="pokemonSearch" type="text" placeholder="Enter Pokemon Name">
+          </div>
+          <div class="pokedexButtons row">
+            <div class="square"></div>           
+           <div class="square2"></div>
+           <div class="square3"></div>
+           <div class="square4"></div>
+            <div class="square5"></div>
+            <div class="circleA"></div>
+            <div class="circleB"></div>
+            <div class="button pokedexSubmit">
+              <button>submit</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   <script src="js/lodash.js"></script>

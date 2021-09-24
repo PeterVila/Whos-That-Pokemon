@@ -194,3 +194,149 @@ button:hover {
 #pastGames h1 {
     margin: 5px;
 }
+
+.rotom {
+    background-color: #FF5A6E;
+}
+
+.screenBorder {
+    width: 100%;
+    height: 30rem;
+    background-color: whitesmoke;
+    border-radius: 1.5rem;
+    border-bottom-left-radius: 5rem;
+    border: 0.5rem solid black;
+}
+
+.screen {
+    width: 90%;
+    height: 25rem;
+    background-color: rgb(140, 240, 238);
+    align-self: center;
+    border-radius: 1rem;
+    border-bottom-left-radius: 5rem;
+    border: 0.25rem solid black;
+}
+
+.search {
+    margin-top: 10%;
+    width: 50%;
+}
+
+.search input {
+    height: 3rem;
+    border-radius: 15rem;
+    background-color: rgb(146, 230, 146);
+    width: 100%;
+}
+
+.pokedexButtons {
+    width: 50%;
+    position:relative;
+}
+
+.square {
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    background-color: black;
+    margin-top: 20%;
+    margin-left: 25%;
+    z-index: 1;
+    border-bottom: none;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.square2 {
+  position: absolute;
+  width: 15%;
+  height: 50%;
+  background-color: black;
+  margin-top: 35%;
+  margin-left: 10%;
+    border-right: none;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.square3 {
+  position: absolute;
+  width: 15%;
+  height: 50%;
+  background-color: black;
+  margin-top: 35%;
+  margin-left: 25%;
+}
+
+.square4 {
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    background-color: black;
+    margin-top: 35%;
+    margin-left: 40%;
+    border-left: none;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.square5 {
+      position: absolute;
+      width: 15%;
+      height: 50%;
+      background-color: black;
+      margin-top: 50%;
+      margin-left: 25%;
+      border-top: none;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+}
+
+.circleA {
+    position: absolute;
+    width: 20%;
+    height: 55%;
+    background-color: rgba(65, 176, 18, 0.845);
+    border-radius: 50%;
+    margin-left: 90%;
+    margin-top: 20%;
+    border: 1px black solid;
+}
+
+.circleB {
+  position: absolute;
+  width: 20%;
+  height: 55%;
+  background-color: rgba(85, 151, 222, 0.845);
+  border-radius: 50%;
+  margin-left: 70%;
+  margin-top: 40%;
+  border: 1px black solid;
+}
+
+.circleA:hover {
+    background-color: rgb(40, 69, 12)
+}
+
+.circleB:hover {
+    background-color: rgb(7, 59, 155);
+}
+.search input {
+    text-align: center;
+    font-size: 1.25rem;
+    outline-width: 0;
+
+}
+
+.pokedexSubmit {
+    position: absolute;
+    margin-left: -50%;
+    margin-top: 40%;
+    width: 60%;
+}
+
+.pokedexSubmit button {
+    background-color: rgb(74, 174, 228);
+    border: 2px solid black;
+}

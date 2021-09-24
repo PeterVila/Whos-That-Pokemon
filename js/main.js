@@ -263,6 +263,7 @@ function homeScreen(){
   for (var i = 0; i < $trainerData.length; i++){
     $trainerData[i].remove();
   }
+  $pokedex.className = "container hidden"
 }
 
 function everyEntry(){
@@ -313,3 +314,21 @@ function createTrainerEntry(index){
   return $trainerData;
 }
 
+var $pokedex = document.querySelector('#pokedex')
+var $homePokedex = document.querySelector('#menuPokedex')
+$homePokedex.addEventListener('click', switchPokedex)
+function switchPokedex(){
+  $homePage.className = "container hidden"
+  $pokedex.className = "container rotom"
+  $body.className = "rotom"
+  $navH2.className = "navh2 pokemon-font"
+  $navH1.textContent = "Pokedex"
+}
+
+var $pokedexSearchButton = document.querySelector('.pokedexSubmit');
+$pokedexSearchButton.addEventListener('click', searchPokemon)
+var $pokedexSearch = document.querySelector('.pokemonSearch');
+function searchPokemon(){
+  console.log($pokedexSearch.value)
+  //On submit, do a loop on the 900 pokemon array, if the string.tolowercase doesn't match, don't do the function
+}
