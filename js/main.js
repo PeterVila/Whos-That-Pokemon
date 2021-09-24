@@ -300,6 +300,9 @@ function createTrainerEntry(index){
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
     $correctImages.appendChild($miniPokemon);
+    var $miniP = document.createElement('p');
+    $miniP.textContent = data.pastGames[index].correctPokemon[j].pokemon;
+    $correctImages.appendChild($miniP);
   }
   $incorrectPokemonRow = document.createElement('div');
   $incorrectPokemonRow.className = "row justify-center";
@@ -314,6 +317,9 @@ function createTrainerEntry(index){
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
     $incorrectImages.appendChild($miniPokemon);
+    var $miniP = document.createElement('p');
+    $miniP.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
+    $incorrectImages.appendChild($miniP);
   }
   return $trainerData;
 }
@@ -359,20 +365,15 @@ function getPokedexPicture(number) {
 }
 
 function handlePokedexResponseData(event) {
-  appendPokedexPicture(event.target.response.sprites.other['official-artwork'].front_default)
   console.log(event.target.response);
   appendPokedex(event.target.response)
 }
 
-function appendPokedexPicture(sprite) {
+function appendPokedex(stats){
   var $img = document.createElement('img')
-  $img.setAttribute('src', sprite)
+  $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default)
   $img.className = 'black' //Didn't do this
   $pokedexImage.appendChild($img);
-}
-
-function appendPokedex(stats){
-  var $text = document.createElement('h1');
   var $ul = document.createElement('ul');
   for (var i = 0; i < stats.stats.length; i++){
     var $li = document.createElement('li');
@@ -385,8 +386,4 @@ function appendPokedex(stats){
     $stats.appendChild($h1);
   }
   $stats.appendChild($ul);
-  var $type = document.createElement('div');
-  // $type.textContent = stats.type[0].type
-  $stats.appendChild($text)
-
 }

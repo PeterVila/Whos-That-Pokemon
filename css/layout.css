@@ -50,6 +50,15 @@
   width: 40%;
   margin: 0 2.5%;
 }
+
+.miniPokemon p {
+  width: 0;
+  position: relative;
+  right: 10rem;
+  bottom: 1rem;
+  font-size: 0.75rem;
+  color: black;
+}
 /* For desktop screens */
 @media screen and (min-width: 768px) {
   .container {
