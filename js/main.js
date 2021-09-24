@@ -240,7 +240,7 @@ function clearQuiz(){
   $quizPage.className = "container hidden"
   $quizModal.className = "modal-background hidden"
   $body.className = "animated-background"
-  $navH1.textContent = "Pokemon Quiz Game";
+  $navH1.textContent = "Who's That Pokemon?";
 }
 
 
@@ -265,7 +265,7 @@ function homeScreen(){
     $trainerData[i].remove();
   }
   $pokedex.className = "container hidden"
-  $navH1.textContent = "Pokemon Quiz Game";
+  $navH1.textContent = "Who's that Pokemon?";
 
 }
 

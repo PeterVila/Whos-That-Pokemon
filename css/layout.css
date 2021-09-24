@@ -57,7 +57,7 @@
   right: 10rem;
   bottom: 1rem;
   font-size: 0.75rem;
-  color: black;
+  color: rgb(0, 81, 255);
 }
 /* For desktop screens */
 @media screen and (min-width: 768px) {
