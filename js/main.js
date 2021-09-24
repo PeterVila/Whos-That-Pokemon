@@ -27,7 +27,7 @@ function startQuiz(e) {
   $homePage.className = "container hidden"
   $quizPage.className = "container"
   $body.className = "animated-background"
-  $navH1.textContent = "Question " + data.currentNumber;
+  $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
   getPokemonPicture()
   createQuizContainer();
 }
@@ -101,7 +101,7 @@ function quizTimer() {
       'sprite': data.currentPokemonUrl
     })
     data.currentNumber++;
-    $navH1.textContent = "Question " + data.currentNumber
+    $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     var $quizContainer = document.querySelector('.quizContainer');
     $quizContainer.remove();
     createQuizContainer();
@@ -175,7 +175,7 @@ function questionClick() {
       'sprite': data.currentPokemonUrl
     })
     data.currentNumber++;
-    $navH1.textContent = "Question " + data.currentNumber
+    $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     $quizContainer.remove();
     createQuizContainer()
     generateFourRandomPokemonNumbers();
@@ -188,7 +188,7 @@ function questionClick() {
       'sprite': data.currentPokemonUrl
   })
     data.currentNumber++;
-    $navH1.textContent = "Question " + data.currentNumber
+    $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     $quizContainer.remove();
     createQuizContainer();
     generateFourRandomPokemonNumbers();
@@ -214,7 +214,7 @@ function resetQuiz(){
   }
   var $quizContainer = document.querySelector('.quizContainer')
   $quizContainer.remove();
-  $navH1.textContent = "Question " + data.currentNumber;
+  $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
   $quizModal.className = "modal-background hidden"
   createQuizContainer();
   generateFourRandomPokemonNumbers();
@@ -344,24 +344,22 @@ var $pokedexSearchButton = document.querySelector('.pokedexSubmit');
 $pokedexSearchButton.addEventListener('click', searchPokemon)
 var $pokedexSearch = document.querySelector('.pokemonSearch');
 var $stats = document.querySelector('.stats')
+
+
 function searchPokemon(){
-  //On submit, do a loop on the 900 pokemon array, if the string.tolowercase doesn't match, don't do the function
-  for (var i = 0; i < allPokemonList.length; i++){
-    if ($pokedexSearch.value.toLowerCase() === allPokemonList[i].toLowerCase()){
-      console.log('Pokedex Pokemon Name:',$pokedexSearch.value);
-      console.log('Pokedex Index (-1)', i + 1)
-      getPokedexPicture(i+1)
+  //On submit, search the users input (but in Lowercase)
+  // If user types in nidoran, Open modal to determine which, each button does the search
+  // If user types in a pokemon with space like "Tapu lele", spaces will be dashes.
+      getPokedexPicture($pokedexSearch.value.toLowerCase())
       var $nameAndNumber = document.createElement('h1');
       $nameAndNumber.textContent = allPokemonList[i] + " - #" + parseInt(i+1);
       $stats.appendChild($nameAndNumber)
-    }
-  }
 }
 
 //Do another network request
-function getPokedexPicture(number) {
+function getPokedexPicture(name) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + number);
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', handlePokedexResponseData);
   xhr.send();
