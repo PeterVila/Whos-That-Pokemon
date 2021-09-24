@@ -259,7 +259,7 @@ button:hover {
     position:relative;
 }
 
-.square {
+.dPadTop {
     position: absolute;
     width: 15%;
     height: 50%;
@@ -272,7 +272,7 @@ button:hover {
     border-top-right-radius: .5rem;
 }
 
-.square2 {
+.dPadLeft {
   position: absolute;
   width: 15%;
   height: 50%;
@@ -284,7 +284,7 @@ button:hover {
     border-bottom-left-radius: 0.5rem;
 }
 
-.square3 {
+.dPadMid {
   position: absolute;
   width: 15%;
   height: 50%;
@@ -293,7 +293,7 @@ button:hover {
   margin-left: 25%;
 }
 
-.square4 {
+.dPadRight {
     position: absolute;
     width: 15%;
     height: 50%;
@@ -305,7 +305,7 @@ button:hover {
     border-bottom-right-radius: 0.5rem;
 }
 
-.square5 {
+.dPadBottom {
       position: absolute;
       width: 15%;
       height: 50%;
@@ -317,7 +317,7 @@ button:hover {
       border-bottom-right-radius: 0.5rem;
 }
 
-.circleA {
+.pokedexGreenButton {
     position: absolute;
     width: 20%;
     height: 55%;
@@ -328,7 +328,7 @@ button:hover {
     border: 1px black solid;
 }
 
-.circleB {
+.pokedexBlueButton {
   position: absolute;
   width: 20%;
   height: 55%;
@@ -433,75 +433,74 @@ ul {
     margin-bottom: 0.5rem;
 }
 
-.typeNormal {
+.normal {
     background-color: rgb(255, 255, 255);
-    color: black;
 }
 
-.typeFight {
+.fight {
     background-color: rgb(140, 37, 0);
 }
 
-.typeFlying {
+.flying {
     background-color: rgb(159, 119, 159);
 }
 
-.typePoison {
+.poison {
     background-color: purple;
 }
 
-.typeGround {
+.ground {
     background-color: rgb(232, 168, 100);
 }
 
-.typeRock {
+.rock {
     background-color: rgb(126, 74, 19);
 }
 
-.typeBug {
+.bug {
     background-color: rgb(105, 171, 40);
 }
 
-.typeGhost {
+.ghost {
     background-color: rgb(108, 59, 136);
 }
 
-.typeSteel {
+.steel {
     background-color: silver;
 }
 
-.typeFire {
+.fire {
     background-color: rgb(211, 76, 35);
 }
 
-.typeWater {
+.water {
     background-color: steelblue;
 }
 
-.typeGrass {
+.grass {
     background-color: rgb(38, 152, 38);
 }
 
-.typeElectric {
+.electric {
     background-color: rgb(252, 252, 36);
 }
 
-.typePsychic {
+.psychic {
     background-color: rgb(187, 90, 107);
 }
 
-.typeIce {
+.ice {
     background-color: rgb(98, 226, 255);
 }
 
-.typeDragon {
+.dragon {
     background-color: rgb(95, 30, 247);
 }
 
-.typeDark {
+.dark {
     background-color: rgb(48, 46, 46);
 }
 
-.typeFairy {
+.fairy {
     background-color: pink;
 }
