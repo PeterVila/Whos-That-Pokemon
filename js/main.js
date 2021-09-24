@@ -155,7 +155,6 @@ function questionClick() {
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
-    //Output data.name, correctPokemon and wrongPokemon
     data.pastGames.push({
       'trainerName': data.trainerName,
       'correctPokemon': data.correctPokemon,
@@ -266,7 +265,6 @@ function homeScreen(){
   }
   $pokedex.className = "container hidden"
   $navH1.textContent = "Who's that Pokemon?";
-
 }
 
 function everyEntry(){
@@ -286,9 +284,6 @@ function createTrainerEntry(index){
   $h1Name.textContent = "Trainer: " + data.pastGames[index].trainerName
   $h1Name.className = "pokemon-font"
   $trainerNameRow.appendChild($h1Name);
-  // var $icon = document.createElement('i')
-  // $icon.className = "fas fa-trash-alt"
-  // $trainerNameRow.appendChild($icon);
   $correctPokemonRow = document.createElement('div');
   $correctPokemonRow.className = "row justify-center";
   $trainerData.appendChild($correctPokemonRow);
@@ -345,6 +340,7 @@ $pokedexSearchButton.addEventListener('click', searchPokemon)
 var $pokedexSearch = document.querySelector('.pokemonSearch');
 var $stats = document.querySelector('.stats')
 var $type = document.querySelector('.type')
+var $nidoranModal = document.querySelector('#nidoranModal');
 
 function searchPokemon(){
   if ($pokedexImage.childElementCount > 0) {
@@ -353,24 +349,15 @@ function searchPokemon(){
     $stats.firstElementChild.remove();
     $type.firstElementChild.remove();
   }
-  //On submit, search the users input (but in Lowercase)
-  // If user types in nidoran, Open modal to determine which, each button does the search
-  // If user types in a pokemon with space like "Tapu lele", spaces will be dashes.
   if ($pokedexSearch.value.includes(' ')){
-    for (var i = 0; i < $pokedexSearch.value.length; i++){
-      if ($pokedexSearch.value[i] === ' '){
-        // $pokedexSearch.value[i].splice(0,1,"-");
-        $pokedexSearch.value[i].replace(' ',)
-      }
-    }
-    getPokedexPicture($pokedexSearch.value.toLowerCase());
+    getPokedexPicture($pokedexSearch.value.toLowerCase().replace(' ', '-'));
+  } else if ($pokedexSearch.value.toLowerCase() === 'nidoran'){
+    $nidoranModal.className = "modal-background"
   } else {
     getPokedexPicture($pokedexSearch.value.toLowerCase());
   }
-  // getPokedexPicture($pokedexSearch.value.toLowerCase())
 }
 
-//Do another network request
 function getPokedexPicture(name) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
@@ -384,11 +371,10 @@ function handlePokedexResponseData(event) {
   appendPokedex(event.target.response)
 }
 
-
 function appendPokedex(stats){
   var $img = document.createElement('img')
   $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default)
-  $img.className = 'pokedexImg' //Didn't do this
+  $img.className = 'pokedexImg'
   $pokedexImage.appendChild($img);
   var $nameAndNumber = document.createElement('h1');
   $nameAndNumber.textContent = stats.name + " (#" + stats.id + ")"
@@ -443,7 +429,19 @@ function appendPokedex(stats){
     $h1.textContent = stats.types[i].type.name;
     $divH1.appendChild($h1)
     $type.appendChild($divH1)
-
   }
   $stats.appendChild($ul);
+}
+
+var $maleNidoran = document.querySelector('#male');
+var $femaleNidoran = document.querySelector('#female');
+$maleNidoran.addEventListener('click', searchNidoran);
+$femaleNidoran.addEventListener('click', searchNidoran)
+function searchNidoran(){
+  $nidoranModal.className = "modal-background hidden"
+  if (event.target.textContent === "Male"){
+    getPokedexPicture('nidoran-m');
+  } else {
+    getPokedexPicture('nidoran-f');
+  }
 }
