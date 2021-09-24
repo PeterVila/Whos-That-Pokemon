@@ -377,7 +377,11 @@ function appendPokedex(stats){
   $img.className = 'pokedexImg'
   $pokedexImage.appendChild($img);
   var $nameAndNumber = document.createElement('h1');
-  $nameAndNumber.textContent = stats.name + " (#" + stats.id + ")"
+  if (stats.name === "nidoran-m" || stats.name === "nidoran-f"){
+    $nameAndNumber.textContent = 'nidoran' + " (#" + stats.id + ")"
+  } else {
+    $nameAndNumber.textContent = stats.name + " (#" + stats.id + ")"
+  }
   $nameAndNumber.className = "pokedexh1"
   $pokedexImage.appendChild($nameAndNumber)
   var $ul = document.createElement('ul');
