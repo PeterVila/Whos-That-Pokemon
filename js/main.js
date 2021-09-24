@@ -26,7 +26,7 @@ function startQuiz(e) {
   $startModal.className = "modal-background hidden"
   $homePage.className = "container hidden"
   $quizPage.className = "container"
-  $body.className = "blueBackground"
+  $body.className = "animated-background"
   $navH1.textContent = "Question " + data.currentNumber;
   getPokemonPicture()
   createQuizContainer();
@@ -122,7 +122,7 @@ function questionsAndTime() {
   var shuffledFour = _.shuffle(data.currentFour);
   for (var i = 0; i < 4; i++) {
     var $button = document.createElement('button');
-    $button.className = "white-button justify-center";
+    $button.className = "justify-center";
     $button.textContent = allPokemonList[shuffledFour[i] - 1]
     $quizContainer.appendChild($button);
     $button.addEventListener('click', questionClick)
@@ -238,7 +238,7 @@ function clearQuiz(){
   $homePage.className = "container"
   $quizPage.className = "container hidden"
   $quizModal.className = "modal-background hidden"
-  $body.className = ""
+  $body.className = "animated-background"
   $navH1.textContent = "Pokemon Quiz Game";
 }
 
@@ -249,7 +249,7 @@ var $pastGamesView = document.querySelector('#pastGames');
 function switchToHistory(){
   $homePage.className = "container hidden"
   $pastGamesView.className = "container"
-  $body.className = "blueBackground"
+  $body.className = "animated-background"
   $navH2.className = "navh2 pokemon-font"
   everyEntry();
 }
@@ -258,7 +258,7 @@ function homeScreen(){
   $homePage.className = "container";
   $pastGamesView.className = "container hidden";
   $navH2.className = "navh2 pokemon-font hidden"
-  $body.className = ""
+  $body.className = "animated-background"
   var $trainerData = document.querySelectorAll('.trainerData');
   for (var i = 0; i < $trainerData.length; i++){
     $trainerData[i].remove();
@@ -275,7 +275,7 @@ function everyEntry(){
 
 function createTrainerEntry(index){
   var $trainerData = document.createElement('div');
-  $trainerData.className = "column-full trainerData"
+  $trainerData.className = "column-full trainerData light-background"
   var $trainerNameRow = document.createElement('div');
   $trainerNameRow.className = "trainerName row justify-center";
   $trainerData.appendChild($trainerNameRow);
@@ -288,6 +288,7 @@ function createTrainerEntry(index){
   $trainerData.appendChild($correctPokemonRow);
   var $h1Correct = document.createElement('h1');
   $h1Correct.textContent = "Correct Pokemon";
+  $h1Correct.className = "blue-font"
   $correctPokemonRow.appendChild($h1Correct);
   var $correctImages = document.createElement('div');
   $correctImages.className = "miniPokemon row";
