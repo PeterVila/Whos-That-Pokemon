@@ -51,6 +51,11 @@
   margin: 0 2.5%;
 }
 
+.pokedex-first-half,
+.pokedex-second-half {
+  width: 50%;
+}
+
 .miniPokemon p {
   width: 0;
   position: relative;

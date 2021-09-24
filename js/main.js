@@ -344,16 +344,24 @@ var $pokedexSearchButton = document.querySelector('.pokedexSubmit');
 $pokedexSearchButton.addEventListener('click', searchPokemon)
 var $pokedexSearch = document.querySelector('.pokemonSearch');
 var $stats = document.querySelector('.stats')
-
+var $type = document.querySelector('.type')
 
 function searchPokemon(){
   //On submit, search the users input (but in Lowercase)
   // If user types in nidoran, Open modal to determine which, each button does the search
   // If user types in a pokemon with space like "Tapu lele", spaces will be dashes.
-      getPokedexPicture($pokedexSearch.value.toLowerCase())
-      var $nameAndNumber = document.createElement('h1');
-      $nameAndNumber.textContent = allPokemonList[i] + " - #" + parseInt(i+1);
-      $stats.appendChild($nameAndNumber)
+  if ($pokedexSearch.value.includes(' ')){
+    for (var i = 0; i < $pokedexSearch.value.length; i++){
+      if ($pokedexSearch.value[i] === ' '){
+        // $pokedexSearch.value[i].splice(0,1,"-");
+        $pokedexSearch.value[i].replace(' ',)
+      }
+    }
+    getPokedexPicture($pokedexSearch.value.toLowerCase());
+  } else {
+    getPokedexPicture($pokedexSearch.value.toLowerCase());
+  }
+  // getPokedexPicture($pokedexSearch.value.toLowerCase())
 }
 
 //Do another network request
@@ -375,6 +383,9 @@ function appendPokedex(stats){
   $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default)
   $img.className = 'black' //Didn't do this
   $pokedexImage.appendChild($img);
+  var $nameAndNumber = document.createElement('h1');
+  $nameAndNumber.textContent = stats.name + " (#" + stats.id + ")"
+  $pokedexImage.appendChild($nameAndNumber)
   var $ul = document.createElement('ul');
   for (var i = 0; i < stats.stats.length; i++){
     var $li = document.createElement('li');
@@ -384,7 +395,7 @@ function appendPokedex(stats){
   for (var i = 0; i < stats.types.length; i++){
     var $h1 = document.createElement('h1');
     $h1.textContent = stats.types[i].type.name;
-    $stats.appendChild($h1);
+    $type.appendChild($h1);
   }
   $stats.appendChild($ul);
 }
