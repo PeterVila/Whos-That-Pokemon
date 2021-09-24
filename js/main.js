@@ -401,43 +401,6 @@ function appendPokedex(stats){
     var $h1 = document.createElement('h1');
     var $divH1 = document.createElement('div');
     $divH1.className = "typeColor " + stats.types[i].type.name
-    // if (stats.types[i].type.name === "normal"){
-    //   $divH1.className = "typeColor typeNormal"
-    // } else if (stats.types[i].type.name === "fighting"){
-    //   $divH1.className = "typeColor typeFight"
-    // } else if (stats.types[i].type.name === "flying") {
-    //   $divH1.className = "typeColor typeFlying"
-    // } else if (stats.types[i].type.name === "poison") {
-    //   $divH1.className = "typeColor typePoison"
-    // } else if (stats.types[i].type.name === "ground") {
-    //   $divH1.className = "typeColor typeGround"
-    // } else if (stats.types[i].type.name === "rock") {
-    //   $divH1.className = "typeColor typeRock"
-    // } else if (stats.types[i].type.name === "bug") {
-    //   $divH1.className = "typeColor typeBug"
-    // } else if (stats.types[i].type.name === "ghost") {
-    //   $divH1.className = "typeColor typeGhost"
-    // } else if (stats.types[i].type.name === "steel") {
-    //   $divH1.className = "typeColor typeSteel"
-    // } else if (stats.types[i].type.name === "fire") {
-    //   $divH1.className = "typeColor typeFire"
-    // } else if (stats.types[i].type.name === "water") {
-    //   $divH1.className = "typeColor typeWater"
-    // } else if (stats.types[i].type.name === "grass") {
-    //   $divH1.className = "typeColor typeGrass"
-    // } else if (stats.types[i].type.name === "electric") {
-    //   $divH1.className = "typeColor typeElectric"
-    // } else if (stats.types[i].type.name === "psychic") {
-    //   $divH1.className = "typeColor typePsychic"
-    // } else if (stats.types[i].type.name === "ice") {
-    //   $divH1.className = "typeColor typeIce"
-    // } else if (stats.types[i].type.name === "dragon") {
-    //   $divH1.className = "typeColor typeDragon"
-    // } else if (stats.types[i].type.name === "dark") {
-    //   $divH1.className = "typeColor typeDark"
-    // } else if (stats.types[i].type.name === "fairy") {
-    //   $divH1.className = "typeColor typeFairy"
-    // }
     $h1.textContent = stats.types[i].type.name;
     $divH1.appendChild($h1)
     $type.appendChild($divH1)
