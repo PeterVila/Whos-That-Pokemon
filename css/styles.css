@@ -1,11 +1,11 @@
 .pokemon-font {
   font-family: 'Joti One', cursive;
   color: #FFCB04;
-  text-shadow: 3px 3px 0 #39569E,
-    -1px -1px 0 #39569E,
-    1px -1px 0 #39569E,
-    -1px 4px 0 #39569E,
-    1px 1px 0 #39569E;
+  text-shadow: 4px 4px 0 #39569E,
+    -2px -2px 0 #39569E,
+    2px -2px 0 #39569E,
+    -2px 4px 0 #39569E,
+    2px 2px 0 #39569E;
 }
 
 header {
@@ -381,4 +381,14 @@ button:hover {
 
 .light-background {
     background-color: rgb(243, 244, 235);
+}
+
+#pokedex {
+    font-size: 1rem;
+    color: black;
+
+}
+
+#pokedex img {
+    width: 40%;
 }

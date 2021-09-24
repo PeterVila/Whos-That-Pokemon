@@ -63,7 +63,7 @@ var tenSecondsBar = null;
 function appendPokemonPicture(sprite) {
   var $img = document.createElement('img')
   $img.setAttribute('src', sprite)
-  $img.className = 'black'
+  $img.className = 'black' //Didn't do this
   var $quizContainer = document.querySelector('.quizContainer')
   $quizContainer.appendChild($img);
   $img.addEventListener('load', questionsAndTime)
@@ -222,6 +222,7 @@ function resetQuiz(){
 }
 
 $home.addEventListener('click', clearQuiz);
+
 function clearQuiz(){
   data.currentNumber = 1;
   data.correctPokemon = [];
@@ -264,6 +265,8 @@ function homeScreen(){
     $trainerData[i].remove();
   }
   $pokedex.className = "container hidden"
+  $navH1.textContent = "Pokemon Quiz Game";
+
 }
 
 function everyEntry(){
@@ -280,7 +283,7 @@ function createTrainerEntry(index){
   $trainerNameRow.className = "trainerName row justify-center";
   $trainerData.appendChild($trainerNameRow);
   var $h1Name = document.createElement('h1');
-  $h1Name.textContent = data.pastGames[index].trainerName
+  $h1Name.textContent = "Trainer: " + data.pastGames[index].trainerName
   $h1Name.className = "pokemon-font"
   $trainerNameRow.appendChild($h1Name);
   $correctPokemonRow = document.createElement('div');
@@ -326,10 +329,64 @@ function switchPokedex(){
   $navH1.textContent = "Pokedex"
 }
 
+
+var $pokedexImage = document.querySelector('.pokedexPokemonImage')
 var $pokedexSearchButton = document.querySelector('.pokedexSubmit');
 $pokedexSearchButton.addEventListener('click', searchPokemon)
 var $pokedexSearch = document.querySelector('.pokemonSearch');
+var $stats = document.querySelector('.stats')
 function searchPokemon(){
-  console.log($pokedexSearch.value)
   //On submit, do a loop on the 900 pokemon array, if the string.tolowercase doesn't match, don't do the function
+  for (var i = 0; i < allPokemonList.length; i++){
+    if ($pokedexSearch.value.toLowerCase() === allPokemonList[i].toLowerCase()){
+      console.log('Pokedex Pokemon Name:',$pokedexSearch.value);
+      console.log('Pokedex Index (-1)', i + 1)
+      getPokedexPicture(i+1)
+      var $nameAndNumber = document.createElement('h1');
+      $nameAndNumber.textContent = allPokemonList[i] + " - #" + parseInt(i+1);
+      $stats.appendChild($nameAndNumber)
+    }
+  }
+}
+
+//Do another network request
+function getPokedexPicture(number) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + number);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', handlePokedexResponseData);
+  xhr.send();
+}
+
+function handlePokedexResponseData(event) {
+  appendPokedexPicture(event.target.response.sprites.other['official-artwork'].front_default)
+  console.log(event.target.response);
+  appendPokedex(event.target.response)
+}
+
+function appendPokedexPicture(sprite) {
+  var $img = document.createElement('img')
+  $img.setAttribute('src', sprite)
+  $img.className = 'black' //Didn't do this
+  $pokedexImage.appendChild($img);
+}
+
+function appendPokedex(stats){
+  var $text = document.createElement('h1');
+  var $ul = document.createElement('ul');
+  for (var i = 0; i < stats.stats.length; i++){
+    var $li = document.createElement('li');
+    $li.textContent = stats.stats[i].base_stat + " " + stats.stats[i].stat.name;
+    $ul.appendChild($li);
+  }
+  for (var i = 0; i < stats.types.length; i++){
+    var $h1 = document.createElement('h1');
+    $h1.textContent = stats.types[i].type.name;
+    $stats.appendChild($h1);
+  }
+  $stats.appendChild($ul);
+  var $type = document.createElement('div');
+  // $type.textContent = stats.type[0].type
+  $stats.appendChild($text)
+
 }
