@@ -403,6 +403,7 @@ button:hover {
 li {
     list-style: none;
     color: rgb(11, 103, 98);
+    margin-left: 2rem;
 }
 
 ul {

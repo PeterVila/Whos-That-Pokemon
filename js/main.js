@@ -367,7 +367,6 @@ function getPokedexPicture(name) {
 }
 
 function handlePokedexResponseData(event) {
-  console.log(event.target.response);
   appendPokedex(event.target.response)
 }
 
@@ -378,9 +377,17 @@ function appendPokedex(stats){
   $pokedexImage.appendChild($img);
   var $nameAndNumber = document.createElement('h1');
   if (stats.name === "nidoran-m" || stats.name === "nidoran-f"){
-    $nameAndNumber.textContent = 'nidoran' + " (#" + stats.id + ")"
+    $nameAndNumber.textContent = 'Nidoran' + " (#" + stats.id + ")"
+  } else if (stats.name.includes("-")) {
+    var noSpaces = stats.name.split('-')
+    var answer = [];
+    for (var i = 0; i < noSpaces.length; i++){
+      answer.push(noSpaces[i].charAt(0).toUpperCase() + noSpaces[i].slice(1));
+    }
+    var upperCasedPokemon = answer.join('-')
+    $nameAndNumber.textContent = upperCasedPokemon + " (#" + stats.id + ")"
   } else {
-    $nameAndNumber.textContent = stats.name + " (#" + stats.id + ")"
+    $nameAndNumber.textContent = stats.name.charAt(0).toUpperCase() + stats.name.slice(1) + " (#" + stats.id + ")"
   }
   $nameAndNumber.className = "pokedexh1"
   $pokedexImage.appendChild($nameAndNumber)
@@ -395,7 +402,7 @@ function appendPokedex(stats){
     var $divH1 = document.createElement('div');
     if (stats.types[i].type.name === "normal"){
       $divH1.className = "typeColor typeNormal"
-    } else if (stats.types[i].type.name === "fight"){
+    } else if (stats.types[i].type.name === "fighting"){
       $divH1.className = "typeColor typeFight"
     } else if (stats.types[i].type.name === "flying") {
       $divH1.className = "typeColor typeFlying"
