@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>Who's That Pokemon?</title>
   <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
   <link rel="stylesheet" crossorigin="anonymous"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
   integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="icon" href="images/pokeball.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 
 </head>
-<body>
+<body class="animated-background">
   <!-- modal -->
   <div class="modal-background hidden">
     <div class="modal">
@@ -30,6 +33,7 @@
       </form>
     </div>
   </div>
+  <!--Quiz Modal-->
   <div id="quizModal" class="modal-background hidden">
     <div class="modal">
       <div class="modal-text row justify-center">
@@ -46,9 +50,22 @@
       </div>
     </div>
   </div>
+  <div id="nidoranModal" class="modal-background hidden">
+    <div class="modal">
+      <div class="modal-text row justify-center">
+        <div class="column-full justify-center row">
+          <h1>Which Nidoran gender?</h1>
+        </div>
+      </div>
+      <div class="row justify-evenly">
+        <button id="male">Male</button>
+        <button id="female">Female</button>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="nav row container">
-      <h1 class="navh1 pokemon-font">Pokemon Quiz Game</h1>
+      <h1 class="navh1 pokemon-font">Who's that Pokemon?</h1>
       <h2 class="navh2 pokemon-font hidden"><a href="#">Home</a></h2>
     </div>
   </header>
@@ -64,7 +81,7 @@
         <div id="playHistory" class="row justify-center">
           <button class="menuButtons">Play History</button>
         </div>
-        <div class="row justify-center">
+        <div id="menuPokedex" class="row justify-center">
           <button class="menuButtons">Pokedex</button>
         </div>
       </div>
@@ -89,6 +106,37 @@
       </div>
       <!-- dataview for pastGames -->
       <div id="pastGames" class="container hidden" data-view="pastGames">
+      </div>
+      <!--dataview for pokedex-->
+      <div id="pokedex" class="container hidden" data-view="pokedex">
+        <div class="justify-center row screenBorder">
+          <div class="row screen">
+            <div class="row justify-center pokedexPokemonImage pokedex-first-half"></div>
+            <div class="row justify-evenly column-full">
+              <div class="type text-center justify-center pokedex-first-half"></div>
+              <div class="stats pokedex-first-half">
+                <!-- Pokedex stats -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="search">
+            <input class="pokemonSearch" type="text" placeholder="Enter Pokemon Name">
+          </div>
+          <div class="pokedexButtons row">
+            <div class="dPadTop"></div>           
+           <div class="dPadLeft"></div>
+           <div class="dPadMid"></div>
+           <div class="dPadRight"></div>
+            <div class="dPadBottom"></div>
+            <div class="pokedexGreenButton"></div>
+            <div class="pokedexBlueButton"></div>
+            <div class="button pokedexSubmit">
+              <button>Search</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   <script src="js/lodash.js"></script>

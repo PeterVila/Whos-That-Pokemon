@@ -1,11 +1,11 @@
 .pokemon-font {
   font-family: 'Joti One', cursive;
   color: #FFCB04;
-  text-shadow: 3px 3px 0 #39569E,
-    -1px -1px 0 #39569E,
-    1px -1px 0 #39569E,
-    -1px 4px 0 #39569E,
-    1px 1px 0 #39569E;
+  text-shadow: 4px 4px 0 #39569E,
+    -2px -2px 0 #39569E,
+    2px -2px 0 #39569E,
+    -2px 4px 0 #39569E,
+    2px 2px 0 #39569E;
 }
 
 header {
@@ -13,7 +13,30 @@ header {
 }
 
 body {
-    background-color: #FBFBFC
+  background-color: #FBFBFC;
+  font-family: 'Russo One',sans-serif;
+  color: #FF5A6E;
+}
+
+.animated-background {
+  background: url(/images/square.png) repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse 1.5s infinite;
+  /* Safari 4+ */
+  -moz-animation: bg-scrolling-reverse 1.5s infinite;
+  /* Fx 5+ */
+  -o-animation: bg-scrolling-reverse 1.5s infinite;
+  /* Opera 12+ */
+  animation: bg-scrolling-reverse 1.5s infinite;
+  /* IE 10+ */
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
 }
 
 
@@ -37,6 +60,7 @@ body {
 }
 
 button {
+    font-family: 'Russo One', sans-serif;
     border: none;
     background-color: #7DE0FF;
     color: white;
@@ -193,4 +217,290 @@ button:hover {
 
 #pastGames h1 {
     margin: 5px;
+}
+
+.rotom {
+    background-color: #FF5A6E;
+}
+
+.screenBorder {
+    width: 100%;
+    height: 30rem;
+    background-color: whitesmoke;
+    border-radius: 1.5rem;
+    border-bottom-left-radius: 5rem;
+    border: 0.5rem solid black;
+}
+
+.screen {
+    width: 90%;
+    height: 25rem;
+    background-color: rgb(140, 240, 238);
+    align-self: center;
+    border-radius: 1rem;
+    border-bottom-left-radius: 5rem;
+    border: 0.25rem solid black;
+}
+
+.search {
+    margin-top: 10%;
+    width: 50%;
+}
+
+.search input {
+    height: 3rem;
+    border-radius: 15rem;
+    background-color: rgb(146, 230, 146);
+    width: 100%;
+}
+
+.pokedexButtons {
+    width: 50%;
+    position:relative;
+}
+
+.dPadTop {
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    background-color: black;
+    margin-top: 20%;
+    margin-left: 25%;
+    z-index: 1;
+    border-bottom: none;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.dPadLeft {
+  position: absolute;
+  width: 15%;
+  height: 50%;
+  background-color: black;
+  margin-top: 35%;
+  margin-left: 10%;
+    border-right: none;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.dPadMid {
+  position: absolute;
+  width: 15%;
+  height: 50%;
+  background-color: black;
+  margin-top: 35%;
+  margin-left: 25%;
+}
+
+.dPadRight {
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    background-color: black;
+    margin-top: 35%;
+    margin-left: 40%;
+    border-left: none;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.dPadBottom {
+      position: absolute;
+      width: 15%;
+      height: 50%;
+      background-color: black;
+      margin-top: 50%;
+      margin-left: 25%;
+      border-top: none;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+}
+
+.pokedexGreenButton {
+    position: absolute;
+    width: 20%;
+    height: 55%;
+    background-color: rgba(65, 176, 18, 0.845);
+    border-radius: 50%;
+    margin-left: 90%;
+    margin-top: 20%;
+    border: 1px black solid;
+}
+
+.pokedexBlueButton {
+  position: absolute;
+  width: 20%;
+  height: 55%;
+  background-color: rgba(85, 151, 222, 0.845);
+  border-radius: 50%;
+  margin-left: 70%;
+  margin-top: 40%;
+  border: 1px black solid;
+}
+
+.circleA:hover {
+    background-color: rgb(40, 69, 12)
+}
+
+.circleB:hover {
+    background-color: rgb(7, 59, 155);
+}
+.search input {
+    text-align: center;
+    font-size: 1.25rem;
+    outline-width: 0;
+
+}
+
+.pokedexSubmit {
+    position: absolute;
+    margin-left: -50%;
+    margin-top: 40%;
+    width: 60%;
+}
+
+.pokedexSubmit button {
+    background-color: rgb(74, 174, 228);
+    border: 2px solid black;
+    font-size: 1.5rem;
+}
+
+.pokedexSubmit button:hover {
+    background-color: rgb(20, 95, 135);
+}
+
+.pokedexPokemonImage {
+    width: 100%;
+}
+
+.blue-font {
+    color:rgb(74, 174, 228);
+}
+
+.light-background {
+    background-color: rgb(243, 244, 235);
+}
+
+#pokedex {
+    font-size: 1rem;
+    color: black;
+}
+
+#pokedex img {
+    max-width: 35%;
+    margin-top: 1rem;
+    margin-right: 3rem;
+}
+
+.pokedexPokemonImage h1{
+    margin-top: 5rem;
+    margin-left: 1rem;
+    font-size: 1.75rem;
+    color: rgb(11, 103, 98);
+}
+
+li {
+    list-style: none;
+    color: rgb(11, 103, 98);
+    margin-left: 2rem;
+}
+
+ul {
+    border: .4rem solid rgba(11, 103, 98, 0.427);
+    border-radius: 1rem;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    position: relative;
+    bottom: 5rem;
+}
+
+.type {
+    margin-top: 1rem;
+}
+.type h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.typeColor {
+    border: 1px solid black;
+    color: black;
+    font-size: 0.75rem;
+    width: 80%;
+    margin-left: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.normal {
+    background-color: rgb(255, 255, 255);
+}
+
+.fight {
+    background-color: rgb(140, 37, 0);
+}
+
+.flying {
+    background-color: rgb(159, 119, 159);
+}
+
+.poison {
+    background-color: purple;
+}
+
+.ground {
+    background-color: rgb(232, 168, 100);
+}
+
+.rock {
+    background-color: rgb(126, 74, 19);
+}
+
+.bug {
+    background-color: rgb(105, 171, 40);
+}
+
+.ghost {
+    background-color: rgb(108, 59, 136);
+}
+
+.steel {
+    background-color: silver;
+}
+
+.fire {
+    background-color: rgb(211, 76, 35);
+}
+
+.water {
+    background-color: steelblue;
+}
+
+.grass {
+    background-color: rgb(38, 152, 38);
+}
+
+.electric {
+    background-color: rgb(252, 252, 36);
+}
+
+.psychic {
+    background-color: rgb(187, 90, 107);
+}
+
+.ice {
+    background-color: rgb(98, 226, 255);
+}
+
+.dragon {
+    background-color: rgb(95, 30, 247);
+}
+
+.dark {
+    background-color: rgb(48, 46, 46);
+}
+
+.fairy {
+    background-color: pink;
 }

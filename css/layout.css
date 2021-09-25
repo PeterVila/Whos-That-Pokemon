@@ -50,6 +50,20 @@
   width: 40%;
   margin: 0 2.5%;
 }
+
+.pokedex-first-half,
+.pokedex-second-half {
+  width: 50%;
+}
+
+.miniPokemon p {
+  width: 0;
+  position: relative;
+  right: 10rem;
+  bottom: 1rem;
+  font-size: 0.75rem;
+  color: rgb(0, 81, 255);
+}
 /* For desktop screens */
 @media screen and (min-width: 768px) {
   .container {
@@ -78,5 +92,8 @@
   .miniPokemon img {
     width: 15%;
     margin: 0 2.5%;
+  }
+  .quizContainer img {
+    width: 50%;
   }
 }

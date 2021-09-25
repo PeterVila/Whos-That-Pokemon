@@ -26,8 +26,8 @@ function startQuiz(e) {
   $startModal.className = "modal-background hidden"
   $homePage.className = "container hidden"
   $quizPage.className = "container"
-  $body.className = "blueBackground"
-  $navH1.textContent = "Question " + data.currentNumber;
+  $body.className = "animated-background"
+  $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
   getPokemonPicture()
   createQuizContainer();
 }
@@ -63,7 +63,7 @@ var tenSecondsBar = null;
 function appendPokemonPicture(sprite) {
   var $img = document.createElement('img')
   $img.setAttribute('src', sprite)
-  $img.className = 'black'
+  $img.className = 'black' //Didn't do this
   var $quizContainer = document.querySelector('.quizContainer')
   $quizContainer.appendChild($img);
   $img.addEventListener('load', questionsAndTime)
@@ -101,7 +101,7 @@ function quizTimer() {
       'sprite': data.currentPokemonUrl
     })
     data.currentNumber++;
-    $navH1.textContent = "Question " + data.currentNumber
+    $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     var $quizContainer = document.querySelector('.quizContainer');
     $quizContainer.remove();
     createQuizContainer();
@@ -122,7 +122,7 @@ function questionsAndTime() {
   var shuffledFour = _.shuffle(data.currentFour);
   for (var i = 0; i < 4; i++) {
     var $button = document.createElement('button');
-    $button.className = "white-button justify-center";
+    $button.className = "justify-center";
     $button.textContent = allPokemonList[shuffledFour[i] - 1]
     $quizContainer.appendChild($button);
     $button.addEventListener('click', questionClick)
@@ -155,7 +155,6 @@ function questionClick() {
     var $quizScore = document.querySelector('.quizScore');
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
-    //Output data.name, correctPokemon and wrongPokemon
     data.pastGames.push({
       'trainerName': data.trainerName,
       'correctPokemon': data.correctPokemon,
@@ -175,7 +174,7 @@ function questionClick() {
       'sprite': data.currentPokemonUrl
     })
     data.currentNumber++;
-    $navH1.textContent = "Question " + data.currentNumber
+    $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     $quizContainer.remove();
     createQuizContainer()
     generateFourRandomPokemonNumbers();
@@ -188,7 +187,7 @@ function questionClick() {
       'sprite': data.currentPokemonUrl
   })
     data.currentNumber++;
-    $navH1.textContent = "Question " + data.currentNumber
+    $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     $quizContainer.remove();
     createQuizContainer();
     generateFourRandomPokemonNumbers();
@@ -214,7 +213,7 @@ function resetQuiz(){
   }
   var $quizContainer = document.querySelector('.quizContainer')
   $quizContainer.remove();
-  $navH1.textContent = "Question " + data.currentNumber;
+  $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
   $quizModal.className = "modal-background hidden"
   createQuizContainer();
   generateFourRandomPokemonNumbers();
@@ -222,6 +221,7 @@ function resetQuiz(){
 }
 
 $home.addEventListener('click', clearQuiz);
+
 function clearQuiz(){
   data.currentNumber = 1;
   data.correctPokemon = [];
@@ -238,8 +238,8 @@ function clearQuiz(){
   $homePage.className = "container"
   $quizPage.className = "container hidden"
   $quizModal.className = "modal-background hidden"
-  $body.className = ""
-  $navH1.textContent = "Pokemon Quiz Game";
+  $body.className = "animated-background"
+  $navH1.textContent = "Who's That Pokemon?";
 }
 
 
@@ -249,7 +249,7 @@ var $pastGamesView = document.querySelector('#pastGames');
 function switchToHistory(){
   $homePage.className = "container hidden"
   $pastGamesView.className = "container"
-  $body.className = "blueBackground"
+  $body.className = "animated-background"
   $navH2.className = "navh2 pokemon-font"
   everyEntry();
 }
@@ -258,11 +258,13 @@ function homeScreen(){
   $homePage.className = "container";
   $pastGamesView.className = "container hidden";
   $navH2.className = "navh2 pokemon-font hidden"
-  $body.className = ""
+  $body.className = "animated-background"
   var $trainerData = document.querySelectorAll('.trainerData');
   for (var i = 0; i < $trainerData.length; i++){
     $trainerData[i].remove();
   }
+  $pokedex.className = "container hidden"
+  $navH1.textContent = "Who's that Pokemon?";
 }
 
 function everyEntry(){
@@ -274,12 +276,12 @@ function everyEntry(){
 
 function createTrainerEntry(index){
   var $trainerData = document.createElement('div');
-  $trainerData.className = "column-full trainerData"
+  $trainerData.className = "column-full trainerData light-background"
   var $trainerNameRow = document.createElement('div');
   $trainerNameRow.className = "trainerName row justify-center";
   $trainerData.appendChild($trainerNameRow);
   var $h1Name = document.createElement('h1');
-  $h1Name.textContent = data.pastGames[index].trainerName
+  $h1Name.textContent = "Trainer: " + data.pastGames[index].trainerName
   $h1Name.className = "pokemon-font"
   $trainerNameRow.appendChild($h1Name);
   $correctPokemonRow = document.createElement('div');
@@ -287,6 +289,7 @@ function createTrainerEntry(index){
   $trainerData.appendChild($correctPokemonRow);
   var $h1Correct = document.createElement('h1');
   $h1Correct.textContent = "Correct Pokemon";
+  $h1Correct.className = "blue-font"
   $correctPokemonRow.appendChild($h1Correct);
   var $correctImages = document.createElement('div');
   $correctImages.className = "miniPokemon row";
@@ -295,6 +298,9 @@ function createTrainerEntry(index){
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
     $correctImages.appendChild($miniPokemon);
+    var $miniP = document.createElement('p');
+    $miniP.textContent = data.pastGames[index].correctPokemon[j].pokemon;
+    $correctImages.appendChild($miniP);
   }
   $incorrectPokemonRow = document.createElement('div');
   $incorrectPokemonRow.className = "row justify-center";
@@ -309,7 +315,108 @@ function createTrainerEntry(index){
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
     $incorrectImages.appendChild($miniPokemon);
+    var $miniP = document.createElement('p');
+    $miniP.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
+    $incorrectImages.appendChild($miniP);
   }
   return $trainerData;
 }
 
+var $pokedex = document.querySelector('#pokedex')
+var $homePokedex = document.querySelector('#menuPokedex')
+$homePokedex.addEventListener('click', switchPokedex)
+function switchPokedex(){
+  $homePage.className = "container hidden"
+  $pokedex.className = "container rotom"
+  $body.className = "rotom"
+  $navH2.className = "navh2 pokemon-font"
+  $navH1.textContent = "Pokedex"
+}
+
+
+var $pokedexImage = document.querySelector('.pokedexPokemonImage')
+var $pokedexSearchButton = document.querySelector('.pokedexSubmit');
+$pokedexSearchButton.addEventListener('click', searchPokemon)
+var $pokedexSearch = document.querySelector('.pokemonSearch');
+var $stats = document.querySelector('.stats')
+var $type = document.querySelector('.type')
+var $nidoranModal = document.querySelector('#nidoranModal');
+
+function searchPokemon(){
+  if ($pokedexImage.childElementCount > 0) {
+    $pokedexImage.lastChild.remove();
+    $pokedexImage.firstChild.remove();
+    $stats.firstElementChild.remove();
+    $type.firstElementChild.remove();
+  }
+  if ($pokedexSearch.value.includes(' ')){
+    getPokedexPicture($pokedexSearch.value.toLowerCase().replace(' ', '-'));
+  } else if ($pokedexSearch.value.toLowerCase() === 'nidoran'){
+    $nidoranModal.className = "modal-background"
+  } else {
+    getPokedexPicture($pokedexSearch.value.toLowerCase());
+  }
+}
+
+function getPokedexPicture(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', handlePokedexResponseData);
+  xhr.send();
+}
+
+function handlePokedexResponseData(event) {
+  appendPokedex(event.target.response)
+}
+
+function appendPokedex(stats){
+  var $img = document.createElement('img')
+  $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default)
+  $img.className = 'pokedexImg'
+  $pokedexImage.appendChild($img);
+  var $nameAndNumber = document.createElement('h1');
+  if (stats.name === "nidoran-m" || stats.name === "nidoran-f"){
+    $nameAndNumber.textContent = 'Nidoran' + " (#" + stats.id + ")"
+  } else if (stats.name.includes("-")) {
+    var noSpaces = stats.name.split('-')
+    var answer = [];
+    for (var i = 0; i < noSpaces.length; i++){
+      answer.push(noSpaces[i].charAt(0).toUpperCase() + noSpaces[i].slice(1));
+    }
+    var upperCasedPokemon = answer.join('-')
+    $nameAndNumber.textContent = upperCasedPokemon + " (#" + stats.id + ")"
+  } else {
+    $nameAndNumber.textContent = stats.name.charAt(0).toUpperCase() + stats.name.slice(1) + " (#" + stats.id + ")"
+  }
+  $nameAndNumber.className = "pokedexh1"
+  $pokedexImage.appendChild($nameAndNumber)
+  var $ul = document.createElement('ul');
+  for (var i = 0; i < stats.stats.length; i++){
+    var $li = document.createElement('li');
+    $li.textContent = stats.stats[i].base_stat + " " + stats.stats[i].stat.name;
+    $ul.appendChild($li);
+  }
+  for (var i = 0; i < stats.types.length; i++){
+    var $h1 = document.createElement('h1');
+    var $divH1 = document.createElement('div');
+    $divH1.className = "typeColor " + stats.types[i].type.name
+    $h1.textContent = stats.types[i].type.name;
+    $divH1.appendChild($h1)
+    $type.appendChild($divH1)
+  }
+  $stats.appendChild($ul);
+}
+
+var $maleNidoran = document.querySelector('#male');
+var $femaleNidoran = document.querySelector('#female');
+$maleNidoran.addEventListener('click', searchNidoran);
+$femaleNidoran.addEventListener('click', searchNidoran)
+function searchNidoran(){
+  $nidoranModal.className = "modal-background hidden"
+  if (event.target.textContent === "Male"){
+    getPokedexPicture('nidoran-m');
+  } else {
+    getPokedexPicture('nidoran-f');
+  }
+}
