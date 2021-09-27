@@ -19,7 +19,7 @@ body {
 }
 
 .animated-background {
-  background: url('/images/square.png') repeat 0 0;
+  background: url('../images/square.png') repeat 0 0;
   -webkit-animation: bg-scrolling-reverse 1.5s infinite;
   /* Safari 4+ */
   -moz-animation: bg-scrolling-reverse 1.5s infinite;
