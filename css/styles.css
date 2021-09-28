@@ -195,7 +195,8 @@ button:hover {
 }
 
 .quizContainer img {
-    width: 50%;
+    width: 45%;
+    max-height: 25rem;
 }
 
 .quizContainer button {
@@ -510,6 +511,7 @@ ul {
     background-color: pink;
 }
 
-img {
-    min-height: min-intrinsic
+.logo img {
+    width: 45%;
+    max-height: 25rem;
 }
