@@ -32,6 +32,7 @@
 
 .row img {
   width: 75%;
+  min-height: 30vh;
 }
 
 .row button {
