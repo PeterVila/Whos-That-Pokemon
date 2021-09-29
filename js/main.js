@@ -145,7 +145,7 @@ function quizTimer() {
     })
     data.currentNumber++;
     $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
-    var $quizContainer = document.querySelector('.quizContainer');
+    var $quizContainer = document.querySelector('.quiz-container');
     $quizContainer.remove();
     createQuizContainer();
     generateFourRandomPokemonNumbers();
