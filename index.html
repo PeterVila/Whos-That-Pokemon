@@ -4,15 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Who's That Pokemon?">
-  <meta property="og:description" content="A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”.">
+  <meta property="og:description"
+    content="A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”.">
   <meta property="og:image" content="https://i.gyazo.com/3e8e0ad24394f448d6947f84ce034423.png">
   <meta property="og:url" content="https://petervila.github.io/whos-that-pokemon/">
-<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Who's That Pokemon?</title>
   <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
   <link rel="stylesheet" crossorigin="anonymous"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="icon" href="images/pokeball.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +21,8 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
-
 </head>
 <body class="animated-background">
-  <!-- modal -->
   <div class="modal-background hidden">
     <div class="modal">
       <form>
@@ -38,15 +37,14 @@
       </form>
     </div>
   </div>
-  <!--Quiz Modal-->
-  <div id="quizModal" class="modal-background hidden">
+  <div id="quiz-modal" class="modal-background hidden">
     <div class="modal">
       <div class="modal-text row justify-center">
         <div class="column-full justify-center row">
-          <h1>Nicely done!</h1>
+          <h1 class="quiz-ending-phrase">test</h1>
         </div>
         <div class="column-full justify-center row">
-          <h2 class="quizScore"></h2>
+          <h2 class="quiz-score"></h2>
         </div>
       </div>
       <div class="row justify-evenly">
@@ -55,7 +53,7 @@
       </div>
     </div>
   </div>
-  <div id="nidoranModal" class="modal-background hidden">
+  <div id="nidoran-modal" class="modal-background hidden">
     <div class="modal">
       <div class="modal-text row justify-center">
         <div class="column-full justify-center row">
@@ -70,80 +68,75 @@
   </div>
   <header>
     <div class="nav row container">
-      <h1 class="navh1 pokemon-font">Who's that Pokemon?</h1>
+      <h1 class="navh1 pokemon-font">Who's that Pok&eacute;mon?</h1>
       <h2 class="navh2 pokemon-font hidden"><a href="#">Home</a></h2>
     </div>
   </header>
-    <main>
-      <!-- dataview for home -->
-      <div class="container" data-view="home">
-        <div class="logo row justify-center">
-          <img src="images/pokeball.png" alt="">
-        </div>
-        <div id="start" class="row justify-center">
-          <button class="menuButtons">Start Quiz</button>
-        </div>
-        <div id="playHistory" class="row justify-center">
-          <button class="menuButtons">Play History</button>
-        </div>
-        <div id="menuPokedex" class="row justify-center">
-          <button class="menuButtons">Pokedex</button>
+  <main>
+    <div class="container" data-view="home">
+      <div class="logo row justify-center">
+        <img id="logo" src="images/pokeball.png" alt="">
+      </div>
+      <div class="row justify-center">
+        <button id="start" class="menuButtons">Start Quiz</button>
+      </div>
+      <div class="row justify-center">
+        <button id="play-history" class="menu-buttons">Play History</button>
+      </div>
+      <div class="row justify-center">
+        <button id="menu-pokedex" class="menu-buttons">Pok&eacute;dex</button>
+      </div>
+    </div>
+    <div id="quiz" class="container hidden" data-view="quiz">
+      <div class="row justify-center">
+        <div class="progress-circles row justify-evenly">
+          <div class="col-tenth text-center text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
+          <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
         </div>
       </div>
-      <!-- dataview for quiz -->
-      <div id="quiz" class="container hidden" data-view="quiz">
-        <div class="row justify-center">
-          <div class="progress-circles row justify-evenly">
-            <div class="col-tenth text-center text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-            <div class="col-tenth text-center"><i class="fas fa-circle"></i></div>
-          </div>
-        </div> <!--end of progress-circles row-->
-        <div class="row quizImage justify-center">
-        </div>
+      <div class="row quiz-image justify-center">
       </div>
-      <!-- dataview for pastGames -->
-      <div id="pastGames" class="container hidden" data-view="pastGames">
-      </div>
-      <!--dataview for pokedex-->
-      <div id="pokedex" class="container hidden" data-view="pokedex">
-        <div class="justify-center row screenBorder">
-          <div class="row screen">
-            <div class="row justify-center pokedexPokemonImage pokedex-first-half"></div>
-            <div class="row justify-evenly column-full">
-              <div class="type text-center justify-center pokedex-first-half"></div>
-              <div class="stats pokedex-first-half">
-                <!-- Pokedex stats -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="search">
-            <input class="pokemonSearch" type="text" placeholder="Enter Pokemon Name">
-          </div>
-          <div class="pokedexButtons row">
-            <div class="dPadTop"></div>           
-           <div class="dPadLeft"></div>
-           <div class="dPadMid"></div>
-           <div class="dPadRight"></div>
-            <div class="dPadBottom"></div>
-            <div class="pokedexGreenButton"></div>
-            <div class="pokedexBlueButton"></div>
-            <div class="button pokedexSubmit">
-              <button>Search</button>
+    </div>
+    <div id="past-games" class="container hidden" data-view="past-games">
+    </div>
+    <div id="pokedex" class="container hidden" data-view="pokedex">
+      <div class="justify-center row screen-border">
+        <div class="row screen">
+          <div class="row justify-center pokedex-pokemon-image pokedex-first-half"></div>
+          <div class="row justify-evenly column-full">
+            <div class="type text-center justify-center pokedex-first-half"></div>
+            <div class="stats pokedex-first-half">
             </div>
           </div>
         </div>
       </div>
-    </main>
+      <div class="row">
+        <div class="search">
+          <input class="pokemon-search" type="text" placeholder="Enter Pokemon Name">
+        </div>
+        <div class="pokedex-buttons row">
+          <div class="dpad-top"></div>
+          <div class="dpad-left"></div>
+          <div class="dpad-mid"></div>
+          <div class="dpad-right"></div>
+          <div class="dpad-bottom"></div>
+          <div class="pokedex-green-button"></div>
+          <div class="pokedex-blue-button"></div>
+          <div class="button pokedex-submit">
+            <button>Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
   <script src="js/lodash.js"></script>
   <script src="js/pokemon.js"></script>
   <script src="js/data.js"></script>

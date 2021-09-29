@@ -3,14 +3,12 @@ var data = {
   currentPokemon: null,
   trainerName: null,
   currentFour: [],
-  // pokemon with link
   correctPokemon: [],
   wrongPokemon:[],
   pastGames: [],
   currentPokemonUrl: null,
 }
 
-//LocalStorage
 window.addEventListener('beforeunload', logBefore);
 
 function logBefore() {
