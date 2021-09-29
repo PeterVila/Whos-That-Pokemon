@@ -1,3 +1,3 @@
 # ajax-project
 
-A dynamic HTML, CSS, and JavaScript solo project.
+A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”.
