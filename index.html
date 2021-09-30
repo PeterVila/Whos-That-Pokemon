@@ -66,6 +66,18 @@
       </div>
     </div>
   </div>
+  <div id="error-modal" class="modal-background hidden">
+    <div class="modal">
+      <div class="modal-text row justify-center">
+        <div class="column-full justify-center row">
+          <h1>Please type in a valid Pokemon name!</h1>
+        </div>
+      </div>
+      <div class="row justify-evenly">
+        <button id="understood">Okay!</button>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="nav row container">
       <h1 class="navh1 pokemon-font">Who's that Pok&eacute;mon?</h1>
@@ -103,6 +115,7 @@
         </div>
       </div>
       <div class="row quiz-image justify-center">
+        <div class="lds-dual-ring"></div>
       </div>
     </div>
     <div id="past-games" class="container hidden" data-view="past-games">
@@ -110,7 +123,8 @@
     <div id="pokedex" class="container hidden" data-view="pokedex">
       <div class="justify-center row screen-border">
         <div class="row screen">
-          <div class="row justify-center pokedex-pokemon-image pokedex-first-half"></div>
+          <div class="row justify-center pokedex-pokemon-image pokedex-first-half">
+          </div>
           <div class="row justify-evenly column-full">
             <div class="type text-center justify-center pokedex-first-half"></div>
             <div class="stats pokedex-first-half">
