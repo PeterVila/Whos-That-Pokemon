@@ -2,44 +2,45 @@ var $navH1 = document.querySelector('.navh1');
 var $navH2 = document.querySelector('.navh2');
 var $body = document.querySelector('body');
 var $startQuiz = document.querySelector('#start');
-var $startModal = document.querySelector('.modal-background')
+var $startModal = document.querySelector('.modal-background');
 var $cancelButton = document.querySelector('#cancel');
 var $submitButton = document.querySelector('form');
-var $homePage = document.querySelector('div[data-view="home"]')
-var $quizPage = document.querySelector('div[data-view="quiz"]')
+var $homePage = document.querySelector('div[data-view="home"]');
+var $quizPage = document.querySelector('div[data-view="quiz"]');
 var $input = document.querySelector('input');
-var $placeholder = document.createElement('img')
-var $quizImage = document.querySelector('.quiz-image')
-var $quizModal = document.querySelector('#quiz-modal')
-var $retry = document.querySelector('#retry')
+var $placeholder = document.createElement('img');
+var $quizImage = document.querySelector('.quiz-image');
+var $quizModal = document.querySelector('#quiz-modal');
+var $loadingIcon = document.querySelector('.lds-dual-ring')
+var $retry = document.querySelector('#retry');
 var $home = document.querySelector('#home');
 var $finalModalText = document.querySelector('.quiz-ending-phrase');
 var $playHistoryButton = document.querySelector('#play-history');
 var $pastGamesView = document.querySelector('#past-games');
-var $deleteModal = document.querySelector('#delete-modal')
+var $deleteModal = document.querySelector('#delete-modal');
 var $deleteYes = document.querySelector('#delete-yes');
-var $pokedex = document.querySelector('#pokedex')
-var $homePokedex = document.querySelector('#menu-pokedex')
-var $pokedexImage = document.querySelector('.pokedex-pokemon-image')
+var $pokedex = document.querySelector('#pokedex');
+var $homePokedex = document.querySelector('#menu-pokedex');
+var $pokedexImage = document.querySelector('.pokedex-pokemon-image');
 var $pokedexSearchButton = document.querySelector('.pokedex-submit');
 var $pokedexSearch = document.querySelector('.pokemon-search');
-var $stats = document.querySelector('.stats')
-var $type = document.querySelector('.type')
+var $stats = document.querySelector('.stats');
+var $type = document.querySelector('.type');
 var $nidoranModal = document.querySelector('#nidoran-modal');
 var $maleNidoran = document.querySelector('#male');
 var $femaleNidoran = document.querySelector('#female');
-var $errorModal = document.querySelector('#error-modal')
-var $understood = document.querySelector('#understood')
-$understood.addEventListener('click', errorModal)
+var $errorModal = document.querySelector('#error-modal');
+var $understood = document.querySelector('#understood');
+$understood.addEventListener('click', errorModal);
 $home.addEventListener('click', clearQuiz);
-$playHistoryButton.addEventListener('click', switchToHistory)
-$homePokedex.addEventListener('click', switchPokedex)
-$navH2.addEventListener('click', homeScreen)
+$playHistoryButton.addEventListener('click', switchToHistory);
+$homePokedex.addEventListener('click', switchPokedex);
+$navH2.addEventListener('click', homeScreen);
 $submitButton.addEventListener('submit', startQuiz);
 $quizImage.appendChild($placeholder);
-$retry.addEventListener('click', resetQuiz)
-$pokedexSearchButton.addEventListener('click', searchPokemon)
-$femaleNidoran.addEventListener('click', searchNidoran)
+$retry.addEventListener('click', resetQuiz);
+$pokedexSearchButton.addEventListener('click', searchPokemon);
+$femaleNidoran.addEventListener('click', searchNidoran);
 $maleNidoran.addEventListener('click', searchNidoran);
 $femaleNidoran.addEventListener('click', searchNidoran);
 $startQuiz.addEventListener('click', startQuizModal);
@@ -102,13 +103,8 @@ function appendPokemonPicture(sprite) {
     $img.className = "quiz-pokemon"
   }
   var $quizContainer = document.querySelector('.quiz-container')
-  //
-  //
-  //
-  var $loadingIcon = document.createElement('div')
-  $loadingIcon.className = "lds-dual-ring";
-  $quizContainer.appendChild($loadingIcon);
   $quizContainer.appendChild($img);
+  $loadingIcon.className = 'lds-dual-ring'
   $img.addEventListener('load', questionsAndTime)
   tenSecondsBar = setTimeout(quizTimer, 10000)
 }
@@ -164,8 +160,7 @@ function quizTimer() {
 }
 
 function questionsAndTime() {
-  var $loadingIcon = document.querySelector('.lds-dual-ring');
-  $loadingIcon.remove();
+  $loadingIcon.className = '.lds-dual-ring hidden'
   var $barRow = document.createElement('div');
   $barRow.className = "bar";
   var $quizContainer = document.querySelector('.quiz-container');
