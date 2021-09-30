@@ -49,7 +49,6 @@ $maleNidoran.addEventListener('click', searchNidoran);
 $femaleNidoran.addEventListener('click', searchNidoran);
 $startQuiz.addEventListener('click', startQuizModal);
 $cancelButton.addEventListener('click', hideQuizModal);
-$logo.addEventListener('click', changeDifficulty)
 $howToPlayButton.addEventListener('click', openInstructions)
 $closeInstructions.addEventListener('click', closeInstructions)
 
@@ -485,16 +484,10 @@ function errorModal() {
   $errorModal.className = "modal-background hidden"
 }
 
-function changeDifficulty() {
-  if (data.hardMode === false) {
-    $logo.setAttribute('src', 'images/master_ball.png');
-    $body.className = "faster-animated-background";
-    $navH1.textContent = "Who's that Pokémon?  (HARD MODE)";
-    data.hardMode = true;
-  } else {
-    $logo.setAttribute('src', 'images/pokeball.png');
-    $body.className = "animated-background";
-    $navH1.textContent = "Who's that Pokémon?";
-    data.hardMode = false;
-  }
+function openInstructions() {
+  $instructions.className = "modal-background"
+}
+
+function closeInstructions() {
+  $instructions.className = "modal-background hidden";
 }
