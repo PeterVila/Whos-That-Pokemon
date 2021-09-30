@@ -46,7 +46,7 @@
   text-align: center;
 }
 
-.miniPokemon img {
+.mini-pokemon img {
   width: 40%;
   margin: 0 2.5%;
 }
@@ -56,7 +56,7 @@
   width: 50%;
 }
 
-.miniPokemon p {
+.mini-pokemon p {
   width: 0;
   position: relative;
   right: 10rem;
@@ -64,7 +64,7 @@
   font-size: 0.75rem;
   color: rgb(0, 81, 255);
 }
-/* For desktop screens */
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -89,11 +89,11 @@
   .row button {
     margin-bottom: 0.5rem;
   }
-  .miniPokemon img {
+  .mini-pokemon img {
     width: 15%;
     margin: 0 2.5%;
   }
-  .quizContainer img {
+  .quiz-container img {
     width: 50%;
   }
 }

@@ -1,24 +1,56 @@
-var $navH1 = document.querySelector('.navh1') //Top left header
+var $navH1 = document.querySelector('.navh1');
 var $navH2 = document.querySelector('.navh2');
 var $body = document.querySelector('body');
 var $startQuiz = document.querySelector('#start');
-$startQuiz.addEventListener('click', startQuizModal);
 var $startModal = document.querySelector('.modal-background')
+var $cancelButton = document.querySelector('#cancel');
+var $submitButton = document.querySelector('form');
+var $homePage = document.querySelector('div[data-view="home"]')
+var $quizPage = document.querySelector('div[data-view="quiz"]')
+var $input = document.querySelector('input');
+var $placeholder = document.createElement('img')
+var $quizImage = document.querySelector('.quiz-image')
+var $quizModal = document.querySelector('#quiz-modal')
+var $retry = document.querySelector('#retry')
+var $home = document.querySelector('#home');
+var $finalModalText = document.querySelector('.quiz-ending-phrase');
+var $playHistoryButton = document.querySelector('#play-history');
+var $pastGamesView = document.querySelector('#past-games');
+var $deleteModal = document.querySelector('#delete-modal')
+var $deleteYes = document.querySelector('#delete-yes');
+var $pokedex = document.querySelector('#pokedex')
+var $homePokedex = document.querySelector('#menu-pokedex')
+var $pokedexImage = document.querySelector('.pokedex-pokemon-image')
+var $pokedexSearchButton = document.querySelector('.pokedex-submit');
+var $pokedexSearch = document.querySelector('.pokemon-search');
+var $stats = document.querySelector('.stats')
+var $type = document.querySelector('.type')
+var $nidoranModal = document.querySelector('#nidoran-modal');
+var $maleNidoran = document.querySelector('#male');
+var $femaleNidoran = document.querySelector('#female');
+$home.addEventListener('click', clearQuiz);
+$playHistoryButton.addEventListener('click', switchToHistory)
+$homePokedex.addEventListener('click', switchPokedex)
+$navH2.addEventListener('click', homeScreen)
+$submitButton.addEventListener('submit', startQuiz);
+$quizImage.appendChild($placeholder);
+$retry.addEventListener('click', resetQuiz)
+$pokedexSearchButton.addEventListener('click', searchPokemon)
+$femaleNidoran.addEventListener('click', searchNidoran)
+$maleNidoran.addEventListener('click', searchNidoran);
+$femaleNidoran.addEventListener('click', searchNidoran);
+$startQuiz.addEventListener('click', startQuizModal);
+$cancelButton.addEventListener('click', hideQuizModal);
+
 function startQuizModal() {
   $startModal.className = "modal-background"
 }
 
-var $cancelButton = document.querySelector('#cancel');
 $cancelButton.addEventListener('click', hideQuizModal);
 function hideQuizModal() {
   $startModal.className = "modal-background hidden"
 }
 
-var $submitButton = document.querySelector('form');
-$submitButton.addEventListener('submit', startQuiz);
-var $homePage = document.querySelector('div[data-view="home"]')
-var $quizPage = document.querySelector('div[data-view="quiz"]')
-var $input = document.querySelector('input');
 function startQuiz(e) {
   e.preventDefault()
   data.trainerName = $input.value;
@@ -26,7 +58,6 @@ function startQuiz(e) {
   $startModal.className = "modal-background hidden"
   $homePage.className = "container hidden"
   $quizPage.className = "container"
-  $body.className = "animated-background"
   $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
   getPokemonPicture()
   createQuizContainer();
@@ -44,7 +75,7 @@ function generateFourRandomPokemonNumbers() {
   }
   data.currentPokemon = allPokemonList[data.currentFour[0] - 1]
 }
-generateFourRandomPokemonNumbers() 
+generateFourRandomPokemonNumbers()
 
 function getPokemonPicture() {
   var xhr = new XMLHttpRequest();
@@ -59,40 +90,52 @@ function handleResponseData(event) {
   data.currentPokemonUrl = event.target.response.sprites.front_default
 }
 
-var tenSecondsBar = null;
 function appendPokemonPicture(sprite) {
   var $img = document.createElement('img')
   $img.setAttribute('src', sprite)
-  $img.className = 'black' //Didn't do this
-  var $quizContainer = document.querySelector('.quizContainer')
+  if (data.hardMode === true) {
+    $img.className = 'silhouette quiz-pokemon'
+  } else {
+    $img.className = "quiz-pokemon"
+  }
+  var $quizContainer = document.querySelector('.quiz-container')
   $quizContainer.appendChild($img);
   $img.addEventListener('load', questionsAndTime)
-  //Start the quizTimers as the animation bar loads
   tenSecondsBar = setTimeout(quizTimer, 10000)
 }
+
 function createQuizContainer() {
   var $quizDiv = document.querySelector('#quiz');
   var $quizContainer = document.createElement('div');
-  $quizContainer.className = "quizContainer row justify-center"
+  $quizContainer.className = "quiz-container row justify-center"
   $quizDiv.appendChild($quizContainer);
 }
 
-var $quizModal = document.querySelector('#quizModal')
-
+var tenSecondsBar = null;
 function quizTimer() {
-  if (data.currentNumber === 10){
+  if (data.currentNumber === 10) {
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
       'sprite': data.currentPokemonUrl
     })
     $quizModal.className = "modal-background";
-    var $quizScore = document.querySelector('.quizScore');
+    var $quizScore = document.querySelector('.quiz-score');
+    if (data.correctPokemon.length === 10) {
+      $finalModalText.textContent = "Perfect!"
+    } else if (data.correctPokemon.length >= 7) {
+      $finalModalText.textContent = "Amazing!"
+    } else if (data.correctPokemon.length >= 4) {
+      $finalModalText.textContent = "Not bad, but you can do better!"
+    } else {
+      $finalModalText.textContent = "Can't hurt to try again!"
+    }
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
     data.pastGames.push({
       'trainerName': data.trainerName,
       'correctPokemon': data.currentPokemon,
-      'wrongPokemon': data.wrongPokemon
+      'wrongPokemon': data.wrongPokemon,
+      'hardMode': data.hardMode
     })
   } else {
     var $navH1 = document.querySelector('.navh1');
@@ -102,7 +145,7 @@ function quizTimer() {
     })
     data.currentNumber++;
     $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
-    var $quizContainer = document.querySelector('.quizContainer');
+    var $quizContainer = document.querySelector('.quiz-container');
     $quizContainer.remove();
     createQuizContainer();
     generateFourRandomPokemonNumbers();
@@ -114,7 +157,7 @@ function quizTimer() {
 function questionsAndTime() {
   var $barRow = document.createElement('div');
   $barRow.className = "bar";
-  var $quizContainer = document.querySelector('.quizContainer');
+  var $quizContainer = document.querySelector('.quiz-container');
   $quizContainer.prepend($barRow);
   var $inRow = document.createElement('div');
   $inRow.className = "in";
@@ -131,7 +174,7 @@ function questionsAndTime() {
 
 function questionClick() {
   clearTimeout(tenSecondsBar);
-  var $quizContainer = document.querySelector('.quizContainer');
+  var $quizContainer = document.querySelector('.quiz-container');
   if (data.currentNumber === 10) {
     if (event.target.textContent === data.currentPokemon) {
       var $dots = document.querySelectorAll('.col-tenth')
@@ -150,16 +193,28 @@ function questionClick() {
         'sprite': data.currentPokemonUrl
       })
     }
-    var $quizModal = document.querySelector('#quizModal')
+    var $lastQuizImg = document.querySelector('.quiz-pokemon');
+    $lastQuizImg.className = "";
+    var $quizModal = document.querySelector('#quiz-modal')
     $quizModal.className = "modal-background";
-    var $quizScore = document.querySelector('.quizScore');
+    var $quizScore = document.querySelector('.quiz-score');
+    if (data.correctPokemon.length === 10) {
+      $finalModalText.textContent = "Perfect!"
+    } else if (data.correctPokemon.length >= 7) {
+      $finalModalText.textContent = "Amazing!"
+    } else if (data.correctPokemon.length >= 4) {
+      $finalModalText.textContent = "Not bad, but you can do better!"
+    } else {
+      $finalModalText.textContent = "Can't hurt to try again!"
+    }
     $quizScore.textContent = "Score: " + data.correctPokemon.length + "/10"
     clearTimeout(tenSecondsBar);
     data.pastGames.push({
       'trainerName': data.trainerName,
       'correctPokemon': data.correctPokemon,
       'wrongPokemon': data.wrongPokemon,
-    }) 
+      'hardMode': data.hardMode
+    })
   } else if (event.target.textContent === data.currentPokemon) {
     var $navH1 = document.querySelector('.navh1');
     var $dots = document.querySelectorAll('.col-tenth')
@@ -168,7 +223,6 @@ function questionClick() {
     $icon.className = "icon"
     $icon.setAttribute('src', 'images/pokeball.png')
     $dots[data.currentNumber - 1].appendChild($icon)
-    //Push current pokemon
     data.correctPokemon.push({
       'pokemon': data.currentPokemon,
       'sprite': data.currentPokemonUrl
@@ -180,12 +234,11 @@ function questionClick() {
     generateFourRandomPokemonNumbers();
     getPokemonPicture();
   } else {
-    //WRONG ANSWERS
     var $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
       'sprite': data.currentPokemonUrl
-  })
+    })
     data.currentNumber++;
     $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
     $quizContainer.remove();
@@ -195,23 +248,17 @@ function questionClick() {
   }
 }
 
-var $retry = document.querySelector('#retry')
-var $home = document.querySelector('#home');
-//Both buttons listen to click and reset the data object but first saves the result.
-
-$retry.addEventListener('click', resetQuiz)
-function resetQuiz(){
-  //reset data to default
+function resetQuiz() {
   data.currentNumber = 1;
   data.correctPokemon = [];
   data.wrongPokemon = [];
   data.currentPokemon = null;
   data.currentFour = [];
   var $dots = document.querySelectorAll('.col-tenth')
-  for (var i = 0; i < $dots.length; i++){
+  for (var i = 0; i < $dots.length; i++) {
     $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
   }
-  var $quizContainer = document.querySelector('.quizContainer')
+  var $quizContainer = document.querySelector('.quiz-container')
   $quizContainer.remove();
   $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
   $quizModal.className = "modal-background hidden"
@@ -220,9 +267,7 @@ function resetQuiz(){
   getPokemonPicture()
 }
 
-$home.addEventListener('click', clearQuiz);
-
-function clearQuiz(){
+function clearQuiz() {
   data.currentNumber = 1;
   data.correctPokemon = [];
   data.wrongPokemon = [];
@@ -233,66 +278,81 @@ function clearQuiz(){
   for (var i = 0; i < $dots.length; i++) {
     $dots[i].innerHTML = '<i class="fas fa-circle"></i>'
   }
-  var $quizContainer = document.querySelector('.quizContainer')
+  var $quizContainer = document.querySelector('.quiz-container')
   $quizContainer.remove();
   $homePage.className = "container"
   $quizPage.className = "container hidden"
   $quizModal.className = "modal-background hidden"
-  $body.className = "animated-background"
-  $navH1.textContent = "Who's That Pokemon?";
+  $navH1.textContent = "Who's that Pokémon?"
+  createQuizContainer();
+  generateFourRandomPokemonNumbers();
 }
 
-
-var $playHistoryButton = document.querySelector('#playHistory');
-$playHistoryButton.addEventListener('click', switchToHistory)
-var $pastGamesView = document.querySelector('#pastGames');
-function switchToHistory(){
+function switchToHistory() {
   $homePage.className = "container hidden"
   $pastGamesView.className = "container"
   $body.className = "animated-background"
   $navH2.className = "navh2 pokemon-font"
   everyEntry();
 }
-$navH2.addEventListener('click', homeScreen)
-function homeScreen(){
+
+function homeScreen() {
   $homePage.className = "container";
   $pastGamesView.className = "container hidden";
   $navH2.className = "navh2 pokemon-font hidden"
   $body.className = "animated-background"
-  var $trainerData = document.querySelectorAll('.trainerData');
-  for (var i = 0; i < $trainerData.length; i++){
+  var $trainerData = document.querySelectorAll('.trainer-data');
+  for (var i = 0; i < $trainerData.length; i++) {
     $trainerData[i].remove();
   }
   $pokedex.className = "container hidden"
-  $navH1.textContent = "Who's that Pokemon?";
+  $navH1.textContent = "Who's that Pokémon?"
 }
 
-function everyEntry(){
-  for (var i = 0; i < data.pastGames.length; i++){
+function everyEntry() {
+  for (var i = 0; i < data.pastGames.length; i++) {
     var renderHistory = createTrainerEntry(i);
     $pastGamesView.prepend(renderHistory);
   }
+  var $trashIcons = document.querySelectorAll('.fa-trash-alt');
+  for (var i = $trashIcons.length - 1; i >= 0; i--) {
+    $trashIcons[i].setAttribute("Index", i);
+    $trashIcons[i].addEventListener('click', function () {
+      var $trainerData = document.querySelectorAll('.trainer-data');
+      $trainerData[event.target.attributes.index.value].remove();
+      data.pastGames.reverse().splice(parseInt(event.target.attributes.index.value), 1)
+    })
+  }
 }
 
-function createTrainerEntry(index){
+function createTrainerEntry(index) {
   var $trainerData = document.createElement('div');
-  $trainerData.className = "column-full trainerData light-background"
+  $trainerData.className = "column-full trainer-data light-background"
+  var $deleteButton = document.createElement('h1');
+  $deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>'
+  $deleteButton.className = "delete-button";
   var $trainerNameRow = document.createElement('div');
   $trainerNameRow.className = "trainerName row justify-center";
   $trainerData.appendChild($trainerNameRow);
   var $h1Name = document.createElement('h1');
   $h1Name.textContent = "Trainer: " + data.pastGames[index].trainerName
   $h1Name.className = "pokemon-font"
+  if (data.pastGames[index].hardMode === true) {
+    var $h2Name = document.createElement('p');
+    $h2Name.textContent = "(Hard Mode)"
+    $trainerNameRow.appendChild($h2Name);
+  }
   $trainerNameRow.appendChild($h1Name);
+  $trainerNameRow.appendChild($deleteButton)
   $correctPokemonRow = document.createElement('div');
   $correctPokemonRow.className = "row justify-center";
   $trainerData.appendChild($correctPokemonRow);
   var $h1Correct = document.createElement('h1');
-  $h1Correct.textContent = "Correct Pokemon";
+  $h1Correct.textContent = "Correct Pokémon";
   $h1Correct.className = "blue-font"
   $correctPokemonRow.appendChild($h1Correct);
   var $correctImages = document.createElement('div');
-  $correctImages.className = "miniPokemon row";
+  $correctImages.className = "mini-pokemon row";
   $trainerData.appendChild($correctImages);
   for (var j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
     var $miniPokemon = document.createElement('img');
@@ -306,10 +366,10 @@ function createTrainerEntry(index){
   $incorrectPokemonRow.className = "row justify-center";
   $trainerData.appendChild($incorrectPokemonRow);
   var $h1Wrong = document.createElement('h1');
-  $h1Wrong.textContent = "Incorrect Pokemon";
+  $h1Wrong.textContent = "Incorrect Pokémon";
   $incorrectPokemonRow.appendChild($h1Wrong);
   var $incorrectImages = document.createElement('div');
-  $incorrectImages.className = "miniPokemon row";
+  $incorrectImages.className = "mini-pokemon row";
   $trainerData.appendChild($incorrectImages);
   for (var k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
     var $miniPokemon = document.createElement('img');
@@ -322,36 +382,24 @@ function createTrainerEntry(index){
   return $trainerData;
 }
 
-var $pokedex = document.querySelector('#pokedex')
-var $homePokedex = document.querySelector('#menuPokedex')
-$homePokedex.addEventListener('click', switchPokedex)
-function switchPokedex(){
+function switchPokedex() {
   $homePage.className = "container hidden"
   $pokedex.className = "container rotom"
   $body.className = "rotom"
   $navH2.className = "navh2 pokemon-font"
-  $navH1.textContent = "Pokedex"
+  $navH1.textContent = "Pokédex";
 }
 
-
-var $pokedexImage = document.querySelector('.pokedexPokemonImage')
-var $pokedexSearchButton = document.querySelector('.pokedexSubmit');
-$pokedexSearchButton.addEventListener('click', searchPokemon)
-var $pokedexSearch = document.querySelector('.pokemonSearch');
-var $stats = document.querySelector('.stats')
-var $type = document.querySelector('.type')
-var $nidoranModal = document.querySelector('#nidoranModal');
-
-function searchPokemon(){
+function searchPokemon() {
   if ($pokedexImage.childElementCount > 0) {
     $pokedexImage.lastChild.remove();
     $pokedexImage.firstChild.remove();
     $stats.firstElementChild.remove();
     $type.firstElementChild.remove();
   }
-  if ($pokedexSearch.value.includes(' ')){
+  if ($pokedexSearch.value.includes(' ')) {
     getPokedexPicture($pokedexSearch.value.toLowerCase().replace(' ', '-'));
-  } else if ($pokedexSearch.value.toLowerCase() === 'nidoran'){
+  } else if ($pokedexSearch.value.toLowerCase() === 'nidoran') {
     $nidoranModal.className = "modal-background"
   } else {
     getPokedexPicture($pokedexSearch.value.toLowerCase());
@@ -370,18 +418,18 @@ function handlePokedexResponseData(event) {
   appendPokedex(event.target.response)
 }
 
-function appendPokedex(stats){
+function appendPokedex(stats) {
   var $img = document.createElement('img')
   $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default)
-  $img.className = 'pokedexImg'
+  $img.className = 'pokedex-img'
   $pokedexImage.appendChild($img);
   var $nameAndNumber = document.createElement('h1');
-  if (stats.name === "nidoran-m" || stats.name === "nidoran-f"){
+  if (stats.name === "nidoran-m" || stats.name === "nidoran-f") {
     $nameAndNumber.textContent = 'Nidoran' + " (#" + stats.id + ")"
   } else if (stats.name.includes("-")) {
     var noSpaces = stats.name.split('-')
     var answer = [];
-    for (var i = 0; i < noSpaces.length; i++){
+    for (var i = 0; i < noSpaces.length; i++) {
       answer.push(noSpaces[i].charAt(0).toUpperCase() + noSpaces[i].slice(1));
     }
     var upperCasedPokemon = answer.join('-')
@@ -392,15 +440,15 @@ function appendPokedex(stats){
   $nameAndNumber.className = "pokedexh1"
   $pokedexImage.appendChild($nameAndNumber)
   var $ul = document.createElement('ul');
-  for (var i = 0; i < stats.stats.length; i++){
+  for (var i = 0; i < stats.stats.length; i++) {
     var $li = document.createElement('li');
     $li.textContent = stats.stats[i].base_stat + " " + stats.stats[i].stat.name;
     $ul.appendChild($li);
   }
-  for (var i = 0; i < stats.types.length; i++){
+  for (var i = 0; i < stats.types.length; i++) {
     var $h1 = document.createElement('h1');
     var $divH1 = document.createElement('div');
-    $divH1.className = "typeColor " + stats.types[i].type.name
+    $divH1.className = "type-color " + stats.types[i].type.name
     $h1.textContent = stats.types[i].type.name;
     $divH1.appendChild($h1)
     $type.appendChild($divH1)
@@ -408,13 +456,9 @@ function appendPokedex(stats){
   $stats.appendChild($ul);
 }
 
-var $maleNidoran = document.querySelector('#male');
-var $femaleNidoran = document.querySelector('#female');
-$maleNidoran.addEventListener('click', searchNidoran);
-$femaleNidoran.addEventListener('click', searchNidoran)
-function searchNidoran(){
+function searchNidoran() {
   $nidoranModal.className = "modal-background hidden"
-  if (event.target.textContent === "Male"){
+  if (event.target.textContent === "Male") {
     getPokedexPicture('nidoran-m');
   } else {
     getPokedexPicture('nidoran-f');
