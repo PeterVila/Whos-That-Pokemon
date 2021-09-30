@@ -31,6 +31,12 @@ var $maleNidoran = document.querySelector('#male');
 var $femaleNidoran = document.querySelector('#female');
 var $errorModal = document.querySelector('#error-modal');
 var $understood = document.querySelector('#understood');
+
+var $logo = document.querySelector('#logo');
+var $howToPlayButton = document.querySelector('#how-to-play');
+var $instructions = document.querySelector('#instructions')
+var $closeInstructions = document.querySelector('#close-instructions');
+
 $understood.addEventListener('click', errorModal);
 $home.addEventListener('click', clearQuiz);
 $playHistoryButton.addEventListener('click', switchToHistory);
@@ -45,6 +51,10 @@ $maleNidoran.addEventListener('click', searchNidoran);
 $femaleNidoran.addEventListener('click', searchNidoran);
 $startQuiz.addEventListener('click', startQuizModal);
 $cancelButton.addEventListener('click', hideQuizModal);
+
+$logo.addEventListener('click', changeDifficulty)
+$howToPlayButton.addEventListener('click', openInstructions)
+$closeInstructions.addEventListener('click', closeInstructions)
 
 function startQuizModal() {
   $startModal.className = "modal-background"
@@ -476,4 +486,26 @@ function searchNidoran() {
 
 function errorModal() {
   $errorModal.className = "modal-background hidden"
+}
+
+function changeDifficulty() {
+  if (data.hardMode === false) {
+    $logo.setAttribute('src', 'images/master_ball.png');
+    $body.className = "faster-animated-background";
+    $navH1.textContent = "Who's that Pokémon?  (HARD MODE)";
+    data.hardMode = true;
+  } else {
+    $logo.setAttribute('src', 'images/pokeball.png');
+    $body.className = "animated-background";
+    $navH1.textContent = "Who's that Pokémon?";
+    data.hardMode = false;
+  }
+}
+
+function openInstructions() {
+  $instructions.className = "modal-background"
+}
+
+function closeInstructions() {
+  $instructions.className = "modal-background hidden";
 }
