@@ -160,7 +160,7 @@ function quizTimer() {
 }
 
 function questionsAndTime() {
-  $loadingIcon.className = '.lds-dual-ring hidden'
+  $loadingIcon.className = 'lds-dual-ring hidden'
   var $barRow = document.createElement('div');
   $barRow.className = "bar";
   var $quizContainer = document.querySelector('.quiz-container');
