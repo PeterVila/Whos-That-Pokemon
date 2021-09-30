@@ -49,8 +49,8 @@ $maleNidoran.addEventListener('click', searchNidoran);
 $femaleNidoran.addEventListener('click', searchNidoran);
 $startQuiz.addEventListener('click', startQuizModal);
 $cancelButton.addEventListener('click', hideQuizModal);
-$howToPlayButton.addEventListener('click', openInstructions)
-$closeInstructions.addEventListener('click', closeInstructions)
+$howToPlayButton.addEventListener('click', Instructions)
+$closeInstructions.addEventListener('click', Instructions)
 
 function startQuizModal() {
   $startModal.className = "modal-background"
@@ -484,10 +484,10 @@ function errorModal() {
   $errorModal.className = "modal-background hidden"
 }
 
-function openInstructions() {
-  $instructions.className = "modal-background"
-}
-
-function closeInstructions() {
-  $instructions.className = "modal-background hidden";
+function Instructions() {
+  if ($instructions.className.includes('hidden')){
+    $instructions.className = "modal-background"
+  } else {
+    $instructions.className = "modal-background hidden";
+  }
 }
