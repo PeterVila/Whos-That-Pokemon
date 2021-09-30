@@ -228,6 +228,11 @@ button:hover {
   background-color: white;
 }
 
+.fa-trash-alt:hover {
+  transform: scale(1.1);
+  color: rgb(194, 48, 65);
+  cursor: pointer;
+}
 
 .justify-center-self {
   justify-self: center;
