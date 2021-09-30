@@ -283,7 +283,7 @@ function clearQuiz() {
   $homePage.className = "container"
   $quizPage.className = "container hidden"
   $quizModal.className = "modal-background hidden"
-  $navH1.innerHTML = "Who's That Pok&eacute;mon?";
+  $navH1.textContent = "Who's that Pokémon?"
   createQuizContainer();
   generateFourRandomPokemonNumbers();
 }
@@ -306,7 +306,7 @@ function homeScreen() {
     $trainerData[i].remove();
   }
   $pokedex.className = "container hidden"
-  $navH1.innerHTML = "Who's that Pok&eacute;mon?";
+  $navH1.textContent = "Who's that Pokémon?"
 }
 
 function everyEntry() {
@@ -348,7 +348,7 @@ function createTrainerEntry(index) {
   $correctPokemonRow.className = "row justify-center";
   $trainerData.appendChild($correctPokemonRow);
   var $h1Correct = document.createElement('h1');
-  $h1Correct.innerHTML = "Correct Pok&eacutemon";
+  $h1Correct.textContent = "Correct Pokémon";
   $h1Correct.className = "blue-font"
   $correctPokemonRow.appendChild($h1Correct);
   var $correctImages = document.createElement('div');
@@ -366,7 +366,7 @@ function createTrainerEntry(index) {
   $incorrectPokemonRow.className = "row justify-center";
   $trainerData.appendChild($incorrectPokemonRow);
   var $h1Wrong = document.createElement('h1');
-  $h1Wrong.innerHTML = "Incorrect Pok&eacutemon";
+  $h1Wrong.textContent = "Incorrect Pokémon";
   $incorrectPokemonRow.appendChild($h1Wrong);
   var $incorrectImages = document.createElement('div');
   $incorrectImages.className = "mini-pokemon row";
@@ -387,7 +387,7 @@ function switchPokedex() {
   $pokedex.className = "container rotom"
   $body.className = "rotom"
   $navH2.className = "navh2 pokemon-font"
-  $navH1.innerHTML = "Pok&eacutedex"
+  $navH1.textContent = "Pokédex";
 }
 
 function searchPokemon() {
