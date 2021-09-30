@@ -28,6 +28,9 @@ var $type = document.querySelector('.type')
 var $nidoranModal = document.querySelector('#nidoran-modal');
 var $maleNidoran = document.querySelector('#male');
 var $femaleNidoran = document.querySelector('#female');
+var $errorModal = document.querySelector('#error-modal')
+var $understood = document.querySelector('#understood')
+$understood.addEventListener('click', errorModal)
 $home.addEventListener('click', clearQuiz);
 $playHistoryButton.addEventListener('click', switchToHistory)
 $homePokedex.addEventListener('click', switchPokedex)
@@ -99,6 +102,12 @@ function appendPokemonPicture(sprite) {
     $img.className = "quiz-pokemon"
   }
   var $quizContainer = document.querySelector('.quiz-container')
+  //
+  //
+  //
+  var $loadingIcon = document.createElement('div')
+  $loadingIcon.className = "lds-dual-ring";
+  $quizContainer.appendChild($loadingIcon);
   $quizContainer.appendChild($img);
   $img.addEventListener('load', questionsAndTime)
   tenSecondsBar = setTimeout(quizTimer, 10000)
@@ -155,6 +164,8 @@ function quizTimer() {
 }
 
 function questionsAndTime() {
+  var $loadingIcon = document.querySelector('.lds-dual-ring');
+  $loadingIcon.remove();
   var $barRow = document.createElement('div');
   $barRow.className = "bar";
   var $quizContainer = document.querySelector('.quiz-container');
@@ -415,6 +426,9 @@ function getPokedexPicture(name) {
 }
 
 function handlePokedexResponseData(event) {
+  if (event.target.response === null){
+    $errorModal.className = "modal-background"
+  }
   appendPokedex(event.target.response)
 }
 
@@ -463,4 +477,8 @@ function searchNidoran() {
   } else {
     getPokedexPicture('nidoran-f');
   }
+}
+
+function errorModal() {
+  $errorModal.className = "modal-background hidden"
 }
