@@ -31,12 +31,10 @@ var $maleNidoran = document.querySelector('#male');
 var $femaleNidoran = document.querySelector('#female');
 var $errorModal = document.querySelector('#error-modal');
 var $understood = document.querySelector('#understood');
-
 var $logo = document.querySelector('#logo');
 var $howToPlayButton = document.querySelector('#how-to-play');
 var $instructions = document.querySelector('#instructions')
 var $closeInstructions = document.querySelector('#close-instructions');
-
 $understood.addEventListener('click', errorModal);
 $home.addEventListener('click', clearQuiz);
 $playHistoryButton.addEventListener('click', switchToHistory);
@@ -51,7 +49,6 @@ $maleNidoran.addEventListener('click', searchNidoran);
 $femaleNidoran.addEventListener('click', searchNidoran);
 $startQuiz.addEventListener('click', startQuizModal);
 $cancelButton.addEventListener('click', hideQuizModal);
-
 $logo.addEventListener('click', changeDifficulty)
 $howToPlayButton.addEventListener('click', openInstructions)
 $closeInstructions.addEventListener('click', closeInstructions)
@@ -500,12 +497,4 @@ function changeDifficulty() {
     $navH1.textContent = "Who's that Pokémon?";
     data.hardMode = false;
   }
-}
-
-function openInstructions() {
-  $instructions.className = "modal-background"
-}
-
-function closeInstructions() {
-  $instructions.className = "modal-background hidden";
 }
