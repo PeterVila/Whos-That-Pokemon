@@ -35,7 +35,7 @@
 }
 
 .row button {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .col-tenth {
@@ -68,8 +68,8 @@
 }
 
 .logo img {
-  width: 35%;
-  max-height: 10rem;
+  width: 50%;
+  height: 15rem;
   margin: 1rem 0;
 }
 
@@ -85,12 +85,6 @@
 
   .column-half {
     width: 40%;
-  }
-
-  .logo img {
-    width: 35%;
-    max-height: 25rem;
-    margin: 1rem 0;
   }
 
   .row img {
@@ -112,5 +106,11 @@
 
   .one-fifth {
     width: 20%;
+  }
+
+  .logo img {
+    width: 35%;
+    height: 18rem;
+    margin: 1rem 0;
   }
 }

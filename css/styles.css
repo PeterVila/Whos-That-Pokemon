@@ -195,17 +195,6 @@ button:hover {
   -webkit-user-drag: none;
 }
 
-.white-button {
-  background-color: white;
-  color: #FF5A6E;
-  text-shadow: none;
-  margin: 0;
-}
-
-.row .white-button {
-  margin-bottom: 0.5rem;
-}
-
 .quiz-container img {
   width: 33%;
   max-height: 20rem;
