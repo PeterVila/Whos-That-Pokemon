@@ -440,7 +440,7 @@ ul {
 }
 
 #instructions img {
-  width: 30%;
+  width: 45%;
 }
 
 .type-color {
@@ -459,6 +459,7 @@ ul {
 
 .fight {
   background-color: rgb(140, 37, 0);
+  color: white;
 }
 
 .flying {
@@ -467,6 +468,7 @@ ul {
 
 .poison {
   background-color: purple;
+  color: white;
 }
 
 .ground {
@@ -519,6 +521,7 @@ ul {
 
 .dark {
   background-color: rgb(48, 46, 46);
+  color: white;
 }
 
 .fairy {

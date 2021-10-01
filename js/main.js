@@ -99,6 +99,7 @@ function getPokemonPicture() {
 function handleResponseData(event) {
   appendPokemonPicture(event.target.response.sprites.other['official-artwork'].front_default)
   data.currentPokemonUrl = event.target.response.sprites.front_default
+  data.currentPokemonId = event.target.response.id;
 }
 
 function appendPokemonPicture(sprite) {
@@ -128,7 +129,8 @@ function quizTimer() {
   if (data.currentNumber === 10) {
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
-      'sprite': data.currentPokemonUrl
+      'sprite': data.currentPokemonUrl,
+      'id': data.currentPokemonId
     })
     $quizModal.className = "modal-background";
     var $quizScore = document.querySelector('.quiz-score');
@@ -153,7 +155,8 @@ function quizTimer() {
     var $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
-      'sprite': data.currentPokemonUrl
+      'sprite': data.currentPokemonUrl,
+      'id': data.currentPokemonId
     })
     data.currentNumber++;
     $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
@@ -198,12 +201,14 @@ function questionClick() {
       $dots[data.currentNumber - 1].appendChild($icon)
       data.correctPokemon.push({
         'pokemon': data.currentPokemon,
-        'sprite': data.currentPokemonUrl
+        'sprite': data.currentPokemonUrl,
+        'id': data.currentPokemonId
       })
     } else {
       data.wrongPokemon.push({
         'pokemon': data.currentPokemon,
-        'sprite': data.currentPokemonUrl
+        'sprite': data.currentPokemonUrl,
+        'id': data.currentPokemonId
       })
     }
     var $lastQuizImg = document.querySelector('.quiz-pokemon');
@@ -238,7 +243,8 @@ function questionClick() {
     $dots[data.currentNumber - 1].appendChild($icon)
     data.correctPokemon.push({
       'pokemon': data.currentPokemon,
-      'sprite': data.currentPokemonUrl
+      'sprite': data.currentPokemonUrl,
+      'id': data.currentPokemonId
     })
     data.currentNumber++;
     $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
@@ -250,7 +256,8 @@ function questionClick() {
     var $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push({
       'pokemon': data.currentPokemon,
-      'sprite': data.currentPokemonUrl
+      'sprite': data.currentPokemonUrl,
+      'id': data.currentPokemonId
     })
     data.currentNumber++;
     $navH1.textContent = "Trainer:" + data.trainerName + "  | Question " + data.currentNumber;
@@ -338,6 +345,8 @@ function everyEntry() {
   }
 }
 
+var $pokemonName = document.createAttribute("data-view")
+
 function createTrainerEntry(index) {
   var $trainerData = document.createElement('div');
   $trainerData.className = "column-full trainer-data light-background"
@@ -372,8 +381,10 @@ function createTrainerEntry(index) {
     $correctPokemonImage.className = "one-fifth"
     $correctImages.appendChild($correctPokemonImage)
     var $miniPokemon = document.createElement('img');
-    $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
+    $miniPokemon.src = data.pastGames[index].correctPokemon[j].sprite;
+    $miniPokemon.setAttribute("data-view", data.pastGames[index].correctPokemon[j].id)
     $correctPokemonImage.appendChild($miniPokemon);
+    $miniPokemon.addEventListener('click', searchOldPokemon);
     var $miniPokemonTitle = document.createElement('p')
     $miniPokemonTitle.className = "text-center mini-pokemon-title"
     $miniPokemonTitle.textContent = data.pastGames[index].correctPokemon[j].pokemon;
@@ -393,11 +404,12 @@ function createTrainerEntry(index) {
     $incorrectPokemonImage.className = "one-fifth"
     $incorrectImages.appendChild($incorrectPokemonImage)
     var $miniPokemon = document.createElement('img');
-    $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
+    $miniPokemon.src = data.pastGames[index].wrongPokemon[k].sprite;
+    $miniPokemon.setAttribute("data-view", data.pastGames[index].wrongPokemon[k].id)
     $incorrectPokemonImage.appendChild($miniPokemon);
+    $miniPokemon.addEventListener('click', searchOldPokemon)
     var $miniPokemonTitle = document.createElement('p')
     $miniPokemonTitle.className = "text-center mini-pokemon-title"
-
     $miniPokemonTitle.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
     $incorrectPokemonImage.appendChild($miniPokemonTitle);
   }
@@ -412,13 +424,19 @@ function switchPokedex() {
   $navH1.textContent = "Pokédex";
 }
 
-function searchPokemon() {
-  if ($pokedexImage.childElementCount > 0) {
-    $pokedexImage.lastChild.remove();
-    $pokedexImage.firstChild.remove();
-    $stats.firstElementChild.remove();
-    $type.firstElementChild.remove();
+function removePokedexEntry() {
+  for (var i = 0; i < $pokedexImage.children.length; i++) {
+    $pokedexImage.children[i].remove()
   }
+  for (var x = 0; x < $stats.children.length; x++) {
+    $stats.children[x].remove()
+  }
+  for (var k = 0; k < $type.children.length; k++) {
+    $type.children[k].remove()
+  }
+}
+function searchPokemon() {
+  removePokedexEntry();
   if ($pokedexSearch.value.includes(' ')) {
     getPokedexPicture($pokedexSearch.value.toLowerCase().replace(' ', '-'));
   } else if ($pokedexSearch.value.toLowerCase() === 'nidoran') {
@@ -426,6 +444,15 @@ function searchPokemon() {
   } else {
     getPokedexPicture($pokedexSearch.value.toLowerCase());
   }
+}
+
+function searchOldPokemon() {
+  removePokedexEntry();
+  $pastGamesView.className = "container hidden"
+  $pokedex.className = "container rotom"
+  $pokedexSearch.value = event.target.attributes["data-view"].value;
+  $body.className = "rotom"
+  searchPokemon();
 }
 
 function getPokedexPicture(name) {
