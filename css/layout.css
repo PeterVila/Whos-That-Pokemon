@@ -47,7 +47,7 @@
 }
 
 .mini-pokemon img {
-  width: 40%;
+  width: 100%;
   margin: 0 2.5%;
 }
 
@@ -56,13 +56,16 @@
   width: 50%;
 }
 
-.mini-pokemon p {
-  width: 0;
-  position: relative;
-  right: 10rem;
-  bottom: 1rem;
-  font-size: 0.75rem;
-  color: rgb(0, 81, 255);
+.one-fifth {
+  width: 50%;
+}
+
+.mini-pokemon-title {
+  color: rgb(0,81,255);
+  padding: none;
+  margin: 5px;
+  width: 80%;
+
 }
 
 @media screen and (min-width: 768px) {
@@ -90,10 +93,13 @@
     margin-bottom: 0.5rem;
   }
   .mini-pokemon img {
-    width: 15%;
+    width: 80%;
     margin: 0 2.5%;
   }
   .quiz-container img {
     width: 50%;
+  }
+  .one-fifth {
+    width: 20%;
   }
 }

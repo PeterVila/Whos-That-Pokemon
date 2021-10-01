@@ -31,6 +31,10 @@ var $maleNidoran = document.querySelector('#male');
 var $femaleNidoran = document.querySelector('#female');
 var $errorModal = document.querySelector('#error-modal');
 var $understood = document.querySelector('#understood');
+var $logo = document.querySelector('#logo');
+var $howToPlayButton = document.querySelector('#how-to-play');
+var $instructions = document.querySelector('#instructions')
+var $closeInstructions = document.querySelector('#close-instructions');
 $understood.addEventListener('click', errorModal);
 $home.addEventListener('click', clearQuiz);
 $playHistoryButton.addEventListener('click', switchToHistory);
@@ -45,6 +49,8 @@ $maleNidoran.addEventListener('click', searchNidoran);
 $femaleNidoran.addEventListener('click', searchNidoran);
 $startQuiz.addEventListener('click', startQuizModal);
 $cancelButton.addEventListener('click', hideQuizModal);
+$howToPlayButton.addEventListener('click', Instructions)
+$closeInstructions.addEventListener('click', Instructions)
 
 function startQuizModal() {
   $startModal.className = "modal-background"
@@ -361,12 +367,16 @@ function createTrainerEntry(index) {
   $correctImages.className = "mini-pokemon row";
   $trainerData.appendChild($correctImages);
   for (var j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
+    var $correctPokemonImage = document.createElement('div');
+    $correctPokemonImage.className = "one-fifth"
+    $correctImages.appendChild($correctPokemonImage)
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
-    $correctImages.appendChild($miniPokemon);
-    var $miniP = document.createElement('p');
-    $miniP.textContent = data.pastGames[index].correctPokemon[j].pokemon;
-    $correctImages.appendChild($miniP);
+    $correctPokemonImage.appendChild($miniPokemon);
+    var $miniPokemonTitle = document.createElement('p')
+    $miniPokemonTitle.className = "text-center mini-pokemon-title"
+    $miniPokemonTitle.textContent = data.pastGames[index].correctPokemon[j].pokemon;
+    $correctPokemonImage.appendChild($miniPokemonTitle);
   }
   $incorrectPokemonRow = document.createElement('div');
   $incorrectPokemonRow.className = "row justify-center";
@@ -378,12 +388,17 @@ function createTrainerEntry(index) {
   $incorrectImages.className = "mini-pokemon row";
   $trainerData.appendChild($incorrectImages);
   for (var k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
+    var $incorrectPokemonImage = document.createElement('div');
+    $incorrectPokemonImage.className = "one-fifth"
+    $incorrectImages.appendChild($incorrectPokemonImage)
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
-    $incorrectImages.appendChild($miniPokemon);
-    var $miniP = document.createElement('p');
-    $miniP.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
-    $incorrectImages.appendChild($miniP);
+    $incorrectPokemonImage.appendChild($miniPokemon);
+    var $miniPokemonTitle = document.createElement('p')
+    $miniPokemonTitle.className = "text-center mini-pokemon-title"
+
+    $miniPokemonTitle.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
+    $incorrectPokemonImage.appendChild($miniPokemonTitle);
   }
   return $trainerData;
 }
@@ -476,4 +491,12 @@ function searchNidoran() {
 
 function errorModal() {
   $errorModal.className = "modal-background hidden"
+}
+
+function instructions() {
+  if ($instructions.className.includes('hidden')){
+    $instructions.className = "modal-background"
+  } else {
+    $instructions.className = "modal-background hidden";
+  }
 }
