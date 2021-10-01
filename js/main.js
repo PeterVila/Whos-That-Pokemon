@@ -137,7 +137,7 @@ function quizTimer() {
     if (data.correctPokemon.length === 10) {
       $finalModalText.textContent = "Perfect!"
     } else if (data.correctPokemon.length >= 7) {
-      $finalModalText.textContent = "Amazing!"
+      $finalModalText.textContent = "Professor Oak would be proud!"
     } else if (data.correctPokemon.length >= 4) {
       $finalModalText.textContent = "Not bad, but you can do better!"
     } else {
@@ -165,7 +165,6 @@ function quizTimer() {
     createQuizContainer();
     generateFourRandomPokemonNumbers();
     getPokemonPicture()
-    console.log(data);
   }
 }
 

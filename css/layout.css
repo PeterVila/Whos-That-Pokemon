@@ -66,6 +66,10 @@
   width: 50%;
 }
 
+.screen {
+  overflow-y:auto;
+}
+
 .mini-pokemon-title {
   color: rgb(0, 81, 255);
   padding: none;
