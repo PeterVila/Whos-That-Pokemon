@@ -450,12 +450,6 @@ ul {
   margin: 0;
 }
 
-.logo img {
-  width: 35%;
-  max-height: 25rem;
-  margin: 1rem 0;
-}
-
 .logo img:hover {
   cursor: pointer;
   transform: scale(1.05);
