@@ -1,13 +1,3 @@
-.pokemon-font {
-  font-family: 'Joti One', cursive;
-  color: #FFCB04;
-  text-shadow: 4px 4px 0 #39569E,
-    -2px -2px 0 #39569E,
-    2px -2px 0 #39569E,
-    -2px 4px 0 #39569E,
-    2px 2px 0 #39569E;
-}
-
 header {
   background-color: #FF5A6E;
 }
@@ -32,10 +22,10 @@ body {
 
 .faster-animated-background {
   background: url('../images/square.png') repeat 0 0;
-  -webkit-animation: bg-scrolling-reverse .20s infinite;
-  -moz-animation: bg-scrolling-reverse .20s infinite;
-  -o-animation: bg-scrolling-reverse .20s infinite;
-  animation: bg-scrolling-reverse .20s infinite;
+  -webkit-animation: bg-scrolling-reverse 0.2s infinite;
+  -moz-animation: bg-scrolling-reverse 0.2s infinite;
+  -o-animation: bg-scrolling-reverse 0.2s infinite;
+  animation: bg-scrolling-reverse 0.2s infinite;
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function: linear;
   -o-animation-timing-function: linear;
@@ -46,6 +36,16 @@ body {
   100% {
     background-position: 50px 50px;
   }
+}
+
+.pokemon-font {
+  font-family: 'Joti One', cursive;
+  color: #FFCB04;
+  text-shadow: 4px 4px 0 #39569E,
+    -2px -2px 0 #39569E,
+    2px -2px 0 #39569E,
+    -2px 4px 0 #39569E,
+    2px 2px 0 #39569E;
 }
 
 .nav h1 {
@@ -64,7 +64,7 @@ body {
 }
 
 .nav {
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 button {
@@ -76,14 +76,6 @@ button {
   padding: 0.5rem;
   width: 75%;
   margin: 0.25rem 0;
-}
-
-button:hover {
-  background-color: rgb(100, 185, 211);
-  transform: scale(1.05);
-}
-
-button {
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
   border-radius: 5rem;
   box-shadow: 1px 1px 4px -1px rgba(107, 79, 79, 0.65);
@@ -93,13 +85,15 @@ button {
 
 button:hover {
   cursor: pointer;
+  background-color: rgb(100, 185, 211);
+  transform: scale(1.05);
 }
 
 .modal-background {
   width: 100%;
   min-height: -webkit-fill-available;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.500);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -112,7 +106,6 @@ button:hover {
   border: 10px solid #FF5A6E;
 }
 
-
 .modal-text {
   margin-top: 2rem;
 }
@@ -124,9 +117,6 @@ button:hover {
   font-size: 1.5rem;
   text-align: center;
   color: rgb(58, 58, 58);
-}
-
-.modal-text input {
   outline-width: 0;
 }
 
@@ -147,18 +137,15 @@ button:hover {
   color: #7DE0FF;
   font-size: 1rem;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
-  border-radius: 5rem;
   box-shadow: 1px 1px 4px -1px rgba(107, 79, 79, 0.65);
   -webkit-box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.65);
   -moz-box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.65);
 }
 
-
 .blueBackground {
   background-color: #7DE0FF;
 }
 
-/* Loading Bar  */
 .bar {
   margin-top: 0.5rem;
   border: 1px solid black;
@@ -197,7 +184,7 @@ button:hover {
 
 .quiz-container button {
   font-size: 1.5rem;
-  margin: .5rem;
+  margin: 0.5rem;
 }
 
 .icon {
@@ -220,6 +207,18 @@ button:hover {
 
 .justify-center-self {
   justify-self: center;
+}
+
+.pokedex-pokemon-image h1 {
+  margin-top: 5rem;
+  margin-left: 1rem;
+  font-size: 1.75rem;
+  color: rgb(11, 103, 98);
+}
+
+.type h1 {
+  padding: 0;
+  margin: 0;
 }
 
 #past-games h1 {
@@ -254,13 +253,6 @@ button:hover {
   width: 50%;
 }
 
-.search input {
-  height: 3rem;
-  border-radius: 15rem;
-  background-color: rgb(146, 230, 146);
-  width: 100%;
-}
-
 .pokedex-buttons {
   width: 50%;
   position: relative;
@@ -275,8 +267,8 @@ button:hover {
   margin-left: 25%;
   z-index: 1;
   border-bottom: none;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 .dpad-left {
@@ -347,7 +339,7 @@ button:hover {
 }
 
 .pokedex-green-button:hover {
-  background-color: rgb(40, 69, 12)
+  background-color: rgb(40, 69, 12);
 }
 
 .pokedex-blue-button:hover {
@@ -358,7 +350,10 @@ button:hover {
   text-align: center;
   font-size: 1.25rem;
   outline-width: 0;
-
+  height: 3rem;
+  border-radius: 15rem;
+  background-color: rgb(146, 230, 146);
+  width: 100%;
 }
 
 .pokedex-submit {
@@ -403,13 +398,6 @@ button:hover {
   margin-right: 3rem;
 }
 
-.pokedex-pokemon-image h1 {
-  margin-top: 5rem;
-  margin-left: 1rem;
-  font-size: 1.75rem;
-  color: rgb(11, 103, 98);
-}
-
 li {
   list-style: none;
   color: rgb(11, 103, 98);
@@ -417,7 +405,7 @@ li {
 }
 
 ul {
-  border: .4rem solid rgba(11, 103, 98, 0.427);
+  border: 0.4rem solid rgba(11, 103, 98, 0.427);
   border-radius: 1rem;
   margin-right: 1rem;
   padding: 0.5rem;
@@ -427,16 +415,6 @@ ul {
 
 .type {
   margin-top: 1rem;
-}
-
-.type h1 {
-  padding: 0;
-  margin: 0;
-}
-
-.logo img:hover {
-  cursor: pointer;
-  transform: scale(1.05);
 }
 
 #instructions img {
@@ -530,14 +508,14 @@ ul {
 
 .lds-dual-ring {
   display: inline-block;
-  position: absolute; 
+  position: absolute;
   width: 400px;
   height: 400px;
   margin-top: 5rem;
   margin-left: 4rem;
 }
 
-.lds-dual-ring:after {
+.lds-dual-ring::after {
   content: " ";
   display: block;
   width: 320px;

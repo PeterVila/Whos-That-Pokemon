@@ -51,6 +51,22 @@
   margin: 0 2.5%;
 }
 
+.quiz-container img {
+  width: 50%;
+  height: 15rem;
+}
+
+.logo img {
+  width: 50%;
+  height: 20rem;
+  margin: 1rem 0;
+}
+
+.logo img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 .mini-pokemon img:hover {
   cursor: pointer;
   transform: scale(1.1);
@@ -67,7 +83,7 @@
 }
 
 .screen {
-  overflow-y:auto;
+  overflow-y: auto;
 }
 
 .mini-pokemon-title {
@@ -75,17 +91,6 @@
   padding: none;
   margin: 5px;
   width: 80%;
-}
-
-.logo img {
-  width: 50%;
-  height: 15rem;
-  margin: 1rem 0;
-}
-
-.quiz-container img {
-  width: 50%;
-  height: 15rem;
 }
 
 @media screen and (min-width: 768px) {
