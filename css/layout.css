@@ -51,6 +51,28 @@
   margin: 0 2.5%;
 }
 
+.quiz-container img {
+  width: 50%;
+  height: 15rem;
+}
+
+.logo img {
+  width: 50%;
+  height: 18rem;
+  margin: 1rem 0;
+}
+
+.logo img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.mini-pokemon img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  filter: contrast(200%);
+}
+
 .pokedex-first-half,
 .pokedex-second-half {
   width: 50%;
@@ -60,22 +82,15 @@
   width: 50%;
 }
 
+.screen {
+  overflow-y: auto;
+}
+
 .mini-pokemon-title {
   color: rgb(0, 81, 255);
   padding: none;
   margin: 5px;
   width: 80%;
-}
-
-.logo img {
-  width: 50%;
-  height: 15rem;
-  margin: 1rem 0;
-}
-
-.quiz-container img {
-  width: 50%;
-  height: 15rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -97,7 +112,7 @@
   }
 
   .row button {
-    margin-bottom: 0.8rem;
+    margin: 0.5rem;
   }
 
   .mini-pokemon img {
