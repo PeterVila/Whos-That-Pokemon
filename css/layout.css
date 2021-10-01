@@ -51,6 +51,12 @@
   margin: 0 2.5%;
 }
 
+.mini-pokemon img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  filter: contrast(200%);
+}
+
 .pokedex-first-half,
 .pokedex-second-half {
   width: 50%;
