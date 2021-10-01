@@ -211,8 +211,7 @@ button:hover {
 }
 
 .pokedex-pokemon-image h1 {
-  margin-top: 5rem;
-  margin-left: 1rem;
+  margin: 5rem 1rem;
   font-size: 1.75rem;
   color: rgb(11, 103, 98);
 }
