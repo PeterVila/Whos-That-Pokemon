@@ -72,10 +72,10 @@ button {
   border: none;
   background-color: #7DE0FF;
   color: white;
-  font-size: 2rem;
-  padding: 0.5rem;
+  font-size: 1.75rem;
+  padding: 1rem;
   width: 75%;
-  margin: 0.25rem 0;
+  margin: 1rem 0;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
   border-radius: 5rem;
   box-shadow: 1px 1px 4px -1px rgba(107, 79, 79, 0.65);
@@ -277,7 +277,7 @@ button:hover {
   height: 50%;
   background-color: black;
   margin-top: 35%;
-  margin-left: 10%;
+  margin-left: 11%;
   border-right: none;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -515,6 +515,10 @@ ul {
   margin-left: 4rem;
 }
 
+.screen .lds-dual-ring {
+  margin-top: 1rem;
+}
+
 .lds-dual-ring::after {
   content: " ";
   display: block;
@@ -535,4 +539,8 @@ ul {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.screen::-webkit-scrollbar {
+  width: 0;
 }

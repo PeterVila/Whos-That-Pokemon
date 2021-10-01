@@ -33,6 +33,7 @@ var $logo = document.querySelector('#logo');
 var $howToPlayButton = document.querySelector('#how-to-play');
 var $instructions = document.querySelector('#instructions');
 var $closeInstructions = document.querySelector('#close-instructions');
+var $pokedexScreen = document.querySelector('.screen');
 $logo.addEventListener('click', changeDifficulty);
 $understood.addEventListener('click', errorModal);
 $home.addEventListener('click', clearQuiz);
@@ -460,6 +461,9 @@ function getPokedexPicture(name) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
   xhr.responseType = 'json';
+  var $pokedexLoading = document.createElement('div');
+  $pokedexLoading.className = 'lds-dual-ring pokedexLoad';
+  $pokedexScreen.appendChild($pokedexLoading);
   xhr.addEventListener('load', handlePokedexResponseData);
   xhr.send();
 }
@@ -472,6 +476,8 @@ function handlePokedexResponseData(event) {
 }
 
 function appendPokedex(stats) {
+  var $pokedexLoad = document.querySelector('.pokedexLoad');
+  $pokedexLoad.remove();
   var $img = document.createElement('img');
   $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default);
   $img.className = 'pokedex-img';
