@@ -404,6 +404,8 @@ button:hover {
 
 .light-background {
   background-color: rgb(243, 244, 235);
+  padding: 1.25rem;
+  margin: 1rem;
 }
 
 #pokedex {

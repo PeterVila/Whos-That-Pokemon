@@ -367,12 +367,16 @@ function createTrainerEntry(index) {
   $correctImages.className = "mini-pokemon row";
   $trainerData.appendChild($correctImages);
   for (var j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
+    var $correctPokemonImage = document.createElement('div');
+    $correctPokemonImage.className = "one-fifth"
+    $correctImages.appendChild($correctPokemonImage)
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].correctPokemon[j].sprite)
-    $correctImages.appendChild($miniPokemon);
-    var $miniP = document.createElement('p');
-    $miniP.textContent = data.pastGames[index].correctPokemon[j].pokemon;
-    $correctImages.appendChild($miniP);
+    $correctPokemonImage.appendChild($miniPokemon);
+    var $miniPokemonTitle = document.createElement('p')
+    $miniPokemonTitle.className = "text-center mini-pokemon-title"
+    $miniPokemonTitle.textContent = data.pastGames[index].correctPokemon[j].pokemon;
+    $correctPokemonImage.appendChild($miniPokemonTitle);
   }
   $incorrectPokemonRow = document.createElement('div');
   $incorrectPokemonRow.className = "row justify-center";
@@ -384,12 +388,17 @@ function createTrainerEntry(index) {
   $incorrectImages.className = "mini-pokemon row";
   $trainerData.appendChild($incorrectImages);
   for (var k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
+    var $incorrectPokemonImage = document.createElement('div');
+    $incorrectPokemonImage.className = "one-fifth"
+    $incorrectImages.appendChild($incorrectPokemonImage)
     var $miniPokemon = document.createElement('img');
     $miniPokemon.setAttribute('src', data.pastGames[index].wrongPokemon[k].sprite)
-    $incorrectImages.appendChild($miniPokemon);
-    var $miniP = document.createElement('p');
-    $miniP.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
-    $incorrectImages.appendChild($miniP);
+    $incorrectPokemonImage.appendChild($miniPokemon);
+    var $miniPokemonTitle = document.createElement('p')
+    $miniPokemonTitle.className = "text-center mini-pokemon-title"
+
+    $miniPokemonTitle.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
+    $incorrectPokemonImage.appendChild($miniPokemonTitle);
   }
   return $trainerData;
 }
