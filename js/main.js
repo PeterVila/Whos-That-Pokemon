@@ -493,7 +493,7 @@ function errorModal() {
   $errorModal.className = "modal-background hidden"
 }
 
-function Instructions() {
+function instructions() {
   if ($instructions.className.includes('hidden')){
     $instructions.className = "modal-background"
   } else {
