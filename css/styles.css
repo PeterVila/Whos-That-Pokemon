@@ -1,11 +1,11 @@
 header {
-  background-color: #FF5A6E;
+  background-color: #ff5a6e;
 }
 
 body {
-  background-color: #FBFBFC;
+  background-color: #fbfbfc;
   font-family: 'Russo One', sans-serif;
-  color: #FF5A6E;
+  color: #ff5a6e;
 }
 
 .animated-background {
@@ -40,12 +40,13 @@ body {
 
 .pokemon-font {
   font-family: 'Joti One', cursive;
-  color: #FFCB04;
-  text-shadow: 4px 4px 0 #39569E,
-    -2px -2px 0 #39569E,
-    2px -2px 0 #39569E,
-    -2px 4px 0 #39569E,
-    2px 2px 0 #39569E;
+  color: #ffcb04;
+  text-shadow:
+    4px 4px 0 #39569e,
+    -2px -2px 0 #39569e,
+    2px -2px 0 #39569e,
+    -2px 4px 0 #39569e,
+    2px 2px 0 #39569e;
 }
 
 .nav h1 {
@@ -59,7 +60,7 @@ body {
 
 .nav a {
   padding: 0.3rem 0;
-  color: #FFCB04;
+  color: #ffcb04;
   text-decoration: none;
 }
 
@@ -70,7 +71,7 @@ body {
 button {
   font-family: 'Russo One', sans-serif;
   border: none;
-  background-color: #7DE0FF;
+  background-color: #7de0ff;
   color: white;
   font-size: 1.75rem;
   padding: 1rem;
@@ -103,7 +104,7 @@ button:hover {
   min-height: 55%;
   margin: 10% auto;
   border-radius: 5rem;
-  border: 10px solid #FF5A6E;
+  border: 10px solid #ff5a6e;
 }
 
 .modal-text {
@@ -134,7 +135,7 @@ button:hover {
   background-color: white;
   padding-top: 0.5rem;
   margin-top: 2%;
-  color: #7DE0FF;
+  color: #7de0ff;
   font-size: 1rem;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.379);
   box-shadow: 1px 1px 4px -1px rgba(107, 79, 79, 0.65);
@@ -143,7 +144,7 @@ button:hover {
 }
 
 .blueBackground {
-  background-color: #7DE0FF;
+  background-color: #7de0ff;
 }
 
 .bar {
@@ -158,7 +159,7 @@ button:hover {
 .in {
   animation: fill 10s linear 1 forwards;
   height: 100%;
-  background-color: #00FF57;
+  background-color: #00ff57;
   border-radius: 1rem;
 }
 
@@ -226,7 +227,7 @@ button:hover {
 }
 
 .rotom {
-  background-color: #FF5A6E;
+  background-color: #ff5a6e;
 }
 
 .screen-border {

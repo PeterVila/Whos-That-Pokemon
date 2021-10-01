@@ -1,3 +1,4 @@
+/* global allPokemonList, _ */
 var $navH1 = document.querySelector('.navh1');
 var $navH2 = document.querySelector('.navh2');
 var $body = document.querySelector('body');
