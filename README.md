@@ -27,8 +27,8 @@ A web application for Pokemon enthusiasts who want to re-experience the classic,
 * Coming soon!
 
 ## Things I Learned: 
-* Ability to grab data from an API and cache that data for later use.
-* How to save data to localstorage on user exit as well as being able to delete from it.
+* Ability to grab data from an API and cache it for later use.
+* How to save data onto localstorage before user exit as well as being able to delete from it.
 * How to adjust media settings for mobile and screen without limiting functionality for either.
 * How to add a loading spinner that appears whenever an API request is loading.
 * How to apply CSS animations to make a loading bar
