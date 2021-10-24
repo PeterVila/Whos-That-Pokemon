@@ -1,6 +1,8 @@
 # Who's that Pokemon?
 
 A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”.
+**Link**
+[Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
 
 ## Technologies Used: 
 
@@ -9,9 +11,6 @@ A web application for Pokemon enthusiasts who want to re-experience the classic,
 * CSS3
 * AJAX
 * JSON
-
-**Link**
-[Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
 
 ## Features: 
 1. User can take a quiz to identify Pokemon
