@@ -1,6 +1,6 @@
 # Who's that Pokemon?
 
-A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”.
+A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”. <br />
 **Link**
 [Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
 
