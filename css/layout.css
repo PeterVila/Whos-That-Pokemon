@@ -93,22 +93,6 @@
   width: 80%;
 }
 
-.cody {
-  width: 50rem;
-  position: absolute;
-  left: 10rem;
-  top: 10rem;
-  height: 15rem;
-}
-
-.cody-title {
-  position: absolute;
-  bottom: 12rem;
-  left: 10rem;
-  color: rgb(11, 103, 98);
-
-}
-
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -146,8 +130,7 @@
   }
 
   .logo img {
-    width: 40%;
-    height: 40vh;
-    margin: 2rem 0;
+    width: 30%;
+    height: 35vh;
   }
 }
