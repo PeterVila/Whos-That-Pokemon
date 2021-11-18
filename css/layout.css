@@ -58,7 +58,7 @@
 
 .logo img {
   width: 50%;
-  height: 18rem;
+  height: 25vh;
   margin: 1rem 0;
 }
 
@@ -91,6 +91,22 @@
   padding: none;
   margin: 5px;
   width: 80%;
+}
+
+.cody {
+  width: 50rem;
+  position: absolute;
+  left: 10rem;
+  top: 10rem;
+  height: 15rem;
+}
+
+.cody-title {
+  position: absolute;
+  bottom: 12rem;
+  left: 10rem;
+  color: rgb(11, 103, 98);
+
 }
 
 @media screen and (min-width: 768px) {
@@ -130,8 +146,8 @@
   }
 
   .logo img {
-    width: 35%;
-    height: 18rem;
-    margin: 1rem 0;
+    width: 40%;
+    height: 40vh;
+    margin: 2rem 0;
   }
 }
