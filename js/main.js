@@ -1,40 +1,40 @@
 /* global allPokemonList, _ */
-var $navH1 = document.querySelector('.navh1');
-var $navH2 = document.querySelector('.navh2');
-var $body = document.querySelector('body');
-var $startQuiz = document.querySelector('#start');
-var $startModal = document.querySelector('.modal-background');
-var $cancelButton = document.querySelector('#cancel');
-var $submitButton = document.querySelector('form');
-var $homePage = document.querySelector('div[data-view="home"]');
-var $quizPage = document.querySelector('div[data-view="quiz"]');
-var $input = document.querySelector('input');
-var $placeholder = document.createElement('img');
-var $quizImage = document.querySelector('.quiz-image');
-var $quizModal = document.querySelector('#quiz-modal');
-var $loadingIcon = document.querySelector('.lds-dual-ring');
-var $retry = document.querySelector('#retry');
-var $home = document.querySelector('#home');
-var $finalModalText = document.querySelector('.quiz-ending-phrase');
-var $playHistoryButton = document.querySelector('#play-history');
-var $pastGamesView = document.querySelector('#past-games');
-var $pokedex = document.querySelector('#pokedex');
-var $homePokedex = document.querySelector('#menu-pokedex');
-var $pokedexImage = document.querySelector('.pokedex-pokemon-image');
-var $pokedexSearchButton = document.querySelector('.pokedex-submit');
-var $pokedexSearch = document.querySelector('.pokemon-search');
-var $stats = document.querySelector('.stats');
-var $type = document.querySelector('.type');
-var $nidoranModal = document.querySelector('#nidoran-modal');
-var $maleNidoran = document.querySelector('#male');
-var $femaleNidoran = document.querySelector('#female');
-var $errorModal = document.querySelector('#error-modal');
-var $understood = document.querySelector('#understood');
-var $logo = document.querySelector('#logo');
-var $howToPlayButton = document.querySelector('#how-to-play');
-var $instructions = document.querySelector('#instructions');
-var $closeInstructions = document.querySelector('#close-instructions');
-var $pokedexScreen = document.querySelector('.screen');
+let $navH1 = document.querySelector('.navh1');
+const $navH2 = document.querySelector('.navh2');
+const $body = document.querySelector('body');
+const $startQuiz = document.querySelector('#start');
+const $startModal = document.querySelector('.modal-background');
+const $cancelButton = document.querySelector('#cancel');
+const $submitButton = document.querySelector('form');
+const $homePage = document.querySelector('div[data-view="home"]');
+const $quizPage = document.querySelector('div[data-view="quiz"]');
+const $input = document.querySelector('input');
+const $placeholder = document.createElement('img');
+const $quizImage = document.querySelector('.quiz-image');
+const $quizModal = document.querySelector('#quiz-modal');
+const $loadingIcon = document.querySelector('.lds-dual-ring');
+const $retry = document.querySelector('#retry');
+const $home = document.querySelector('#home');
+const $finalModalText = document.querySelector('.quiz-ending-phrase');
+const $playHistoryButton = document.querySelector('#play-history');
+const $pastGamesView = document.querySelector('#past-games');
+const $pokedex = document.querySelector('#pokedex');
+const $homePokedex = document.querySelector('#menu-pokedex');
+const $pokedexImage = document.querySelector('.pokedex-pokemon-image');
+const $pokedexSearchButton = document.querySelector('.pokedex-submit');
+const $pokedexSearch = document.querySelector('.pokemon-search');
+const $stats = document.querySelector('.stats');
+const $type = document.querySelector('.type');
+const $nidoranModal = document.querySelector('#nidoran-modal');
+const $maleNidoran = document.querySelector('#male');
+const $femaleNidoran = document.querySelector('#female');
+const $errorModal = document.querySelector('#error-modal');
+const $understood = document.querySelector('#understood');
+const $logo = document.querySelector('#logo');
+const $howToPlayButton = document.querySelector('#how-to-play');
+const $instructions = document.querySelector('#instructions');
+const $closeInstructions = document.querySelector('#close-instructions');
+const $pokedexScreen = document.querySelector('.screen');
 $logo.addEventListener('click', changeDifficulty);
 $understood.addEventListener('click', errorModal);
 $home.addEventListener('click', clearQuiz);
@@ -78,7 +78,7 @@ function startQuiz(e) {
 function generateFourRandomPokemonNumbers() {
   data.currentFour = [];
   while (data.currentFour.length < 4) {
-    var random = Math.floor(Math.random() * (allPokemonList.length - 1 + 1) + 1);
+    const random = Math.floor(Math.random() * (allPokemonList.length - 1 + 1) + 1);
     if (data.currentFour.includes(random)) {
       continue;
     } else {
@@ -90,7 +90,7 @@ function generateFourRandomPokemonNumbers() {
 generateFourRandomPokemonNumbers();
 
 function getPokemonPicture() {
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + data.currentFour[0]);
   xhr.responseType = 'json';
   xhr.addEventListener('load', handleResponseData);
@@ -104,14 +104,14 @@ function handleResponseData(event) {
 }
 
 function appendPokemonPicture(sprite) {
-  var $img = document.createElement('img');
+  const $img = document.createElement('img');
   $img.setAttribute('src', sprite);
   if (data.hardMode === true) {
     $img.className = 'silhouette quiz-pokemon';
   } else {
     $img.className = 'quiz-pokemon';
   }
-  var $quizContainer = document.querySelector('.quiz-container');
+  const $quizContainer = document.querySelector('.quiz-container');
   $quizContainer.appendChild($img);
   $loadingIcon.className = 'lds-dual-ring';
   $img.addEventListener('load', questionsAndTime);
@@ -119,13 +119,13 @@ function appendPokemonPicture(sprite) {
 }
 
 function createQuizContainer() {
-  var $quizDiv = document.querySelector('#quiz');
-  var $quizContainer = document.createElement('div');
+  const $quizDiv = document.querySelector('#quiz');
+  const $quizContainer = document.createElement('div');
   $quizContainer.className = 'quiz-container row justify-center';
   $quizDiv.appendChild($quizContainer);
 }
 
-var tenSecondsBar = null;
+let tenSecondsBar = null;
 
 function quizTimer() {
   if (data.currentNumber === 10) {
@@ -135,7 +135,7 @@ function quizTimer() {
       id: data.currentPokemonId
     });
     $quizModal.className = 'modal-background';
-    var $quizScore = document.querySelector('.quiz-score');
+    const $quizScore = document.querySelector('.quiz-score');
     if (data.correctPokemon.length === 10) {
       $finalModalText.textContent = 'Perfect!';
     } else if (data.correctPokemon.length >= 7) {
@@ -154,7 +154,7 @@ function quizTimer() {
       hardMode: data.hardMode
     });
   } else {
-    var $navH1 = document.querySelector('.navh1');
+    const $navH1 = document.querySelector('.navh1');
     data.wrongPokemon.push({
       pokemon: data.currentPokemon,
       sprite: data.currentPokemonUrl,
@@ -162,7 +162,7 @@ function quizTimer() {
     });
     data.currentNumber++;
     $navH1.textContent = 'Trainer:' + data.trainerName + '  | Question ' + data.currentNumber;
-    var $quizContainer = document.querySelector('.quiz-container');
+    const $quizContainer = document.querySelector('.quiz-container');
     $quizContainer.remove();
     createQuizContainer();
     generateFourRandomPokemonNumbers();
@@ -172,16 +172,16 @@ function quizTimer() {
 
 function questionsAndTime() {
   $loadingIcon.className = 'lds-dual-ring hidden';
-  var $barRow = document.createElement('div');
+  const $barRow = document.createElement('div');
   $barRow.className = 'bar';
-  var $quizContainer = document.querySelector('.quiz-container');
+  const $quizContainer = document.querySelector('.quiz-container');
   $quizContainer.prepend($barRow);
-  var $inRow = document.createElement('div');
+  const $inRow = document.createElement('div');
   $inRow.className = 'in';
   $barRow.appendChild($inRow);
-  var shuffledFour = _.shuffle(data.currentFour);
-  for (var i = 0; i < 4; i++) {
-    var $button = document.createElement('button');
+  const shuffledFour = _.shuffle(data.currentFour);
+  for (let i = 0; i < 4; i++) {
+    const $button = document.createElement('button');
     $button.className = 'justify-center';
     $button.textContent = allPokemonList[shuffledFour[i] - 1];
     $quizContainer.appendChild($button);
@@ -191,12 +191,12 @@ function questionsAndTime() {
 
 function questionClick() {
   clearTimeout(tenSecondsBar);
-  var $quizContainer = document.querySelector('.quiz-container');
+  const $quizContainer = document.querySelector('.quiz-container');
   if (data.currentNumber === 10) {
     if (event.target.textContent === data.currentPokemon) {
-      var $dots = document.querySelectorAll('.col-tenth');
+      const $dots = document.querySelectorAll('.col-tenth');
       $dots[data.currentNumber - 1].textContent = '';
-      var $icon = document.createElement('img');
+      const $icon = document.createElement('img');
       $icon.className = 'icon';
       $icon.setAttribute('src', 'images/pokeball.png');
       $dots[data.currentNumber - 1].appendChild($icon);
@@ -212,11 +212,11 @@ function questionClick() {
         id: data.currentPokemonId
       });
     }
-    var $lastQuizImg = document.querySelector('.quiz-pokemon');
+    const $lastQuizImg = document.querySelector('.quiz-pokemon');
     $lastQuizImg.className = '';
-    var $quizModal = document.querySelector('#quiz-modal');
+    const $quizModal = document.querySelector('#quiz-modal');
     $quizModal.className = 'modal-background';
-    var $quizScore = document.querySelector('.quiz-score');
+    const $quizScore = document.querySelector('.quiz-score');
     if (data.correctPokemon.length === 10) {
       $finalModalText.textContent = 'Perfect!';
     } else if (data.correctPokemon.length >= 7) {
@@ -235,10 +235,10 @@ function questionClick() {
       hardMode: data.hardMode
     });
   } else if (event.target.textContent === data.currentPokemon) {
-    var $navH1 = document.querySelector('.navh1');
-    $dots = document.querySelectorAll('.col-tenth');
+    const $navH1 = document.querySelector('.navh1');
+    const $dots = document.querySelectorAll('.col-tenth');
     $dots[data.currentNumber - 1].textContent = '';
-    $icon = document.createElement('img');
+    const $icon = document.createElement('img');
     $icon.className = 'icon';
     $icon.setAttribute('src', 'images/pokeball.png');
     $dots[data.currentNumber - 1].appendChild($icon);
@@ -275,11 +275,11 @@ function resetQuiz() {
   data.wrongPokemon = [];
   data.currentPokemon = null;
   data.currentFour = [];
-  var $dots = document.querySelectorAll('.col-tenth');
-  for (var i = 0; i < $dots.length; i++) {
+  const $dots = document.querySelectorAll('.col-tenth');
+  for (let i = 0; i < $dots.length; i++) {
     $dots[i].innerHTML = '<i class="fas fa-circle"></i>';
   }
-  var $quizContainer = document.querySelector('.quiz-container');
+  const $quizContainer = document.querySelector('.quiz-container');
   $quizContainer.remove();
   $navH1.textContent = 'Trainer:' + data.trainerName + '  | Question ' + data.currentNumber;
   $quizModal.className = 'modal-background hidden';
@@ -295,11 +295,11 @@ function clearQuiz() {
   data.trainerName = null;
   data.currentPokemon = null;
   data.currentFour = [];
-  var $dots = document.querySelectorAll('.col-tenth');
-  for (var i = 0; i < $dots.length; i++) {
+  const $dots = document.querySelectorAll('.col-tenth');
+  for (let i = 0; i < $dots.length; i++) {
     $dots[i].innerHTML = '<i class="fas fa-circle"></i>';
   }
-  var $quizContainer = document.querySelector('.quiz-container');
+  const $quizContainer = document.querySelector('.quiz-container');
   $quizContainer.remove();
   $homePage.className = 'container';
   $quizPage.className = 'container hidden';
@@ -322,8 +322,8 @@ function homeScreen() {
   $pastGamesView.className = 'container hidden';
   $navH2.className = 'navh2 pokemon-font hidden';
   $body.className = 'animated-background';
-  var $trainerData = document.querySelectorAll('.trainer-data');
-  for (var i = 0; i < $trainerData.length; i++) {
+  const $trainerData = document.querySelectorAll('.trainer-data');
+  for (let i = 0; i < $trainerData.length; i++) {
     $trainerData[i].remove();
   }
   $pokedex.className = 'container hidden';
@@ -331,15 +331,15 @@ function homeScreen() {
 }
 
 function everyEntry() {
-  for (var i = 0; i < data.pastGames.length; i++) {
-    var renderHistory = createTrainerEntry(i);
+  for (let i = 0; i < data.pastGames.length; i++) {
+    const renderHistory = createTrainerEntry(i);
     $pastGamesView.prepend(renderHistory);
   }
-  var $trashIcons = document.querySelectorAll('.fa-trash-alt');
-  for (var k = $trashIcons.length - 1; k >= 0; k--) {
+  const $trashIcons = document.querySelectorAll('.fa-trash-alt');
+  for (let k = $trashIcons.length - 1; k >= 0; k--) {
     $trashIcons[k].setAttribute('Index', k);
     $trashIcons[k].addEventListener('click', function () {
-      var $trainerData = document.querySelectorAll('.trainer-data');
+      const $trainerData = document.querySelectorAll('.trainer-data');
       $trainerData[event.target.attributes.index.value].remove();
       data.pastGames.reverse().splice(parseInt(event.target.attributes.index.value), 1);
     });
@@ -347,67 +347,67 @@ function everyEntry() {
 }
 
 function createTrainerEntry(index) {
-  var $trainerData = document.createElement('div');
+  const $trainerData = document.createElement('div');
   $trainerData.className = 'column-full trainer-data light-background';
-  var $deleteButton = document.createElement('h1');
+  const $deleteButton = document.createElement('h1');
   $deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
   $deleteButton.className = 'delete-button';
-  var $trainerNameRow = document.createElement('div');
+  const $trainerNameRow = document.createElement('div');
   $trainerNameRow.className = 'trainerName row justify-center';
   $trainerData.appendChild($trainerNameRow);
-  var $h1Name = document.createElement('h1');
+  const $h1Name = document.createElement('h1');
   $h1Name.textContent = 'Trainer: ' + data.pastGames[index].trainerName;
   $h1Name.className = 'pokemon-font';
   if (data.pastGames[index].hardMode === true) {
-    var $h2Name = document.createElement('p');
+    const $h2Name = document.createElement('p');
     $h2Name.textContent = '(Hard Mode)';
     $trainerNameRow.appendChild($h2Name);
   }
   $trainerNameRow.appendChild($h1Name);
   $trainerNameRow.appendChild($deleteButton);
-  var $correctPokemonRow = document.createElement('div');
+  const $correctPokemonRow = document.createElement('div');
   $correctPokemonRow.className = 'row justify-center';
   $trainerData.appendChild($correctPokemonRow);
-  var $h1Correct = document.createElement('h1');
+  const $h1Correct = document.createElement('h1');
   $h1Correct.textContent = 'Correct Pokémon';
   $h1Correct.className = 'blue-font';
   $correctPokemonRow.appendChild($h1Correct);
-  var $correctImages = document.createElement('div');
+  const $correctImages = document.createElement('div');
   $correctImages.className = 'mini-pokemon row';
   $trainerData.appendChild($correctImages);
-  for (var j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
-    var $correctPokemonImage = document.createElement('div');
+  for (let j = 0; j < data.pastGames[index].correctPokemon.length; j++) {
+    const $correctPokemonImage = document.createElement('div');
     $correctPokemonImage.className = 'one-fifth';
     $correctImages.appendChild($correctPokemonImage);
-    var $miniPokemon = document.createElement('img');
+    const $miniPokemon = document.createElement('img');
     $miniPokemon.src = data.pastGames[index].correctPokemon[j].sprite;
     $miniPokemon.setAttribute('data-view', data.pastGames[index].correctPokemon[j].id);
     $correctPokemonImage.appendChild($miniPokemon);
     $miniPokemon.addEventListener('click', searchOldPokemon);
-    var $miniPokemonTitle = document.createElement('p');
+    const $miniPokemonTitle = document.createElement('p');
     $miniPokemonTitle.className = 'text-center mini-pokemon-title';
     $miniPokemonTitle.textContent = data.pastGames[index].correctPokemon[j].pokemon;
     $correctPokemonImage.appendChild($miniPokemonTitle);
   }
-  var $incorrectPokemonRow = document.createElement('div');
+  const $incorrectPokemonRow = document.createElement('div');
   $incorrectPokemonRow.className = 'row justify-center';
   $trainerData.appendChild($incorrectPokemonRow);
-  var $h1Wrong = document.createElement('h1');
+  const $h1Wrong = document.createElement('h1');
   $h1Wrong.textContent = 'Incorrect Pokémon';
   $incorrectPokemonRow.appendChild($h1Wrong);
-  var $incorrectImages = document.createElement('div');
+  const $incorrectImages = document.createElement('div');
   $incorrectImages.className = 'mini-pokemon row';
   $trainerData.appendChild($incorrectImages);
-  for (var k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
-    var $incorrectPokemonImage = document.createElement('div');
+  for (let k = 0; k < data.pastGames[index].wrongPokemon.length; k++) {
+    const $incorrectPokemonImage = document.createElement('div');
     $incorrectPokemonImage.className = 'one-fifth';
     $incorrectImages.appendChild($incorrectPokemonImage);
-    var $miniWrongPokemon = document.createElement('img');
+    const $miniWrongPokemon = document.createElement('img');
     $miniWrongPokemon.src = data.pastGames[index].wrongPokemon[k].sprite;
     $miniWrongPokemon.setAttribute('data-view', data.pastGames[index].wrongPokemon[k].id);
     $incorrectPokemonImage.appendChild($miniWrongPokemon);
     $miniWrongPokemon.addEventListener('click', searchOldPokemon);
-    var $miniWrongPokemonTitle = document.createElement('p');
+    const $miniWrongPokemonTitle = document.createElement('p');
     $miniWrongPokemonTitle.className = 'text-center mini-pokemon-title';
     $miniWrongPokemonTitle.textContent = data.pastGames[index].wrongPokemon[k].pokemon;
     $incorrectPokemonImage.appendChild($miniWrongPokemonTitle);
@@ -424,15 +424,15 @@ function switchPokedex() {
 }
 
 function removePokedexEntry() {
-  for (var i = 0; i < $pokedexImage.children.length; i++) {
+  for (let i = 0; i < $pokedexImage.children.length; i++) {
     $pokedexImage.children[i].remove();
     i--;
   }
-  for (var x = 0; x < $stats.children.length; x++) {
+  for (let x = 0; x < $stats.children.length; x++) {
     $stats.children[x].remove();
     x--;
   }
-  for (var k = 0; k < $type.children.length; k++) {
+  for (let k = 0; k < $type.children.length; k++) {
     $type.children[k].remove();
     k--;
   }
@@ -459,10 +459,10 @@ function searchOldPokemon() {
 }
 
 function getPokedexPicture(name) {
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
   xhr.responseType = 'json';
-  var $pokedexLoading = document.createElement('div');
+  const $pokedexLoading = document.createElement('div');
   $pokedexLoading.className = 'lds-dual-ring pokedexLoad';
   $pokedexScreen.appendChild($pokedexLoading);
   xhr.addEventListener('load', handlePokedexResponseData);
@@ -477,37 +477,39 @@ function handlePokedexResponseData(event) {
 }
 
 function appendPokedex(stats) {
-  var $pokedexLoad = document.querySelector('.pokedexLoad');
+  const $pokedexLoad = document.querySelector('.pokedexLoad');
   $pokedexLoad.remove();
-  var $img = document.createElement('img');
-  $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default);
+  const $img = document.createElement('img');
+  if (stats.sprites) {
+    $img.setAttribute('src', stats.sprites.other['official-artwork'].front_default);
+  }
   $img.className = 'pokedex-img';
   $pokedexImage.appendChild($img);
-  var $nameAndNumber = document.createElement('h1');
+  const $nameAndNumber = document.createElement('h1');
   if (stats.name === 'nidoran-m' || stats.name === 'nidoran-f') {
     $nameAndNumber.textContent = 'Nidoran' + ' (#' + stats.id + ')';
   } else if (stats.name.includes('-')) {
-    var noSpaces = stats.name.split('-');
-    var answer = [];
-    for (var i = 0; i < noSpaces.length; i++) {
+    const noSpaces = stats.name.split('-');
+    const answer = [];
+    for (let i = 0; i < noSpaces.length; i++) {
       answer.push(noSpaces[i].charAt(0).toUpperCase() + noSpaces[i].slice(1));
     }
-    var upperCasedPokemon = answer.join('-');
+    const upperCasedPokemon = answer.join('-');
     $nameAndNumber.textContent = upperCasedPokemon + ' (#' + stats.id + ')';
   } else {
     $nameAndNumber.textContent = stats.name.charAt(0).toUpperCase() + stats.name.slice(1) + ' (#' + stats.id + ')';
   }
   $nameAndNumber.className = 'pokedexh1';
   $pokedexImage.appendChild($nameAndNumber);
-  var $ul = document.createElement('ul');
-  for (var x = 0; x < stats.stats.length; x++) {
-    var $li = document.createElement('li');
-    $li.textContent = stats.stats[x].base_stat + ' ' + stats.stats[x].stat.name;
+  const $ul = document.createElement('ul');
+  for (let x = 0; x < stats.stats.length; x++) {
+    const $li = document.createElement('li');
+    $li.textContent = stats.stats[x].base_stat + ' - ' + stats.stats[x].stat.name;
     $ul.appendChild($li);
   }
-  for (var z = 0; z < stats.types.length; z++) {
-    var $h1 = document.createElement('h1');
-    var $divH1 = document.createElement('div');
+  for (let z = 0; z < stats.types.length; z++) {
+    const $h1 = document.createElement('h1');
+    const $divH1 = document.createElement('div');
     $divH1.className = 'type-color ' + stats.types[z].type.name;
     $h1.textContent = stats.types[z].type.name;
     $divH1.appendChild($h1);
