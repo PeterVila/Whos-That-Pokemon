@@ -1,6 +1,8 @@
 # Who's that Pokemon?
 
 A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”. <br />
+
+## Inspiration
 Project inspiration came from my love for Pokemon ever since I was little. I use to binge watch the shows play the games, aside from spin-offs. So, my goal was to incorporate "Who's that Pokemon?", in a replayable quiz game format and make it a learning experience by letting you see your match history and having the ability to view each pokemon in a pokedex. <br />
 
 **Link**
@@ -37,6 +39,10 @@ Project inspiration came from my love for Pokemon ever since I was little. I use
 * How to apply CSS animations to make a loading bar
 * How to combine animation and javascript timing events
 * How to use Open Graph meta tags for social media apps
+
+![example](https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif)
+![image](https://user-images.githubusercontent.com/42393951/142511439-c281c0aa-9685-45fb-8c1a-4d13a6464d6c.png)
+![image](https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png)
 
 ### System Requirements
 
