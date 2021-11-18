@@ -90,7 +90,10 @@
   color: rgb(0, 81, 255);
   padding: none;
   margin: 5px;
-  width: 80%;
+}
+
+.pokedex-submit button {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -116,7 +119,7 @@
   }
 
   .mini-pokemon img {
-    width: 80%;
+    width: 100%;
     margin: 0 2.5%;
   }
 
@@ -132,5 +135,10 @@
   .logo img {
     width: 30%;
     height: 35vh;
+  }
+
+  #instructions img {
+    width: 50%;
+    min-height: 30rem;
   }
 }

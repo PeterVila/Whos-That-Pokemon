@@ -109,6 +109,7 @@ button:hover {
 
 .modal-text {
   margin-top: 2rem;
+  text-align: center;
 }
 
 .modal-text input {
@@ -122,8 +123,9 @@ button:hover {
 }
 
 .modal button {
-  width: 30%;
+  width: 35%;
   margin: 3rem 0;
+  font-size: 1.5rem;
 }
 
 .progress-circles {
@@ -211,9 +213,12 @@ button:hover {
 }
 
 .pokedex-pokemon-image h1 {
-  margin-top: 5rem;
-  font-size: 1.75rem;
-  color: rgb(11, 103, 98);
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  padding: 0.25rem 0;
+  color: white;
+  width: 100%;
 }
 
 .type h1 {
@@ -256,6 +261,18 @@ button:hover {
 .pokedex-buttons {
   width: 50%;
   position: relative;
+}
+
+.pokedex-img {
+  width: 50%;
+}
+
+.pokedexh1 {
+  width: 50%;
+  text-align: center;
+  border-radius: 2rem;
+  background-color: rgb(11, 103, 98);
+  margin: 1.25rem;
 }
 
 .dpad-top {
@@ -358,15 +375,15 @@ button:hover {
 
 .pokedex-submit {
   position: absolute;
-  margin-left: -50%;
+  margin-left: -95%;
   margin-top: 40%;
-  width: 60%;
 }
 
 .pokedex-submit button {
   background-color: rgb(74, 174, 228);
   border: 2px solid black;
   font-size: 1.5rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .pokedex-submit button:hover {
@@ -393,15 +410,14 @@ button:hover {
 }
 
 #pokedex img {
-  max-width: 35%;
-  margin-bottom: 1rem;
-  margin-right: 3rem;
+  max-width: 100%;
+  max-height: 14rem;
 }
 
 li {
   list-style: none;
   color: rgb(11, 103, 98);
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 ul {
@@ -418,7 +434,15 @@ ul {
 }
 
 #instructions img {
-  width: 45%;
+  height: 10rem;
+}
+
+#instructions h2 {
+  color: rgb(74, 174, 228);
+}
+
+.stats {
+  margin-top: 3rem;
 }
 
 .type-color {
@@ -426,7 +450,7 @@ ul {
   color: black;
   font-size: 0.75rem;
   width: 80%;
-  margin-left: 2rem;
+  margin-left: 1rem;
   border-radius: 1rem;
   margin-bottom: 0.5rem;
 }
