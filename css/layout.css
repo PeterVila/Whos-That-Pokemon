@@ -57,8 +57,7 @@
 }
 
 .logo img {
-  width: 50%;
-  height: 25vh;
+  width: 300px;
   margin: 1rem 0;
 }
 
@@ -133,8 +132,7 @@
   }
 
   .logo img {
-    width: 30%;
-    height: 35vh;
+    width: 350px;
   }
 
   #instructions img {
