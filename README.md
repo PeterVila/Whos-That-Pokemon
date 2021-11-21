@@ -8,6 +8,10 @@ Project inspiration came from my love for Pokemon ever since I was little. I use
 **Link**
 [Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
 
+<img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500"/>
+<img src="https://user-images.githubusercontent.com/42393951/142511439-c281c0aa-9685-45fb-8c1a-4d13a6464d6c.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500"/>
+<img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500"/>
+
 ## Technologies Used: 
 * HTML5
 * Javascript ES6
@@ -39,10 +43,6 @@ Project inspiration came from my love for Pokemon ever since I was little. I use
 * How to apply CSS animations to make a loading bar
 * How to combine animation and javascript timing events
 * How to use Open Graph meta tags for social media apps
-
-<img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500"/>
-<img src="https://user-images.githubusercontent.com/42393951/142511439-c281c0aa-9685-45fb-8c1a-4d13a6464d6c.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500"/>
-<img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500"/>
 
 ### System Requirements
 
