@@ -6,11 +6,11 @@ A web application for Pokemon enthusiasts who want to re-experience the classic,
 [Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" width="32.5%" height="425px"/>
+  <img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" width="47.5%" height="425px"/>
 &nbsp; &nbsp;
-  <img src="https://user-images.githubusercontent.com/42393951/142511439-c281c0aa-9685-45fb-8c1a-4d13a6464d6c.png" width="28%" height="425px"/>
+  <img src="https://user-images.githubusercontent.com/42393951/142511439-c281c0aa-9685-45fb-8c1a-4d13a6464d6c.png" width="47.5%" height="425px"/>
   &nbsp; &nbsp;
-  <img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" width="28%" height="425px"/>
+  <img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" width="47.5%" height="425px"/>
 </p>
 
 ## Inspiration
