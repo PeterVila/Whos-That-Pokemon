@@ -7,7 +7,7 @@ A web application for Pokemon enthusiasts who want to re-experience the classic,
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" width="65%"/>
-  <img src="https://user-images.githubusercontent.com/42393951/142511439-c281c0aa-9685-45fb-8c1a-4d13a6464d6c.png" width="65%"/>
+  <img src="https://user-images.githubusercontent.com/42393951/143094567-bd34705f-82f0-4476-8b51-a5636edd152b.gif" width="65%"/>
   <img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" width="65%"/>
 </p>
 
