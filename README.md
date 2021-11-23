@@ -1,10 +1,18 @@
 # Who's that Pokemon?
 
 A web application for Pokemon enthusiasts who want to re-experience the classic, “Who’s that Pokemon?”. <br />
-Project inspiration came from my love for Pokemon ever since I was little. I use to binge watch the shows play the games, aside from spin-offs. So, my goal was to incorporate "Who's that Pokemon?", in a replayable quiz game format and make it a learning experience by letting you see your match history and having the ability to view each pokemon in a pokedex. <br />
 
 **Link**
 [Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" width="65%"/>
+  <img src="https://user-images.githubusercontent.com/42393951/143094567-bd34705f-82f0-4476-8b51-a5636edd152b.gif" width="65%"/>
+  <img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" width="65%"/>
+</p>
+
+## Inspiration
+Project inspiration came from my love for Pokemon ever since I was little. I use to binge watch the shows play the games, aside from spin-offs. So, my goal was to incorporate "Who's that Pokemon?", in a replayable quiz game format and make it a learning experience by letting you see your match history and having the ability to view each pokemon in a pokedex. <br />
 
 ## Technologies Used: 
 * HTML5
@@ -38,11 +46,11 @@ Project inspiration came from my love for Pokemon ever since I was little. I use
 * How to combine animation and javascript timing events
 * How to use Open Graph meta tags for social media apps
 
-### System Requirements
+## System Requirements
 
 - VS Code or any similar IDE supporting JavaScript ES6
 
-### Getting Started
+## Getting Started
 
 1. Clone the repository.
 
