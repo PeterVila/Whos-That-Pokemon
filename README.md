@@ -6,7 +6,7 @@ A web application for Pokemon enthusiasts who want to re-experience the classic,
 [Who's that Pokemon?](https://petervila.github.io/whos-that-pokemon/)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/42393951/142511431-84a49118-76af-4b3c-a095-2de155ec4109.gif" width="65%"/>
+  <img src="https://user-images.githubusercontent.com/42393951/143111026-f15628c1-9c1c-42b8-ba0c-45a8f648dfb4.gif" width="65%"/>
   <img src="https://user-images.githubusercontent.com/42393951/143094567-bd34705f-82f0-4476-8b51-a5636edd152b.gif" width="65%"/>
   <img src="https://user-images.githubusercontent.com/42393951/142511450-f7694514-200b-44c9-9dc6-4b2fb5c18f75.png" width="65%"/>
 </p>
