@@ -213,7 +213,6 @@ button:hover {
 }
 
 .pokedex-pokemon-image h1 {
-  margin-top: 2rem;
   margin-bottom: 1.25rem;
   font-size: 1.25rem;
   padding: 0.25rem 0;
@@ -410,8 +409,7 @@ button:hover {
 }
 
 #pokedex img {
-  max-width: 100%;
-  max-height: 14rem;
+  width: 70%;
 }
 
 li {
@@ -431,10 +429,6 @@ ul {
 
 .type {
   margin-top: 1rem;
-}
-
-#instructions img {
-  height: 10rem;
 }
 
 #instructions h2 {
