@@ -52,8 +52,7 @@
 }
 
 .quiz-container img {
-  width: 50%;
-  height: 15rem;
+  width: 70%;
 }
 
 .logo img {
@@ -124,7 +123,6 @@
 
   .quiz-container img {
     width: 50%;
-    height: 18rem;
   }
 
   .one-fifth {
